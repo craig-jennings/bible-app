@@ -28,7 +28,7 @@ class Api {
 
   _constructSearchParams(q) {
     const searchParams = new URLSearchParams();
-    searchParams.append('include-first-verse-numbers', false);
+    searchParams.append('include-chapter-numbers', false);
     searchParams.append('include-footnotes', false);
     searchParams.append('include-headings', false);
     searchParams.append('include-passage-references', false);

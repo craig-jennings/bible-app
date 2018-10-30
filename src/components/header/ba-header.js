@@ -7,7 +7,7 @@ class BibleAppHeader extends connect(store)(LitElement) {
 
   static get properties() {
     return {
-      _label: { type: String },
+      _header: { type: String },
     };
   }
 
@@ -45,21 +45,23 @@ class BibleAppHeader extends connect(store)(LitElement) {
   }
 
   render() {
-    const { _label } = this;
+    const { _header } = this;
 
-    // TODO: Make this into breadcrumb links
-    // i.e. Bible > Genesis > 1
+    const bookEl = _header.value ? html`&gt; <a href="/${_header.value}">${_header.label}</a>` : '';
+    const chapterEl = _header.chapter ? html`&gt; ${_header.chapter}` : '';
+
+    // TODO: Breadcrumbs can get too wide on small screens
     return html`
       ${BibleAppHeader.styles}
 
       <h1>
-        <a href="/">${_label}</a>
+        <a href="/">Bible</a> ${bookEl} ${chapterEl}
       </h1>
     `;
   }
 
   stateChanged({ header }) {
-    this._label = header;
+    this._header = header;
   }
 }
 

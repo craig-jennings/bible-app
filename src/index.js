@@ -8,7 +8,7 @@ page('/:book', chapterSelectorPage);
 page('/:book/:chapter', passagePage);
 page('*', unknownPage);
 
-// TODO
+// TODO: Have manual trigger for callback
 window.isSWUpdateAvailable.then((callback) => {
   // store.dispatch(addNotification('Update Available', false));
 

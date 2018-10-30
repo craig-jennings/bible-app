@@ -33,14 +33,14 @@ const bookSelectorPage = () => {
 const chapterSelectorPage = (ctx) => {
   const { book } = ctx.params;
 
-  store.dispatch(resetHeader());
+  store.dispatch(setHeader(book));
   store.dispatch(setPage(chapterSelectorTpl(book)));
 };
 
 const passagePage = (ctx) => {
   const { book, chapter } = ctx.params;
 
-  store.dispatch(setHeader(book));
+  store.dispatch(setHeader(book, chapter));
   store.dispatch(setPage(passageTpl));
   store.dispatch(fetchPassage(book, chapter));
 };

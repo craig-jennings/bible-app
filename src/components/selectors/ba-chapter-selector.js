@@ -1,7 +1,6 @@
 import '../errors/ba-404.js';
 import { html, LitElement } from '@polymer/lit-element';
-import NewTestament from '../../data/NewTestament.js';
-import OldTestament from '../../data/OldTestament.js';
+import findBook from '../../data/findBook.js';
 import selectorStyles from './selectorStyles.js';
 
 class BibleAppChapterSelector extends LitElement {
@@ -33,9 +32,7 @@ class BibleAppChapterSelector extends LitElement {
     const { book } = this;
     const chapters = [];
 
-    const { chapterCount, label } = NewTestament.find(b => b.value === book)
-                                    || OldTestament.find(b => b.value === book)
-                                    || {};
+    const { chapterCount } = findBook(book);
 
     if (!chapterCount) {
       // Invalid book
@@ -49,8 +46,6 @@ class BibleAppChapterSelector extends LitElement {
     return html`
       ${BibleAppChapterSelector.styles}
       ${selectorStyles}
-
-      <h1>${label}</h1>
 
       <div class="selector-list">
         ${chapters}

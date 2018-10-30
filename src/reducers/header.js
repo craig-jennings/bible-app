@@ -1,19 +1,16 @@
 import { RESET_HEADER, SET_HEADER } from '../actions/header.js';
 import createReducer from '../utils/createReducer.js';
-import NewTestament from '../data/NewTestament.js';
-import OldTestament from '../data/OldTestament.js';
+import findBook from '../data/findBook.js';
 
-const INITIAL_STATE = 'Bible';
+const INITIAL_STATE = {};
 
 const reducers = {
   [RESET_HEADER]: () => INITIAL_STATE,
 
-  [SET_HEADER]: (state, { book }) => {
-    const { label } = NewTestament.find(b => b.value === book)
-              || OldTestament.find(b => b.value === book)
-              || {};
+  [SET_HEADER]: (state, { book, chapter }) => {
+    const _book = findBook(book);
 
-    return label;
+    return Object.assign({}, _book, { chapter });
   },
 };
 

@@ -33,7 +33,7 @@ workbox.routing.registerRoute(
   }),
 );
 
-// TODO
+// TODO: Adjust to cache necessary fonts
 /* -- Google Font Cache -- */
 // workbox.routing.registerRoute(
 //   /^https:\/\/fonts\.googleapis\.com/,
