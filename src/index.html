@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <base href="/">
+
+  <title>Bible App</title>
+
+  <script>
+    window.isSWUpdateAvailable = new Promise((resolve) => {
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.addEventListener('controllerchange', () => window.location.reload());
+
+          navigator.serviceWorker
+            .register('service-worker.js')
+            .then(reg => {
+              if (reg.waiting) {
+                resolve(() => reg.waiting.postMessage({ action: 'skipWaiting' }));
+
+                return;
+              }
+
+              reg.addEventListener('updatefound', () => {
+                const newWorker = reg.installing;
+
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === "installed") {
+                    resolve(() => newWorker.postMessage({ action: 'skipWaiting' }));
+                  }
+                })
+              })
+            })
+        });
+      }
+    });
+  </script>
+
+  <link href="manifest.json" rel="manifest">
+
+  <style>
+    :root {
+      --bg-color: #263238;
+      --font-color: #fafafa;
+
+      --header-bg-color: #455a64;
+
+      --footer-bg-color: #37474f;
+
+      --selector-border-color: #455a64;
+
+      --selector-input-border-color: #455a64;
+      --selector-input-border-color--focus: #78909c;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--font-color);
+      font-family: -apple-system,
+                   BlinkMacSystemFont,
+                   "Segoe UI",
+                   Roboto,
+                   "Helvetica Neue",
+                   Arial,
+                   sans-serif,
+                   "Apple Color Emoji",
+                   "Segoe UI Emoji",
+                   "Segoe UI Symbol",
+                   "Noto Color Emoji";
+      line-height: 1.5;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <ba-shell></ba-shell>
+</body>
+</html>

@@ -1,0 +1,32 @@
+/* TODO: Import into index */
+:root {
+  --bg-color: #263238;
+  --font-color: #fafafa;
+
+  --header-bg-color: #455a64;
+
+  --footer-bg-color: #37474f;
+
+  --selector-border-color: #455a64;
+
+  --selector-input-border-color: #455a64;
+  --selector-input-border-color--focus: #78909c;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--font-color);
+  font-family: -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                "Helvetica Neue",
+                Arial,
+                sans-serif,
+                "Apple Color Emoji",
+                "Segoe UI Emoji",
+                "Segoe UI Symbol",
+                "Noto Color Emoji";
+  line-height: 1.5;
+  margin: 0;
+}

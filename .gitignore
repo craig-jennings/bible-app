@@ -1,0 +1,7 @@
+# Directories
+.vscode/
+dist/
+node_modules/
+
+# Files
+yarn-debug.log
