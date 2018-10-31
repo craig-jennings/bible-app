@@ -1,0 +1,33 @@
+{
+  "hosting": {
+    "cleanUrls": true,
+
+    "headers": [
+      {
+        "source" : "**/service-worker.js",
+        "headers" : [
+          {
+            "key" : "Cache-Control",
+            "value" : "no-cache"
+          }
+        ]
+      }
+    ],
+
+    "predeploy": [
+      "yarn run test",
+      "yarn run build:prod"
+    ],
+
+    "public": "./dist",
+
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+
+    "trailingSlash": false
+  }
+}
