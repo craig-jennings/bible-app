@@ -29,8 +29,6 @@ class Api {
 
       return json.passages[0] || null;
     } catch (err) {
-      console.err(err);
-
       return 'Something went wrong';
     }
   }

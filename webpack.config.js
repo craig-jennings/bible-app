@@ -1,10 +1,25 @@
 const { InjectManifest } = require('workbox-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: {
     main: './src/index.js',
+  },
+
+  module: {
+    rules: [{
+      test: /\.css$/,
+      use: [
+        {
+          loader: MiniCssExtractPlugin.loader,
+        },
+        {
+          loader: 'css-loader',
+        },
+      ],
+    }],
   },
 
   output: {
@@ -13,11 +28,6 @@ module.exports = {
   },
 
   plugins: [
-    new HtmlWebpackPlugin({
-      minify: true,
-      template: './src/index.html',
-    }),
-
     new CopyWebpackPlugin([
       {
         flatten: true,
@@ -31,8 +41,18 @@ module.exports = {
       },
     ]),
 
+    new HtmlWebpackPlugin({
+      minify: true,
+      template: './src/index.html',
+    }),
+
     new InjectManifest({
       swSrc: './src/service-worker.js',
+    }),
+
+    new MiniCssExtractPlugin({
+      chunkFilename: '[id].css',
+      filename: '[name].css',
     }),
   ],
 };

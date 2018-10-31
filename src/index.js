@@ -1,4 +1,5 @@
 import './components/shell/ba-shell.js';
+import './styles.css';
 import { bookSelectorPage, chapterSelectorPage, passagePage, unknownPage } from './pages.js';
 import page from 'page';
 // import store from './store.js';
