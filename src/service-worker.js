@@ -6,25 +6,17 @@ const CacheTimes = {
 };
 
 workbox.core.setCacheNameDetails({
-  prefix: 'wishlist',
+  prefix: 'bible-app',
   suffix: 'v1',
 });
 
 workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 
-/* -- Vendor Cache -- */
-workbox.routing.registerRoute(
-  /^https:\/\/stackpath\.bootstrapcdn\.com/,
-  workbox.strategies.staleWhileRevalidate({
-    cacheName: 'vendor-cache',
-  }),
-);
-
 /* -- Images -- */
 workbox.routing.registerRoute(
-  /\.(?:png|gif|jpg|jpeg|svg)$/,
+  /\.(?:gif|jpeg|jpg|png|svg)$/,
   workbox.strategies.cacheFirst({
-    cacheName: 'images',
+    cacheName: 'bible-images',
     plugins: [
       new workbox.expiration.Plugin({
         maxAgeSeconds: CacheTimes.THIRTY_DAYS,

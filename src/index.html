@@ -10,37 +10,34 @@
   <title>Bible App</title>
 
   <script>
-    window.isSWUpdateAvailable = new Promise((resolve) => {
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.addEventListener('controllerchange', () => window.location.reload());
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker
+          .register('service-worker.js')
+          .then(reg => {
+            if (reg.waiting) {
+              reg.waiting.postMessage({ action: 'skipWaiting' });
 
-          navigator.serviceWorker
-            .register('service-worker.js')
-            .then(reg => {
-              if (reg.waiting) {
-                resolve(() => reg.waiting.postMessage({ action: 'skipWaiting' }));
+              return;
+            }
 
-                return;
-              }
+            reg.addEventListener('updatefound', () => {
+              const newWorker = reg.installing;
 
-              reg.addEventListener('updatefound', () => {
-                const newWorker = reg.installing;
-
-                newWorker.addEventListener('statechange', () => {
-                  if (newWorker.state === "installed") {
-                    resolve(() => newWorker.postMessage({ action: 'skipWaiting' }));
-                  }
-                })
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === "installed") {
+                  newWorker.postMessage({ action: 'skipWaiting' });
+                }
               })
             })
-        });
-      }
-    });
+          })
+      });
+    }
   </script>
 
   <link href="manifest.json" rel="manifest">
   <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans" rel="stylesheet">
+  <link href="images/favicon.ico?v=1" rel="shortcut icon" type="image/x-icon">
 </head>
 
 <body>
