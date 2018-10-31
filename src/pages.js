@@ -5,7 +5,6 @@ import './components/selectors/ba-chapter-selector.js';
 import { fetchPassage } from './actions/passage.js';
 import { html } from 'lit-html';
 import { resetHeader, setHeader } from './actions/header.js';
-import { setBook, setChapter } from './actions/reference.js';
 import { setPage } from './actions/page.js';
 import store from './store.js';
 

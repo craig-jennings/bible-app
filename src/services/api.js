@@ -1,3 +1,5 @@
+import findBook from '../data/findBook.js';
+
 class Api {
   constructor() {
     this._baseUrl = 'https://api.esv.org/v3/passage/html/?';
@@ -5,7 +7,14 @@ class Api {
   }
 
   async fetchPassage(book, chapter) {
-    const reference = `${book} ${chapter}`;
+    let reference = `${book} ${chapter}`;
+
+    const _book = findBook(book);
+
+    if (_book.chapterCount === 1) {
+      // Fetch the full chapter instead of just the first verse
+      reference = `${book}`;
+    }
 
     const searchParams = this._constructSearchParams(reference);
 

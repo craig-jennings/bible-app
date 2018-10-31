@@ -107,7 +107,7 @@ export default [
   {
     chapterCount: 8,
     label: 'Song of Solomon',
-    value: 'songOfSolomon',
+    value: 'song',
   },
   {
     chapterCount: 66,
