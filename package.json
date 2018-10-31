@@ -17,7 +17,7 @@
     "@polymer/lit-element": "0.6.2",
     "classnames": "2.2.6",
     "lit-html": "0.12.0",
-    "page": "1.10.2",
+    "page": "1.11.0",
     "pwa-helpers": "0.9.0",
     "redux": "4.0.1",
     "redux-thunk": "2.3.0"
