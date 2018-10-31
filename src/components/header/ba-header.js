@@ -40,6 +40,24 @@ class BibleAppHeader extends connect(store)(LitElement) {
         a:visited {
           text-decoration: none;
         }
+
+        h1 {
+          display: flex;
+          width: 100%;
+        }
+
+        span {
+          margin: 0 .75rem;
+        }
+
+        @media screen and (max-width: 767px) {
+          .book {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
       </style>
     `;
   }
@@ -47,10 +65,9 @@ class BibleAppHeader extends connect(store)(LitElement) {
   render() {
     const { _header } = this;
 
-    const bookEl = _header.value ? html`&gt; <a href="/${_header.value}">${_header.label}</a>` : '';
-    const chapterEl = _header.chapter ? html`&gt; ${_header.chapter}` : '';
+    const bookEl = _header.value ? html`<span>&gt;</span> <a class="book" href="/${_header.value}">${_header.label}</a>` : '';
+    const chapterEl = _header.chapter ? html`<span>&gt;</span> ${_header.chapter}` : '';
 
-    // TODO: Breadcrumbs can get too wide on small screens
     return html`
       ${BibleAppHeader.styles}
 

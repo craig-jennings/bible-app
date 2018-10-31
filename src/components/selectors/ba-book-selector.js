@@ -22,7 +22,7 @@ class BibleAppBookSelector extends LitElement {
         }
 
         h1 {
-          margin-bottom: 1rem;
+          margin: .5rem 0;
           text-align: center;
         }
       </style>

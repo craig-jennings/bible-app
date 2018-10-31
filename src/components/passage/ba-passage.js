@@ -22,18 +22,13 @@ class BibleAppPassage extends connect(store)(LitElement) {
 
         * {
           box-sizing: border-box;
+          font-size: 1.25rem;
           margin: 0;
           padding: 0;
         }
 
         p {
           margin-bottom: 1rem;
-        }
-
-        .chapter-num {
-          float: left;
-          font-size: 3rem;
-          line-height: 3rem;
         }
 
         .verse-num {
