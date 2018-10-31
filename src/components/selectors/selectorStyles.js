@@ -8,6 +8,23 @@ export default html`
       padding: 0;
     }
 
+    .filter-input {
+      background-color: var(--bg-color);
+      border-radius: .5rem;
+      border: 2px solid var(--selector-input-border-color);
+      color: var(--font-color);
+      font-size: 1.25rem;
+      line-height: 2rem;
+      padding-left: 1rem;
+      width: 100%;
+      transition: border-color .15s;
+    }
+
+    .filter-input:focus {
+      border-color: var(--selector-input-border-color--focus);
+      outline: none;
+    }
+
     .selector-list {
       display: grid;
       gap: 1rem;

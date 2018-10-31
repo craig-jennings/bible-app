@@ -8,6 +8,7 @@ class BibleAppChapterSelector extends LitElement {
 
   static get properties() {
     return {
+      _chapters: { type: Array },
       book: { type: String },
     };
   }
@@ -20,32 +21,43 @@ class BibleAppChapterSelector extends LitElement {
           padding: 1rem;
         }
 
-        h1 {
+        .filter-input {
           margin-bottom: 1rem;
-          text-align: center;
         }
       </style>
     `;
   }
 
+  constructor() {
+    super();
+
+    this._chapters = [];
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    this._buildAllChapters();
+  }
+
+  update(changedProperties) {
+    if (changedProperties.get('book')) {
+      this._buildAllChapters();
+    }
+
+    super.update();
+  }
+
   render() {
-    const { book } = this;
-    const chapters = [];
-
-    const { chapterCount } = findBook(book);
-
-    if (!chapterCount) {
-      // Invalid book
-      return html`<ba-404></ba-404>`;
-    }
-
-    for (let i = 1; i <= chapterCount; i++) {
-      chapters.push(this._constructChapterEl(i));
-    }
+    const chapters = this._chapters.map(c => this._constructChapterElement(c));
 
     return html`
       ${BibleAppChapterSelector.styles}
       ${selectorStyles}
+
+      <div>
+        <input class="filter-input" placeholder="Search..." @input="${this.filterChapters}">
+      </div>
 
       <div class="selector-list">
         ${chapters}
@@ -53,7 +65,33 @@ class BibleAppChapterSelector extends LitElement {
     `;
   }
 
-  _constructChapterEl(chapter) {
+  firstUpdated() {
+    this.renderRoot.querySelector('input').focus();
+  }
+
+  filterChapters(e) {
+    const term = e.target.value;
+
+    if (term.trim().length === 0) {
+      this._chapters = this._allChapters;
+    } else {
+      this._chapters = this._allChapters.filter(c => c.indexOf(term) > -1);
+    }
+  }
+
+  _buildAllChapters() {
+    const { chapterCount } = findBook(this.book);
+    const chapters = [];
+
+    for (let i = 1; i <= chapterCount; i++) {
+      chapters.push(`${i}`);
+    }
+
+    this._allChapters = chapters;
+    this._chapters = chapters;
+  }
+
+  _constructChapterElement(chapter) {
     return html`
       <a class="selector-item" href="${this.book}/${chapter}">${chapter}</a>
     `;

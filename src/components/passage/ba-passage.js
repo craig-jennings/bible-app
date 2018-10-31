@@ -8,7 +8,6 @@ class BibleAppPassage extends connect(store)(LitElement) {
 
   static get properties() {
     return {
-      _book: { type: String },
       _passage: { type: String },
     };
   }
@@ -49,12 +48,19 @@ class BibleAppPassage extends connect(store)(LitElement) {
             width: 50%;
           }
         }
+
+        @media screen and (min-width: 1200px) {
+          :host {
+            margin: 0 auto;
+            width: 40%;
+          }
+        }
       </style>
     `;
   }
 
   render() {
-    const { _book, _passage } = this;
+    const { _passage } = this;
 
     return html`
       ${BibleAppPassage.styles}
@@ -63,9 +69,8 @@ class BibleAppPassage extends connect(store)(LitElement) {
     `;
   }
 
-  stateChanged({ passage, reference }) {
+  stateChanged({ passage }) {
     this._passage = passage;
-    this._book = reference.book;
   }
 }
 

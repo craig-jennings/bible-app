@@ -25,23 +25,6 @@ class BibleAppBookSelector extends LitElement {
           margin-bottom: 1rem;
           text-align: center;
         }
-
-        input {
-          background-color: var(--bg-color);
-          border-radius: .5rem;
-          border: 2px solid var(--selector-input-border-color);
-          color: var(--font-color);
-          font-size: 1.25rem;
-          line-height: 2rem;
-          padding-left: 1rem;
-          width: 100%;
-          transition: border-color .15s;
-        }
-
-        input:focus {
-          border-color: var(--selector-input-border-color--focus);
-          outline: none;
-        }
       </style>
     `;
   }
@@ -54,15 +37,15 @@ class BibleAppBookSelector extends LitElement {
   }
 
   render() {
-    const newTestamentBooks = this._newTestamentBooks.map(b => this._constructBookEl(b));
-    const oldTestamentBooks = this._oldTestamentBooks.map(b => this._constructBookEl(b));
+    const newTestamentBooks = this._newTestamentBooks.map(b => this._constructBookElement(b));
+    const oldTestamentBooks = this._oldTestamentBooks.map(b => this._constructBookElement(b));
 
     return html`
       ${BibleAppBookSelector.styles}
       ${selectorStyles}
 
       <div>
-        <input placeholder="Search..." @input="${this.filterBooks}">
+        <input class="filter-input" placeholder="Search..." @input="${this.filterBooks}">
       </div>
 
       <h1>Old Testament</h1>
@@ -95,7 +78,7 @@ class BibleAppBookSelector extends LitElement {
     }
   }
 
-  _constructBookEl({ label, value }) {
+  _constructBookElement({ label, value }) {
     return html`
       <a class="selector-item" href="/${value}">${label}</a>
     `;
