@@ -18,6 +18,6 @@
 
   "name": "Simple Bible App",
   "short_name": "Bible",
-  "start_url": "index.html",
+  "start_url": "/",
   "theme_color": "#455a64"
 }

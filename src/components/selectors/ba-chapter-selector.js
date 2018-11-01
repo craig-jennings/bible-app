@@ -56,7 +56,7 @@ class BibleAppChapterSelector extends LitElement {
       ${selectorStyles}
 
       <div>
-        <input class="filter-input" placeholder="Search..." @input="${this.filterChapters}">
+        <input class="filter-input" placeholder="Search..." type="number" @input="${this.filterChapters}">
       </div>
 
       <div class="selector-list">

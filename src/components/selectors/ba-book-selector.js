@@ -67,7 +67,7 @@ class BibleAppBookSelector extends LitElement {
   }
 
   filterBooks(e) {
-    const term = e.target.value;
+    const term = e.target.value.toLowerCase();
 
     if (term.trim().length === 0) {
       this._newTestamentBooks = NewTestament;
