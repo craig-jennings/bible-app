@@ -1,5 +1,5 @@
 import { connect } from 'pwa-helpers';
-import { html, LitElement } from '@polymer/lit-element';
+import { html, LitElement } from 'lit-element';
 import store from '../../store.js';
 
 class BibleAppHeader extends connect(store)(LitElement) {

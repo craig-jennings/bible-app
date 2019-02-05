@@ -1,5 +1,5 @@
 import { connect } from 'pwa-helpers';
-import { html, LitElement } from '@polymer/lit-element';
+import { html, LitElement } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 import store from '../../store.js';
 

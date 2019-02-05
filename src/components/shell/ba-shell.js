@@ -1,7 +1,7 @@
 import '../footer/ba-footer.js';
 import '../header/ba-header.js';
 import { connect } from 'pwa-helpers';
-import { html, LitElement } from '@polymer/lit-element';
+import { html, LitElement } from 'lit-element';
 import store from '../../store.js';
 
 class BibleAppShell extends connect(store)(LitElement) {

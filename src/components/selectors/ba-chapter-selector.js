@@ -1,5 +1,5 @@
 import '../errors/ba-404.js';
-import { html, LitElement } from '@polymer/lit-element';
+import { html, LitElement } from 'lit-element';
 import findBook from '../../data/findBook.js';
 import selectorStyles from './selectorStyles.js';
 

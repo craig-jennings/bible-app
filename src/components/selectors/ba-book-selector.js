@@ -1,4 +1,4 @@
-import { html, LitElement } from '@polymer/lit-element';
+import { html, LitElement } from 'lit-element';
 import NewTestament from '../../data/NewTestament.js';
 import OldTestament from '../../data/OldTestament.js';
 import selectorStyles from './selectorStyles.js';
