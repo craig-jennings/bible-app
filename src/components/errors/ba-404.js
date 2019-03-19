@@ -1,26 +1,25 @@
-import { html, LitElement } from 'lit-element';
+import { css, html, LitElement } from 'lit-element';
 
 class BibleApp404 extends LitElement {
   static get is() { return 'ba-404'; }
 
   static get styles() {
-    return html`
-      <style>
-        div {
-          align-items: center;
-          display: flex;
-          height: 100%;
-          justify-content: center;
-          width: 100%;
-        }
-      </style>
+    return css`
+      :host         { display: block; }
+      :host[hidden] { display: none; }
+
+      div {
+        align-items: center;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        width: 100%;
+      }
     `;
   }
 
   render() {
     return html`
-      ${BibleApp404.styles}
-
       <div>Unknown Passage</div>
     `;
   }

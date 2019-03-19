@@ -9,3 +9,5 @@ page('/:book/:chapter', passagePage);
 page('*', unknownPage);
 
 page.start();
+
+window.updateAvailable.then(() => alert('Update available, please refresh'));

@@ -1,4 +1,4 @@
-import { html, LitElement } from 'lit-element';
+import { css, html, LitElement } from 'lit-element';
 import NewTestament from '../../data/NewTestament.js';
 import OldTestament from '../../data/OldTestament.js';
 import selectorStyles from './selectorStyles.js';
@@ -14,8 +14,8 @@ class BibleAppBookSelector extends LitElement {
   }
 
   static get styles() {
-    return html`
-      <style>
+    return [
+      css`
         :host {
           display: block;
           padding: 1rem;
@@ -25,8 +25,10 @@ class BibleAppBookSelector extends LitElement {
           margin: .5rem 0;
           text-align: center;
         }
-      </style>
-    `;
+      `,
+
+      selectorStyles,
+    ];
   }
 
   constructor() {
@@ -41,9 +43,6 @@ class BibleAppBookSelector extends LitElement {
     const oldTestamentBooks = this._oldTestamentBooks.map(b => this._constructBookElement(b));
 
     return html`
-      ${BibleAppBookSelector.styles}
-      ${selectorStyles}
-
       <div>
         <input class="filter-input" placeholder="Search..." @input="${this.filterBooks}">
       </div>

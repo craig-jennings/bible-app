@@ -1,5 +1,5 @@
 import '../errors/ba-404.js';
-import { html, LitElement } from 'lit-element';
+import { css, html, LitElement } from 'lit-element';
 import findBook from '../../data/findBook.js';
 import selectorStyles from './selectorStyles.js';
 
@@ -14,8 +14,8 @@ class BibleAppChapterSelector extends LitElement {
   }
 
   static get styles() {
-    return html`
-      <style>
+    return [
+      css`
         :host {
           display: block;
           padding: 1rem;
@@ -24,8 +24,10 @@ class BibleAppChapterSelector extends LitElement {
         .filter-input {
           margin-bottom: 1rem;
         }
-      </style>
-    `;
+      `,
+
+      selectorStyles,
+    ];
   }
 
   constructor() {
@@ -52,9 +54,6 @@ class BibleAppChapterSelector extends LitElement {
     const chapters = this._chapters.map(c => this._constructChapterElement(c));
 
     return html`
-      ${BibleAppChapterSelector.styles}
-      ${selectorStyles}
-
       <div>
         <input class="filter-input" placeholder="Search..." type="number" @input="${this.filterChapters}">
       </div>

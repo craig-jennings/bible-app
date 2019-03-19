@@ -1,45 +1,40 @@
-import { html, LitElement } from 'lit-element';
+import { css, html, LitElement } from 'lit-element';
 
 class BibleAppFooter extends LitElement {
   static get is() { return 'ba-footer'; }
 
-  static get properties() {
-    return {};
-  }
-
   static get styles() {
-    return html`
-      <style>
-        :host {
-          align-items: center;
-          background-color: var(--footer-bg-color);
-          box-sizing: border-box;
-          display: flex;
-          height: 100%;
-          justify-content: center;
-          padding: 0 .5rem;
-        }
+    return css`
+      :host { display: block; }
+      :host[hidden] { display: none; }
 
-        @media screen and (min-width: 768px) {
-          :host {
-            justify-content: flex-end;
-          }
-        }
+      div {
+        align-items: center;
+        background-color: var(--footer-bg-color);
+        box-sizing: border-box;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        padding: 0 .5rem;
+      }
 
-        small {
-          font-style: italic;
+      @media screen and (min-width: 768px) {
+        div {
+          justify-content: flex-end;
         }
-      </style>
+      }
+
+      small {
+        font-style: italic;
+      }
     `;
   }
 
   render() {
     return html`
-      ${BibleAppFooter.styles}
-
-      <small>
-        All passages sourced from the ESV translation
-      </small>
+      <div>
+        <small>All passages sourced from the ESV translation</small>
+      </div>
     `;
   }
 }
