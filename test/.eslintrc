@@ -1,0 +1,11 @@
+{
+  "globals": {
+    "fixture": false,
+    "test": false
+  },
+
+  "rules": {
+    "import/prefer-default-export": "off",
+    "newline-per-chained-call": "off"
+  }
+}

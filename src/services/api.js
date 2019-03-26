@@ -40,6 +40,7 @@ class Api {
     searchParams.append('include-headings', false);
     searchParams.append('include-passage-references', false);
     searchParams.append('include-short-copyright', false);
+    searchParams.append('wrapping-div', true);
 
     searchParams.append('q', q);
 

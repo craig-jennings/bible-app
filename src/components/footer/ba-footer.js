@@ -5,7 +5,7 @@ class BibleAppFooter extends LitElement {
 
   static get styles() {
     return css`
-      :host { display: block; }
+      :host         { display: block; }
       :host[hidden] { display: none; }
 
       div {

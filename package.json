@@ -8,6 +8,7 @@
     "build:dev": "webpack --mode development",
     "build:prod": "webpack --mode production",
     "build:watch": "webpack --mode development --watch",
+    "e2e": "testcafe chrome ./test/**/*.spec.js --app \"live-server dist/ --entry-file=index.html\"",
     "serve": "live-server dist/ --entry-file=index.html",
     "start": "npm-run-all -p serve build:watch",
     "test": "npm-run-all test:*",
@@ -33,6 +34,7 @@
     "live-server": "^1.2.0",
     "mini-css-extract-plugin": "^0.5.0",
     "npm-run-all": "^4.1.3",
+    "testcafe": "^1.1.0",
     "webpack": "^4.8.3",
     "webpack-command": "^0.4.1",
     "workbox-webpack-plugin": "^4.1.1"

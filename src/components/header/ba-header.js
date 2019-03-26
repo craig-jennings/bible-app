@@ -13,7 +13,7 @@ class BibleAppHeader extends connect(store)(LitElement) {
 
   static get styles() {
     return css`
-      :host { display: block; }
+      :host         { display: block; }
       :host[hidden] { display: none; }
 
       * {
