@@ -1,15 +1,15 @@
-import ShadowComponent from './Component.js';
+import ShadowComponent from '../utils/ShadowComponent.js';
 
 class ChapterSelector extends ShadowComponent {
-  get filterInput() { return this.container.find('.filter-input'); }
+  get filterInput() { return this.container.find('.form__input'); }
 
   getAllChapters() {
-    return this.container.find('.selector-item');
+    return this.container.find('.selector__item');
   }
 
   getNthChapter(n) {
     return this.container
-      .find('.selector-item')
+      .find('.selector__item')
       .nth(n);
   }
 }

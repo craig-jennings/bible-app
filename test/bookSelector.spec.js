@@ -1,4 +1,4 @@
-import { getWindowLocation } from './utils.js';
+import { getWindowLocation } from './utils/clientFunctions.js';
 import BookSelector from './components/BookSelector.js';
 import ChapterSelector from './components/ChapterSelector.js';
 

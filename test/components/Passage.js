@@ -1,4 +1,4 @@
-import ShadowComponent from './Component.js';
+import ShadowComponent from '../utils/ShadowComponent.js';
 
 class Passage extends ShadowComponent {
   get passage() {
