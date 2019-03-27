@@ -10,7 +10,7 @@ class BibleAppFooter extends LitElement {
 
       div {
         align-items: center;
-        background-color: var(--footer-bg-color);
+        background-color: var(--footer__bg-color);
         box-sizing: border-box;
         display: flex;
         height: 100%;

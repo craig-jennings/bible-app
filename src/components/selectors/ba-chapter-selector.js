@@ -1,6 +1,8 @@
 import '../errors/ba-404.js';
+import { baseStyles, blockStyles } from '../../styles/base.js';
 import { css, html, LitElement } from 'lit-element';
-import findBook from '../../data/findBook.js';
+import { findBookByValue } from '../../data/findBook.js';
+import { formStyles } from '../../styles/form.js';
 import selectorStyles from './selectorStyles.js';
 
 class BibleAppChapterSelector extends LitElement {
@@ -15,18 +17,21 @@ class BibleAppChapterSelector extends LitElement {
 
   static get styles() {
     return [
+      baseStyles,
+      blockStyles,
+      formStyles,
+      selectorStyles,
+
       css`
         :host {
-          display: block;
           padding: 1rem;
         }
 
-        .filter-input {
+        .form__input {
           margin-bottom: 1rem;
         }
       `,
 
-      selectorStyles,
     ];
   }
 
@@ -55,10 +60,10 @@ class BibleAppChapterSelector extends LitElement {
 
     return html`
       <div>
-        <input class="filter-input" placeholder="Search..." type="number" @input="${this.filterChapters}">
+        <input class="form__input" placeholder="Search..." type="number" @input="${this.filterChapters}">
       </div>
 
-      <div class="selector-list">
+      <div class="selector__list">
         ${chapters}
       </div>
     `;
@@ -79,7 +84,7 @@ class BibleAppChapterSelector extends LitElement {
   }
 
   _buildAllChapters() {
-    const { chapterCount } = findBook(this.book);
+    const { chapterCount } = findBookByValue(this.book);
     const chapters = [];
 
     for (let i = 1; i <= chapterCount; i++) {
@@ -92,7 +97,7 @@ class BibleAppChapterSelector extends LitElement {
 
   _constructChapterElement(chapter) {
     return html`
-      <a class="selector-item" href="${this.book}/${chapter}">${chapter}</a>
+      <a class="selector__item" href="${this.book}/${chapter}">${chapter}</a>
     `;
   }
 }

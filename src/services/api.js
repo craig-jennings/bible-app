@@ -1,31 +1,28 @@
-import findBook from '../data/findBook.js';
+import { findBookByValue } from '../data/findBook.js';
 
 class Api {
   constructor() {
     this._baseUrl = 'https://api.esv.org/v3/passage/html/?';
+    this._searchUrl = 'https://api.esv.org/v3/passage/search/?q=';
     this._token = 'b960fb5d8eee535706d94159a4cce424b2414538';
   }
 
   async fetchPassage(book, chapter) {
     let reference = `${book} ${chapter}`;
 
-    const _book = findBook(book);
+    const _book = findBookByValue(book);
 
     if (_book.chapterCount === 1) {
       // Fetch the full chapter instead of just the first verse
       reference = `${book}`;
     }
 
-    const searchParams = this._constructSearchParams(reference);
+    const searchParams = this._constructPassageParams(reference);
 
     const url = `${this._baseUrl}${searchParams.toString()}`;
 
     try {
-      const res = await fetch(url, {
-        headers: this._getHeaders(),
-      });
-
-      const json = await res.json();
+      const json = await this._get(url);
 
       return json.passages[0] || null;
     } catch (err) {
@@ -33,14 +30,25 @@ class Api {
     }
   }
 
-  _constructSearchParams(q) {
+  async search(term) {
+    const url = `${this._searchUrl}${term}`;
+
+    try {
+      const json = await this._get(url);
+
+      return json.results;
+    } catch (err) {
+      return 'Something went wrong';
+    }
+  }
+
+  _constructPassageParams(q) {
     const searchParams = new URLSearchParams();
     searchParams.append('include-chapter-numbers', false);
     searchParams.append('include-footnotes', false);
     searchParams.append('include-headings', false);
     searchParams.append('include-passage-references', false);
     searchParams.append('include-short-copyright', false);
-    searchParams.append('wrapping-div', true);
 
     searchParams.append('q', q);
 
@@ -51,6 +59,14 @@ class Api {
     return {
       Authorization: `Token ${this._token}`,
     };
+  }
+
+  async _get(url) {
+    const res = await fetch(url, {
+      headers: this._getHeaders(),
+    });
+
+    return res.json();
   }
 }
 

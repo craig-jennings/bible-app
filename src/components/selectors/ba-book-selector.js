@@ -1,4 +1,6 @@
+import { baseStyles, blockStyles } from '../../styles/base.js';
 import { css, html, LitElement } from 'lit-element';
+import { formStyles } from '../../styles/form.js';
 import NewTestament from '../../data/NewTestament.js';
 import OldTestament from '../../data/OldTestament.js';
 import selectorStyles from './selectorStyles.js';
@@ -15,9 +17,13 @@ class BibleAppBookSelector extends LitElement {
 
   static get styles() {
     return [
+      baseStyles,
+      blockStyles,
+      formStyles,
+      selectorStyles,
+
       css`
         :host {
-          display: block;
           padding: 1rem;
         }
 
@@ -26,8 +32,6 @@ class BibleAppBookSelector extends LitElement {
           text-align: center;
         }
       `,
-
-      selectorStyles,
     ];
   }
 
@@ -44,18 +48,18 @@ class BibleAppBookSelector extends LitElement {
 
     return html`
       <div>
-        <input class="filter-input" placeholder="Search..." @input="${this.filterBooks}">
+        <input class="form__input" placeholder="Search..." @input="${this.filterBooks}">
       </div>
 
       <h1>Old Testament</h1>
 
-      <div class="selector-list">
+      <div class="selector__list">
         ${oldTestamentBooks}
       </div>
 
       <h1>New Testament</h1>
 
-      <div class="selector-list">
+      <div class="selector__list">
         ${newTestamentBooks}
       </div>
     `;
@@ -79,7 +83,7 @@ class BibleAppBookSelector extends LitElement {
 
   _constructBookElement({ label, value }) {
     return html`
-      <a class="selector-item" href="/${value}">${label}</a>
+      <a class="selector__item" href="/${value}">${label}</a>
     `;
   }
 }

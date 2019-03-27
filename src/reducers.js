@@ -3,10 +3,12 @@ import header from './reducers/header.js';
 import page from './reducers/page.js';
 import passage from './reducers/passage.js';
 import reference from './reducers/reference.js';
+import search from './reducers/search.js';
 
 export default combineReducers({
   header,
   page,
   passage,
   reference,
+  search,
 });

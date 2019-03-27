@@ -1,5 +1,6 @@
 import './components/errors/ba-404.js';
 import './components/passage/ba-passage.js';
+import './components/search/ba-search.js';
 import './components/selectors/ba-book-selector.js';
 import './components/selectors/ba-chapter-selector.js';
 import { fetchPassage } from './actions/passage.js';
@@ -8,49 +9,61 @@ import { resetHeader, setHeader } from './actions/header.js';
 import { setPage } from './actions/page.js';
 import store from './store.js';
 
-const bookSelectorTpl = html`
-  <ba-book-selector></ba-book-selector>
-`;
+const { dispatch } = store;
 
-const chapterSelectorTpl = book => html`
-  <ba-chapter-selector .book=${book}></ba-chapter-selector>
-`;
+const searchPage = () => {
+  const searchTpl = html`
+    <ba-search></ba-search>
+  `;
 
-const passageTpl = html`
-  <ba-passage></ba-passage>
-`;
-
-const unknownTpl = html`
-  <ba-404></ba-404>
-`;
+  dispatch(resetHeader());
+  dispatch(setPage(searchTpl));
+};
 
 const bookSelectorPage = () => {
-  store.dispatch(resetHeader());
-  store.dispatch(setPage(bookSelectorTpl));
+  const bookSelectorTpl = html`
+    <ba-book-selector></ba-book-selector>
+  `;
+
+  dispatch(resetHeader());
+  dispatch(setPage(bookSelectorTpl));
 };
 
 const chapterSelectorPage = (ctx) => {
   const { book } = ctx.params;
 
-  store.dispatch(setHeader(book));
-  store.dispatch(setPage(chapterSelectorTpl(book)));
+  const chapterSelectorTpl = html`
+    <ba-chapter-selector .book=${book}></ba-chapter-selector>
+  `;
+
+  dispatch(setHeader(book));
+  dispatch(setPage(chapterSelectorTpl));
 };
 
 const passagePage = (ctx) => {
   const { book, chapter } = ctx.params;
 
-  store.dispatch(setHeader(book, chapter));
-  store.dispatch(setPage(passageTpl));
-  store.dispatch(fetchPassage(book, chapter));
+  const passageTpl = html`
+    <ba-passage></ba-passage>
+  `;
+
+  dispatch(setHeader(book, chapter));
+  dispatch(setPage(passageTpl));
+  dispatch(fetchPassage(book, chapter));
 };
 
 const unknownPage = () => {
-  store.dispatch(setPage(unknownTpl));
+  const unknownTpl = html`
+    <ba-404></ba-404>
+  `;
+
+  dispatch(setPage(unknownTpl));
 };
 
 export {
   bookSelectorPage,
   chapterSelectorPage,
   passagePage,
+  searchPage,
   unknownPage,
 };

@@ -5,7 +5,6 @@
   },
 
   "rules": {
-    "import/prefer-default-export": "off",
     "newline-per-chained-call": "off"
   }
 }
