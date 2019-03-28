@@ -1,6 +1,6 @@
 {
   "name": "bible-app",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
   "author": "Craig Jennings",
   "license": "MIT",
@@ -8,10 +8,10 @@
     "build:dev": "webpack --mode development",
     "build:prod": "webpack --mode production",
     "build:watch": "webpack --mode development --watch",
-    "e2e": "testcafe chrome ./test/**/*.spec.js --app \"live-server dist/ --entry-file=index.html\"",
     "serve": "live-server dist/ --entry-file=index.html",
     "start": "npm-run-all -p serve build:watch",
     "test": "npm-run-all test:*",
+    "test:e2e": "testcafe chrome ./test/**/*.spec.js --app \"live-server dist/ --entry-file=index.html\"",
     "test:eslint": "eslint src/ --quiet"
   },
   "dependencies": {
