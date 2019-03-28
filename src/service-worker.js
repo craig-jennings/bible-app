@@ -18,17 +18,17 @@ workbox.precaching.addPlugins([
 workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 
 /* -- Images -- */
-// workbox.routing.registerRoute(
-//   /\.(?:gif|jpeg|jpg|png|svg)$/,
-//   workbox.strategies.cacheFirst({
-//     cacheName: 'bible-images',
-//     plugins: [
-//       new workbox.expiration.Plugin({
-//         maxAgeSeconds: CacheTimes.THIRTY_DAYS,
-//       }),
-//     ],
-//   }),
-// );
+workbox.routing.registerRoute(
+  /\.(?:gif|jpeg|jpg|png|svg)$/,
+  new workbox.strategies.CacheFirst({
+    cacheName: 'bible-images',
+    plugins: [
+      new workbox.expiration.Plugin({
+        maxAgeSeconds: CacheTimes.THIRTY_DAYS,
+      }),
+    ],
+  }),
+);
 
 /* -- Google Font Cache -- */
 workbox.routing.registerRoute(
@@ -40,7 +40,7 @@ workbox.routing.registerRoute(
 
 workbox.routing.registerRoute(
   /^https:\/\/fonts\.gstatic\.com/,
-  workbox.strategies.cacheFirst({
+  new workbox.strategies.CacheFirst({
     cacheName: 'google-fonts-webfonts',
 
     plugins: [

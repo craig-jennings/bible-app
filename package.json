@@ -8,6 +8,7 @@
     "build:dev": "webpack --mode development",
     "build:prod": "webpack --mode production",
     "build:watch": "webpack --mode development --watch",
+    "clean": "rm -rf dist/",
     "serve": "live-server dist/ --entry-file=index.html",
     "start": "npm-run-all -p serve build:watch",
     "test": "npm-run-all test:*",
@@ -16,7 +17,7 @@
   },
   "dependencies": {
     "classnames": "2.2.6",
-    "lit-element": "2.0.1",
+    "lit-element": "2.1.0",
     "lit-html": "1.0.0",
     "page": "1.11.4",
     "pwa-helpers": "0.9.1",

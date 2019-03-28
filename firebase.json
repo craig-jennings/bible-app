@@ -1,7 +1,5 @@
 {
   "hosting": {
-    "cleanUrls": true,
-
     "headers": [
       {
         "source" : "**/service-worker.js",
@@ -15,8 +13,9 @@
     ],
 
     "predeploy": [
-      "yarn run test",
-      "yarn run build:prod"
+      "yarn run clean",
+      "yarn run build:prod",
+      "yarn run test"
     ],
 
     "public": "./dist",
