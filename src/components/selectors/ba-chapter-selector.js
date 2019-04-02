@@ -58,6 +58,10 @@ class BibleAppChapterSelector extends LitElement {
   render() {
     const chapters = this._chapters.map(c => this._constructChapterElement(c));
 
+    if (chapters.length === 0) {
+      return html`<ba-404></ba-404>`;
+    }
+
     return html`
       <div>
         <input class="form__input" placeholder="Search..." type="number" @input="${this.filterChapters}">
@@ -70,7 +74,11 @@ class BibleAppChapterSelector extends LitElement {
   }
 
   firstUpdated() {
-    this.renderRoot.querySelector('input').focus();
+    const $input = this.renderRoot.querySelector('input');
+
+    if ($input) {
+      $input.focus();
+    }
   }
 
   filterChapters(e) {

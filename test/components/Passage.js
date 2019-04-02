@@ -1,9 +1,9 @@
 import ShadowComponent from '../utils/ShadowComponent.js';
 
 class Passage extends ShadowComponent {
-  get passage() {
-    return this.container.find('div');
-  }
+  get errorEl() { return this.container.find('ba-404'); }
+
+  get passage() { return this.container.find('div'); }
 
   getNthVerse(n) {
     return this.container

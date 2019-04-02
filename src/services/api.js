@@ -24,7 +24,7 @@ class Api {
     try {
       const json = await this._get(url);
 
-      return json.passages[0] || null;
+      return json.passages[0] || '';
     } catch (err) {
       return 'Something went wrong';
     }

@@ -20,7 +20,7 @@ class BibleApp404 extends LitElement {
 
   render() {
     return html`
-      <div>Unknown Passage</div>
+      <div>Unknown Book or Chapter</div>
     `;
   }
 }

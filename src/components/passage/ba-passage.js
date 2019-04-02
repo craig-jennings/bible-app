@@ -1,3 +1,5 @@
+import '../errors/ba-404.js';
+import 'wc-epic-spinners/dist/BreedingRhombusSpinner.js';
 import { connect } from 'pwa-helpers';
 import { css, html, LitElement } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
@@ -30,6 +32,13 @@ class BibleAppPassage extends connect(store)(LitElement) {
         margin-bottom: 1rem;
       }
 
+      .spinner {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+      }
+
       .verse-num {
         font-size: smaller;
         font-style: italic;
@@ -53,10 +62,24 @@ class BibleAppPassage extends connect(store)(LitElement) {
   }
 
   render() {
-    const { _passage } = this;
+    const { isLoaded, text } = this._passage;
+
+    if (!isLoaded) {
+      return html`
+        <div class="spinner">
+          <breeding-rhombus-spinner color="white" size="48"></breeding-rhombus-spinner>
+        </div>
+      `;
+    }
+
+    if (isLoaded && text.length === 0) {
+      return html`
+        <ba-404></ba-404>
+      `;
+    }
 
     return html`
-      <div>${unsafeHTML(_passage)}</div>
+      <div>${unsafeHTML(text)}</div>
     `;
   }
 

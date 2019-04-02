@@ -22,6 +22,7 @@ workbox.routing.registerRoute(
   /\.(?:gif|jpeg|jpg|png|svg)$/,
   new workbox.strategies.CacheFirst({
     cacheName: 'bible-images',
+
     plugins: [
       new workbox.expiration.Plugin({
         maxAgeSeconds: CacheTimes.THIRTY_DAYS,

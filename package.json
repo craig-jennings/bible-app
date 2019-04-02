@@ -22,7 +22,8 @@
     "page": "1.11.4",
     "pwa-helpers": "0.9.1",
     "redux": "4.0.1",
-    "redux-thunk": "2.3.0"
+    "redux-thunk": "2.3.0",
+    "wc-epic-spinners": "1.0.0"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^5.0.1",

@@ -1,13 +1,16 @@
 import { setReference } from './reference.js';
 import api from '../services/api.js';
 
+const PassageActionType = {
+  CLEAR_PASSAGE: 'passage:clear',
+  SET_PASSAGE: 'passage:set',
+};
+
 /* --------------------- */
 /* -- Reducer Actions -- */
 /* --------------------- */
-const SET_PASSAGE = 'SET_PASSAGE';
-
-const clearPassage = () => ({ passage: '', type: SET_PASSAGE });
-const setPassage = passage => ({ passage, type: SET_PASSAGE });
+const clearPassage = () => ({ type: PassageActionType.CLEAR_PASSAGE });
+const setPassage = text => ({ text, type: PassageActionType.SET_PASSAGE });
 
 /* ----------------- */
 /* -- API Actions -- */
@@ -30,11 +33,8 @@ const fetchPassage = (book, chapter) => async (dispatch, getState) => {
 };
 
 export {
-  SET_PASSAGE,
-};
-
-export {
   clearPassage,
   fetchPassage,
+  PassageActionType,
   setPassage,
 };
