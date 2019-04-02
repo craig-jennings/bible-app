@@ -1,11 +1,13 @@
+const PageActionType = {
+  SET_PAGE: 'page:set',
+};
+
 /* --------------------- */
 /* -- Reducer Actions -- */
 /* --------------------- */
-const SET_PAGE = 'SET_PAGE';
-
-const setPage = page => ({ page, type: SET_PAGE });
+const setPage = page => ({ page, type: PageActionType.SET_PAGE });
 
 export {
-  SET_PAGE,
+  PageActionType,
   setPage,
 };

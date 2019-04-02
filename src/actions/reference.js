@@ -1,14 +1,17 @@
+const ReferenceActionType = {
+  SET_REFERENCE: 'reference:set',
+};
+
 /* --------------------- */
 /* -- Reducer Actions -- */
 /* --------------------- */
-const SET_REFERENCE = 'SET_REFERENCE';
-
-const setReference = (book, chapter) => ({ book, chapter, type: SET_REFERENCE });
-
-export {
-  SET_REFERENCE,
-};
+const setReference = (book, chapter) => ({
+  book,
+  chapter,
+  type: ReferenceActionType.SET_REFERENCE,
+});
 
 export {
+  ReferenceActionType,
   setReference,
 };
