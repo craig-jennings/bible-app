@@ -1,6 +1,12 @@
 import './components/shell/ba-shell.js';
 import './styles.css';
-import { bookSelectorPage, chapterSelectorPage, passagePage, searchPage, unknownPage } from './pages.js';
+import {
+  bookSelectorPage,
+  chapterSelectorPage,
+  passagePage,
+  searchPage,
+  unknownPage,
+} from './pages.js';
 import page from 'page';
 
 page('/', bookSelectorPage);
