@@ -13,6 +13,7 @@
     ],
 
     "predeploy": [
+      "yarn",
       "yarn run clean",
       "yarn run build:prod",
       "yarn run test"
