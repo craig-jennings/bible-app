@@ -1,9 +1,10 @@
 import { getWindowLocation } from './utils/clientFunctions.js';
+import { root } from './utils/root.js';
 import Passage from './components/Passage.js';
 import SearchComponent from './components/SearchComponent.js';
 
 fixture('Search')
-  .page('127.0.0.1:8080/search')
+  .page(`${root}/search`)
   .beforeEach(({ ctx }) => {
     ctx.searchComponent = new SearchComponent('ba-shell |> ba-search');
   });

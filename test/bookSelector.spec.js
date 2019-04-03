@@ -1,9 +1,10 @@
 import { getWindowLocation } from './utils/clientFunctions.js';
+import { root } from './utils/root.js';
 import BookSelector from './components/BookSelector.js';
 import ChapterSelector from './components/ChapterSelector.js';
 
 fixture('Book Selection')
-  .page('127.0.0.1:8080')
+  .page(root)
   .beforeEach(({ ctx }) => {
     ctx.bookSelector = new BookSelector('ba-shell |> ba-book-selector');
   });

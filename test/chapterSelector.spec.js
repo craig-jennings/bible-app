@@ -1,9 +1,10 @@
 import { getWindowLocation } from './utils/clientFunctions.js';
+import { root } from './utils/root.js';
 import ChapterSelector from './components/ChapterSelector.js';
 import Passage from './components/Passage.js';
 
 fixture('Chapter Selection')
-  .page('127.0.0.1:8080/genesis')
+  .page(`${root}/genesis`)
   .beforeEach(({ ctx }) => {
     ctx.chapterSelector = new ChapterSelector('ba-shell |> ba-chapter-selector');
   });

@@ -1,8 +1,9 @@
+import { root } from './utils/root.js';
 import ChapterSelector from './components/ChapterSelector.js';
 import Passage from './components/Passage.js';
 
 fixture('Unknown Book')
-  .page('127.0.0.1:8080/asdf')
+  .page(`${root}/asdf`)
   .beforeEach(({ ctx }) => {
     ctx.chapterSelector = new ChapterSelector('ba-shell |> ba-chapter-selector');
   });
@@ -14,7 +15,7 @@ test('Should show error message', async (t) => {
 });
 
 fixture('Unknown chapter')
-  .page('127.0.0.1:8080/asdf/123')
+  .page(`${root}/asdf/123`)
   .beforeEach(({ ctx }) => {
     ctx.passage = new Passage('ba-shell |> ba-passage');
   });
