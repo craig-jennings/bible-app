@@ -2,16 +2,16 @@ import { getWindowLocation } from './utils/clientFunctions.js';
 import { root } from './utils/root.js';
 import BookSelector from './components/BookSelector.js';
 import ChapterSelector from './components/ChapterSelector.js';
+import Header from './components/Header.js';
+
+const bookSelector = new BookSelector('ba-shell |> ba-book-selector');
+const chapterSelector = new ChapterSelector('ba-shell |> ba-chapter-selector');
+const header = new Header('ba-shell |> ba-header');
 
 fixture('Book Selection')
-  .page(root)
-  .beforeEach(({ ctx }) => {
-    ctx.bookSelector = new BookSelector('ba-shell |> ba-book-selector');
-  });
+  .page(root);
 
 test('Should list books', async (t) => {
-  const { bookSelector } = t.ctx;
-
   await t
     .expect(bookSelector.getNthBook(0).textContent).eql('Genesis')
     .expect(bookSelector.getNthBook(1).textContent).eql('Exodus')
@@ -19,8 +19,6 @@ test('Should list books', async (t) => {
 });
 
 test('Should filter possible books - single letter', async (t) => {
-  const { bookSelector } = t.ctx;
-
   await t
     .typeText(bookSelector.filterInput, 'j')
     .expect(bookSelector.getNthBook(0).textContent).eql('Joshua')
@@ -28,8 +26,6 @@ test('Should filter possible books - single letter', async (t) => {
 });
 
 test('Should filter possible books - full name', async (t) => {
-  const { bookSelector } = t.ctx;
-
   await t
     .typeText(bookSelector.filterInput, 'matthew')
     .expect(bookSelector.getNthBook(0).textContent).eql('Matthew')
@@ -37,22 +33,18 @@ test('Should filter possible books - full name', async (t) => {
 });
 
 test('Should filter possible books - random text', async (t) => {
-  const { bookSelector } = t.ctx;
-
   await t
     .typeText(bookSelector.filterInput, 'lkjdfskjfa')
     .expect(bookSelector.getAllBooks().count).eql(0);
 });
 
 test('Click should open chapter selector', async (t) => {
-  const { bookSelector } = t.ctx;
-
   await t.click(bookSelector.getNthBook(0));
 
-  const chapterSelector = new ChapterSelector('ba-shell |> ba-chapter-selector');
   const location = await getWindowLocation();
 
   await t
     .expect(chapterSelector.getAllChapters().count).eql(50)
-    .expect(location.pathname).eql('/genesis');
+    .expect(location.pathname).eql('/genesis')
+    .expect(header.book.textContent).eql('Genesis');
 });

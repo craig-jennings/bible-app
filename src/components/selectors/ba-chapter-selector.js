@@ -1,5 +1,5 @@
 import '../errors/ba-404.js';
-import { baseStyles, blockStyles } from '../../styles/base.js';
+import { baseStyles } from '../../styles/base.js';
 import { css, html, LitElement } from 'lit-element';
 import { findBookByValue } from '../../data/findBook.js';
 import { formStyles } from '../../styles/form.js';
@@ -18,7 +18,6 @@ class BibleAppChapterSelector extends LitElement {
   static get styles() {
     return [
       baseStyles,
-      blockStyles,
       formStyles,
       selectorStyles,
 

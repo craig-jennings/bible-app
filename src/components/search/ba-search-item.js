@@ -1,4 +1,4 @@
-import { baseStyles, blockStyles } from '../../styles/base.js';
+import { baseStyles } from '../../styles/base.js';
 import { css, html, LitElement } from 'lit-element';
 import { findBookByLabel } from '../../data/findBook.js';
 
@@ -14,7 +14,6 @@ class BibleAppSearchItem extends LitElement {
   static get styles() {
     return [
       baseStyles,
-      blockStyles,
 
       css`
         .result {

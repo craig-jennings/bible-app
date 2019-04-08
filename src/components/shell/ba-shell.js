@@ -17,7 +17,7 @@ class BibleAppShell extends connect(store)(LitElement) {
     return css`
       :host {
         display: grid;
-        grid-template-rows: 3.5rem 1fr 1.5rem;
+        grid-template-rows: 3rem 1fr 1.5rem;
         min-height: 100vh;
       }
     `;

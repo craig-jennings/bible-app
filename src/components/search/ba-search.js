@@ -1,5 +1,5 @@
 import './ba-search-item.js';
-import { baseStyles, blockStyles, flexStyles } from '../../styles/base.js';
+import { baseStyles, flexStyles } from '../../styles/base.js';
 import { connect } from 'pwa-helpers';
 import { css, html, LitElement } from 'lit-element';
 import { formStyles } from '../../styles/form.js';
@@ -18,7 +18,6 @@ class BibleAppSearch extends connect(store)(LitElement) {
   static get styles() {
     return [
       baseStyles,
-      blockStyles,
       flexStyles,
       formStyles,
 

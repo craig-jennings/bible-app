@@ -1,6 +1,6 @@
 import '../errors/ba-404.js';
 import 'wc-epic-spinners/dist/BreedingRhombusSpinner.js';
-import { baseStyles, blockStyles } from '../../styles/base.js';
+import { baseStyles, flexStyles } from '../../styles/base.js';
 import { connect } from 'pwa-helpers';
 import { css, html, LitElement } from 'lit-element';
 import { decrementPassage, incrementPassage } from '../../actions/passage.js';
@@ -20,7 +20,7 @@ class BibleAppPassage extends connect(store)(LitElement) {
   static get styles() {
     return [
       baseStyles,
-      blockStyles,
+      flexStyles,
 
       css`
         :host {
@@ -36,9 +36,6 @@ class BibleAppPassage extends connect(store)(LitElement) {
         }
 
         .spinner {
-          align-items: center;
-          display: flex;
-          justify-content: center;
           margin-top: 2rem;
         }
 
@@ -78,7 +75,7 @@ class BibleAppPassage extends connect(store)(LitElement) {
 
     if (!isLoaded) {
       return html`
-        <div class="spinner">
+        <div class="spinner center-content">
           <breeding-rhombus-spinner color="white" size="48"></breeding-rhombus-spinner>
         </div>
       `;
