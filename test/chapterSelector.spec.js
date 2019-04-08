@@ -8,8 +8,7 @@ const chapterSelector = new ChapterSelector('ba-shell |> ba-chapter-selector');
 const header = new Header('ba-shell |> ba-header');
 const passage = new Passage('ba-shell |> ba-passage');
 
-fixture('Chapter Selection')
-  .page(`${root}/genesis`);
+fixture('Chapter Selection').page(`${root}/genesis`);
 
 test('Should list chapters', async (t) => {
   await t

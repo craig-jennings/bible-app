@@ -8,8 +8,7 @@ const bookSelector = new BookSelector('ba-shell |> ba-book-selector');
 const chapterSelector = new ChapterSelector('ba-shell |> ba-chapter-selector');
 const header = new Header('ba-shell |> ba-header');
 
-fixture('Book Selection')
-  .page(root);
+fixture('Book Selection').page(root);
 
 test('Should list books', async (t) => {
   await t

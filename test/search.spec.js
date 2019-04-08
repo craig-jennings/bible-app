@@ -8,8 +8,7 @@ const header = new Header('ba-shell |> ba-header');
 const passage = new Passage('ba-shell |> ba-passage');
 const searchComponent = new SearchComponent('ba-shell |> ba-search');
 
-fixture('Search')
-  .page(`${root}/search`);
+fixture('Search').page(`${root}/search`);
 
 test('Should render the search page', async (t) => {
   await t

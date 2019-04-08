@@ -13,7 +13,7 @@
     "start": "npm-run-all -p serve build:watch",
     "test": "npm-run-all test:*",
     "test:e2e": "testcafe chrome,\"chrome:emulation:device=Nexus 5X\" ./test/**/*.spec.js --app \"firebase serve --only hosting\"",
-    "test:eslint": "eslint src/ --quiet"
+    "test:eslint": "eslint src/ test/ --quiet"
   },
   "dependencies": {
     "classnames": "2.2.6",

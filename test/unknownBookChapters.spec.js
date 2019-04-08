@@ -7,8 +7,7 @@ const chapterSelector = new ChapterSelector('ba-shell |> ba-chapter-selector');
 const header = new Header('ba-shell |> ba-header');
 const passage = new Passage('ba-shell |> ba-passage');
 
-fixture('Unknown Book')
-  .page(`${root}/asdf`);
+fixture('Unknown Book').page(`${root}/asdf`);
 
 test('Should show error message', async (t) => {
   await t
