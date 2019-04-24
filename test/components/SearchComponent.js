@@ -7,6 +7,8 @@ function SearchResult(shadowSelector) {
 }
 
 class SearchComponent extends ShadowComponent {
+  get noResults() { return this.container.find('div .center-content'); }
+
   get searchField() { return this.container.find('#search'); }
 
   get submitBtn() { return this.container.find('button'); }
@@ -16,7 +18,7 @@ class SearchComponent extends ShadowComponent {
   }
 
   getNthResult(n) {
-    return SearchResult(this.shadowFind('ba-search-item').nth(n));
+    return SearchResult(this.getAllResults().nth(n));
   }
 }
 

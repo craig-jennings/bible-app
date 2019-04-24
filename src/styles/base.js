@@ -33,8 +33,14 @@ const unstyledStyles = css`
   }
 `;
 
+const spacingStyles = css`
+  .mb-1 { margin-bottom: .5rem; }
+  .mb-2 { margin-bottom: 1rem; }
+`;
+
 export {
   baseStyles,
   flexStyles,
+  spacingStyles,
   unstyledStyles,
 };

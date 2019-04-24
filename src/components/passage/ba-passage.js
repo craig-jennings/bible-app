@@ -1,5 +1,5 @@
 import '../errors/ba-404.js';
-import 'wc-epic-spinners/dist/BreedingRhombusSpinner.js';
+import 'wc-epic-spinners/dist/OrbitSpinner.js';
 import { baseStyles, flexStyles } from '../../styles/base.js';
 import { connect } from 'pwa-helpers';
 import { css, html, LitElement } from 'lit-element';
@@ -76,7 +76,7 @@ class BibleAppPassage extends connect(store)(LitElement) {
     if (!isLoaded) {
       return html`
         <div class="spinner center-content">
-          <breeding-rhombus-spinner color="white" size="48"></breeding-rhombus-spinner>
+          <orbit-spinner color="white"></orbit-spinner>
         </div>
       `;
     }

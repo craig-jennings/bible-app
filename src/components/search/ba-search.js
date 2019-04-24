@@ -1,5 +1,6 @@
 import './ba-search-item.js';
-import { baseStyles, flexStyles } from '../../styles/base.js';
+import 'wc-epic-spinners/dist/OrbitSpinner.js';
+import { baseStyles, flexStyles, spacingStyles } from '../../styles/base.js';
 import { connect } from 'pwa-helpers';
 import { css, html, LitElement } from 'lit-element';
 import { formStyles } from '../../styles/form.js';
@@ -11,6 +12,8 @@ class BibleAppSearch extends connect(store)(LitElement) {
 
   static get properties() {
     return {
+      _isLoaded: { type: Boolean },
+      _isLoading: { type: Boolean },
       _results: { type: Array },
     };
   }
@@ -20,6 +23,7 @@ class BibleAppSearch extends connect(store)(LitElement) {
       baseStyles,
       flexStyles,
       formStyles,
+      spacingStyles,
 
       css`
         :host {
@@ -40,18 +44,16 @@ class BibleAppSearch extends connect(store)(LitElement) {
   }
 
   render() {
-    const { _results } = this;
-
-    const results = _results.map(r => html`<ba-search-item .item=${r}></ba-search-item>`);
+    const list = this._getList();
 
     return html`
-      <form class="d-flex" @submit="${this._handeSubmit}">
+      <form class="d-flex mb-2" @submit="${this._handeSubmit}">
         <input class="form__input" id="search" placeholder="Search...">
         <button class="form__button">Search</button>
       </form>
 
       <div>
-        ${results}
+        ${list}
       </div>
     `;
   }
@@ -61,7 +63,23 @@ class BibleAppSearch extends connect(store)(LitElement) {
   }
 
   stateChanged({ search }) {
+    this._isLoaded = search.isLoaded;
+    this._isLoading = search.isLoading;
     this._results = search.results;
+  }
+
+  _getList() {
+    const { _results, _isLoaded, _isLoading } = this;
+
+    if (_isLoading) {
+      return html`<orbit-spinner class="center-content" color="white"></orbit-spinner>`;
+    }
+
+    if (_isLoaded && _results.length === 0) {
+      return html`<div class="center-content">No results</div>`;
+    }
+
+    return _results.map(r => html`<ba-search-item .item=${r}></ba-search-item>`);
   }
 
   _handeSubmit(e) {

@@ -1,4 +1,4 @@
-import { baseStyles } from '../../styles/base.js';
+import { baseStyles, spacingStyles } from '../../styles/base.js';
 import { css, html, LitElement } from 'lit-element';
 import { findBookByLabel } from '../../data/findBook.js';
 
@@ -14,12 +14,12 @@ class BibleAppSearchItem extends LitElement {
   static get styles() {
     return [
       baseStyles,
+      spacingStyles,
 
       css`
         .result {
           border-radius: .5rem;
           border: 1px solid var(--selector__border-color);
-          margin-top: 1rem;
           padding: .25rem .5rem;
         }
 
@@ -42,7 +42,7 @@ class BibleAppSearchItem extends LitElement {
     const referenceLink = `/${bookValue}/${chapter}`;
 
     return html`
-      <div class="result">
+      <div class="result mb-2">
         <div>${content}</div>
 
         <div class="reference">
