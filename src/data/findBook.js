@@ -7,9 +7,19 @@ const UNKNOWN_BOOK = {
   value: 'unknown',
 };
 
-const findBookByLabel = label => NewTestament.find(b => b.label === label)
-                                 || OldTestament.find(b => b.label === label)
-                                 || Object.assign({}, UNKNOWN_BOOK);
+const findBookByLabel = (label) => {
+  let labelToFind = label;
+
+  // ISSUE: Search results return the reference as 'Psalm' instead of 'Psalms' thus causing the
+  // lookup to fail
+  if (label === 'Psalm') {
+    labelToFind = `${label}s`;
+  }
+
+  return NewTestament.find(b => b.label === labelToFind)
+         || OldTestament.find(b => b.label === labelToFind)
+         || Object.assign({}, UNKNOWN_BOOK);
+};
 
 const findBookByValue = key => NewTestament.find(b => b.value === key)
                                || OldTestament.find(b => b.value === key)
