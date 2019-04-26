@@ -14,26 +14,6 @@
 
   <link href="manifest.json" rel="manifest">
   <link href="images/favicon.ico?v=1" rel="shortcut icon" type="image/x-icon">
-
-  <script>
-    window.updateAvailable = new Promise((resolve) => { window.resolveUpdatePromise = resolve; });
-  </script>
-
-  <script type="module">
-    import { Workbox } from 'https://storage.googleapis.com/workbox-cdn/releases/4.1.1/workbox-window.prod.mjs';
-
-    if ('serviceWorker' in navigator) {
-      const wb = new Workbox('/service-worker.js');
-
-      wb.addEventListener('message', (event) => {
-        if (event.data.type === 'CACHE_UPDATED') {
-          window.resolveUpdatePromise();
-        }
-      });
-
-      wb.register();
-    }
-  </script>
 </head>
 
 <body>
@@ -45,5 +25,9 @@
       Please enable Javascript in your browser settings
     </div>
   </noscript>
+
+  <script>
+    window.updateAvailable = new Promise(resolve => { window.resolveUpdatePromise = resolve; });
+  </script>
 </body>
 </html>

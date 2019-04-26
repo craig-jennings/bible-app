@@ -7,6 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   entry: {
     main: './src/index.js',
+    'sw-installer': './src/service-worker/sw-installer.js',
   },
 
   module: {
@@ -48,15 +49,15 @@ module.exports = {
     ]),
 
     new HtmlWebpackPlugin({
+      inlineSource: '.css$',
       minify: true,
       template: './src/index.html',
-      inlineSource: '.css$',
     }),
 
     new HtmlWebpackInlineSourcePlugin(),
 
     new InjectManifest({
-      swSrc: './src/service-worker.js',
+      swSrc: './src/service-worker/service-worker.js',
     }),
 
     new MiniCssExtractPlugin({
