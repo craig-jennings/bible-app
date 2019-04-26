@@ -63,7 +63,12 @@ class BibleAppChapterSelector extends LitElement {
 
     return html`
       <div>
-        <input class="form__input" placeholder="Search..." type="number" @input="${this.filterChapters}">
+        <input
+          aria-label="Chapter Search Field"
+          class="form__input"
+          placeholder="Search..."
+          type="number"
+          @input="${this.filterChapters}">
       </div>
 
       <div class="selector__list">
