@@ -1,4 +1,5 @@
 import '../errors/ba-404.js';
+import '../scrollers/ba-scrollup.js';
 import 'wc-epic-spinners/dist/OrbitSpinner.js';
 import { baseStyles, flexStyles } from '../../styles/base.js';
 import { connect } from 'pwa-helpers';
@@ -89,6 +90,7 @@ class BibleAppPassage extends connect(store)(LitElement) {
 
     return html`
       <div class="passage">${unsafeHTML(text)}</div>
+      <ba-scrollup></ba-scrollup>
     `;
   }
 
