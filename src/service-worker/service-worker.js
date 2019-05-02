@@ -20,6 +20,7 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 /* -- Images -- */
 workbox.routing.registerRoute(
   /\.(?:gif|jpeg|jpg|png|svg)$/,
+
   new workbox.strategies.CacheFirst({
     cacheName: 'bible-images',
 
@@ -34,6 +35,7 @@ workbox.routing.registerRoute(
 /* -- Google Font Cache -- */
 workbox.routing.registerRoute(
   /^https:\/\/fonts\.googleapis\.com/,
+
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: 'google-fonts-stylesheets',
   }),
@@ -41,6 +43,7 @@ workbox.routing.registerRoute(
 
 workbox.routing.registerRoute(
   /^https:\/\/fonts\.gstatic\.com/,
+
   new workbox.strategies.CacheFirst({
     cacheName: 'google-fonts-webfonts',
 
@@ -52,6 +55,22 @@ workbox.routing.registerRoute(
       new workbox.expiration.Plugin({
         maxAgeSeconds: CacheTimes.ONE_YEAR,
         maxEntries: 30,
+      }),
+    ],
+  }),
+);
+
+/* -- ESV API Cache -- */
+workbox.routing.registerRoute(
+  /^https:\/\/api.esv.org\/v3\/passage\/html\//,
+
+  new workbox.strategies.CacheFirst({
+    cacheName: 'esv-api',
+
+    plugins: [
+      new workbox.expiration.Plugin({
+        maxAgeSeconds: CacheTimes.THIRTY_DAYS,
+        maxEntries: 50,
       }),
     ],
   }),
