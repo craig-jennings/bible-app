@@ -12,38 +12,38 @@ fixture('Book Selection').page(root);
 
 test('Should list books', async (t) => {
   await t
-    .expect(bookSelector.getNthBook(0).textContent).eql('Genesis')
-    .expect(bookSelector.getNthBook(1).textContent).eql('Exodus')
-    .expect(bookSelector.getNthBook(65).textContent).eql('Revelation');
+    .expect(bookSelector.books.nth(0).textContent).eql('Genesis')
+    .expect(bookSelector.books.nth(1).textContent).eql('Exodus')
+    .expect(bookSelector.books.nth(65).textContent).eql('Revelation');
 });
 
 test('Should filter possible books - single letter', async (t) => {
   await t
     .typeText(bookSelector.filterInput, 'j')
-    .expect(bookSelector.getNthBook(0).textContent).eql('Joshua')
-    .expect(bookSelector.getAllBooks().count).eql(12);
+    .expect(bookSelector.books.nth(0).textContent).eql('Joshua')
+    .expect(bookSelector.books.count).eql(12);
 });
 
 test('Should filter possible books - full name', async (t) => {
   await t
     .typeText(bookSelector.filterInput, 'matthew')
-    .expect(bookSelector.getNthBook(0).textContent).eql('Matthew')
-    .expect(bookSelector.getAllBooks().count).eql(1);
+    .expect(bookSelector.books.nth(0).textContent).eql('Matthew')
+    .expect(bookSelector.books.count).eql(1);
 });
 
 test('Should filter possible books - random text', async (t) => {
   await t
     .typeText(bookSelector.filterInput, 'lkjdfskjfa')
-    .expect(bookSelector.getAllBooks().count).eql(0);
+    .expect(bookSelector.books.count).eql(0);
 });
 
 test('Click should open chapter selector', async (t) => {
-  await t.click(bookSelector.getNthBook(0));
+  await t.click(bookSelector.books.nth(0));
 
   const location = await getWindowLocation();
 
   await t
-    .expect(chapterSelector.getAllChapters().count).eql(50)
+    .expect(chapterSelector.chapters.count).eql(50)
     .expect(location.pathname).eql('/genesis')
     .expect(header.book.textContent).eql('Genesis');
 });

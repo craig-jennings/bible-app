@@ -20,7 +20,7 @@ test('Should display search results', async (t) => {
   await t
     .typeText(searchComponent.searchField, 'cheerful giver')
     .click(searchComponent.submitBtn)
-    .expect(searchComponent.getAllResults().count).eql(1)
+    .expect(searchComponent.results.count).eql(1)
     .expect(searchComponent.getNthResult(0).textContent).contains('God loves a cheerful giver')
     .expect(searchComponent.getNthResult(0).textContent).contains('2 Corinthians 9:7');
 });

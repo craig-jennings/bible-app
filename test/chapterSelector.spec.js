@@ -12,27 +12,27 @@ fixture('Chapter Selection').page(`${root}/genesis`);
 
 test('Should list chapters', async (t) => {
   await t
-    .expect(chapterSelector.getNthChapter(0).textContent).eql('1')
-    .expect(chapterSelector.getAllChapters().count).eql(50);
+    .expect(chapterSelector.chapters.nth(0).textContent).eql('1')
+    .expect(chapterSelector.chapters.count).eql(50);
 });
 
 test('Should filter possible chapters - single number', async (t) => {
   await t
     .typeText(chapterSelector.filterInput, '1')
-    .expect(chapterSelector.getNthChapter(0).textContent).eql('1')
-    .expect(chapterSelector.getNthChapter(1).textContent).eql('10')
-    .expect(chapterSelector.getAllChapters().count).eql(14);
+    .expect(chapterSelector.chapters.nth(0).textContent).eql('1')
+    .expect(chapterSelector.chapters.nth(1).textContent).eql('10')
+    .expect(chapterSelector.chapters.count).eql(14);
 });
 
 test('Should filter possible books - complete chapter', async (t) => {
   await t
     .typeText(chapterSelector.filterInput, '11')
-    .expect(chapterSelector.getNthChapter(0).textContent).eql('11')
-    .expect(chapterSelector.getAllChapters().count).eql(1);
+    .expect(chapterSelector.chapters.nth(0).textContent).eql('11')
+    .expect(chapterSelector.chapters.count).eql(1);
 });
 
 test('Click should open chapter selector', async (t) => {
-  await t.click(chapterSelector.getNthChapter(0));
+  await t.click(chapterSelector.chapters.nth(0));
 
   const location = await getWindowLocation();
 

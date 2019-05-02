@@ -1,7 +1,9 @@
 import ShadowComponent from '../utils/ShadowComponent.js';
 
 function SearchResult(shadowSelector) {
-  shadowSelector.link = (() => shadowSelector.find('a'))();
+  Object.defineProperty(shadowSelector, 'link', {
+    get() { return this.find('a'); },
+  });
 
   return shadowSelector;
 }
@@ -13,12 +15,10 @@ class SearchComponent extends ShadowComponent {
 
   get submitBtn() { return this.container.find('button'); }
 
-  getAllResults() {
-    return SearchResult(this.shadowFind('ba-search-item'));
-  }
+  get results() { return SearchResult(this.shadowFind('ba-search-item')); }
 
   getNthResult(n) {
-    return SearchResult(this.getAllResults().nth(n));
+    return SearchResult(this.results.nth(n));
   }
 }
 
