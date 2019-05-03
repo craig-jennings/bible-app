@@ -49,24 +49,15 @@ class BibleAppScrollUp extends LitElement {
     `;
   }
 
-  constructor() {
-    super();
-
-    this._scrollPosition = window.scrollY;
-  }
-
   connectedCallback() {
     super.connectedCallback();
 
     this._callback = () => {
-      if (this._scrollPosition < window.scrollY
-          || window.scrollY === 0) {
-        this.$div.classList.add('hide');
-      } else {
+      if (window.scrollY !== 0) {
         this.$div.classList.remove('hide');
+      } else {
+        this.$div.classList.add('hide');
       }
-
-      this._scrollPosition = window.scrollY;
     };
 
     document.addEventListener('scroll', this._callback, { passive: true });

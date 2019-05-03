@@ -14,21 +14,12 @@ test('Should scroll up', async (t) => {
   let scrollPosition = await getWindowScroll();
 
   await t
-    .expect(scrollerSelector.button.hasClass('hide')).ok()
-    .expect(scrollPosition.scrollX).eql(0)
-    .expect(scrollPosition.scrollY).eql(100);
-
-  await setWindowScroll({ top: 50 });
-
-  scrollPosition = await getWindowScroll();
-
-  await t
-    .wait(200)
+    .wait(200) // Animation wait
     .expect(scrollerSelector.button.hasClass('hide')).notOk()
     .expect(scrollPosition.scrollX).eql(0)
-    .expect(scrollPosition.scrollY).eql(50)
-    .click(scrollerSelector.button, { offsetY: 70 })
-    .wait(100);
+    .expect(scrollPosition.scrollY).eql(100)
+    .click(scrollerSelector.button, { offsetY: 150 })
+    .wait(200); // Scroll wait
 
   scrollPosition = await getWindowScroll();
 
