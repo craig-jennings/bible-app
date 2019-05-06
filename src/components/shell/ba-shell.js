@@ -9,6 +9,7 @@ class BibleAppShell extends connect(store)(LitElement) {
 
   static get properties() {
     return {
+      _notification: { type: Object },
       _page: { type: Object },
     };
   }
@@ -24,16 +25,18 @@ class BibleAppShell extends connect(store)(LitElement) {
   }
 
   render() {
-    const { _page } = this;
+    const { _notification, _page } = this;
 
     return html`
       <ba-header></ba-header>
       <div>${_page}</div>
       <ba-footer></ba-footer>
+      <div>${_notification}</div>
     `;
   }
 
   stateChanged(state) {
+    this._notification = state.notification.template;
     this._page = state.page;
   }
 }
