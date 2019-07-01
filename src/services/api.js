@@ -30,13 +30,18 @@ class Api {
     }
   }
 
-  async search(term) {
-    const url = `${this._searchUrl}${term}`;
+  async search(term, page = 1) {
+    const url = `${this._searchUrl}${term}&page=${page}`;
 
     try {
-      const json = await this._get(url);
+      const res = await this._get(url);
 
-      return json.results;
+      return {
+        page: res.page,
+        results: res.results,
+        totalPages: res.total_pages,
+        totalResults: res.total_results,
+      };
     } catch (err) {
       return 'Something went wrong';
     }

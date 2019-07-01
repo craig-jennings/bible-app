@@ -1,4 +1,4 @@
-import { baseStyles, spacingStyles } from '../../styles/base.js';
+import { baseStyles, flexStyles, spacingStyles } from '../../styles/base.js';
 import { css, html, LitElement } from 'lit-element';
 import { findBookByLabel } from '../../data/findBook.js';
 
@@ -14,6 +14,7 @@ class BibleAppSearchItem extends LitElement {
   static get styles() {
     return [
       baseStyles,
+      flexStyles,
       spacingStyles,
 
       css`
@@ -23,9 +24,14 @@ class BibleAppSearchItem extends LitElement {
           padding: .25rem .5rem;
         }
 
-        .reference a {
+        .reference {
           color: inherit;
           font-style: italic;
+          text-decoration: none;
+        }
+
+        .underline {
+          text-decoration: underline;
         }
       `,
     ];
@@ -43,11 +49,10 @@ class BibleAppSearchItem extends LitElement {
 
     return html`
       <div class="result mb-2">
-        <div>${content}</div>
-
-        <div class="reference">
-          <a href="${referenceLink}">${reference}</a>
-        </div>
+        <a class="reference d-block" href="${referenceLink}">
+          <div>${content}</div>
+          <div class="underline">${reference}</div>
+        </a>
       </div>
     `;
   }

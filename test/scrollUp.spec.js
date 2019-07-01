@@ -19,7 +19,7 @@ test('Should scroll up', async (t) => {
     .expect(scrollPosition.scrollX).eql(0)
     .expect(scrollPosition.scrollY).eql(100)
     .click(scrollerSelector.button, { offsetY: 150 })
-    .wait(200); // Scroll wait
+    .wait(500); // Scroll wait
 
   scrollPosition = await getWindowScroll();
 

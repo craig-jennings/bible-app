@@ -2,7 +2,7 @@ import ShadowComponent from '../utils/ShadowComponent.js';
 
 function SearchResult(shadowSelector) {
   Object.defineProperty(shadowSelector, 'link', {
-    get() { return this.find('a'); },
+    get() { return this.find('.reference'); },
   });
 
   return shadowSelector;

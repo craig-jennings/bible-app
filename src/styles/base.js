@@ -18,7 +18,12 @@ const flexStyles = css`
     justify-content: center;
   }
 
-  .d-flex { display: flex; }
+  .d-block { display: block; }
+  .d-flex  { display: flex; }
+
+  .justify-between {
+    justify-content: space-between;
+  }
 `;
 
 const unstyledStyles = css`
