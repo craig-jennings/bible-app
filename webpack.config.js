@@ -11,17 +11,19 @@ module.exports = {
   },
 
   module: {
-    rules: [{
-      test: /\.css$/,
-      use: [
-        {
-          loader: MiniCssExtractPlugin.loader,
-        },
-        {
-          loader: 'css-loader',
-        },
-      ],
-    }],
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader',
+          },
+        ],
+      },
+    ],
   },
 
   output: {
