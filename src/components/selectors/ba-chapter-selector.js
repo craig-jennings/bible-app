@@ -66,7 +66,7 @@ class BibleAppChapterSelector extends LitElement {
         <input
           aria-label="Chapter Search Field"
           class="form__input"
-          placeholder="Search..."
+          placeholder="Find Chapter..."
           type="number"
           @input="${this.filterChapters}">
       </div>
