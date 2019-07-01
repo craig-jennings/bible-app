@@ -9,6 +9,7 @@
     "build:prod": "webpack --mode production",
     "build:watch": "webpack --mode development --watch",
     "clean": "rm -rf dist/",
+    "deploy": "firebase deploy --only hosting",
     "serve": "live-server dist/ --entry-file=index.html",
     "start": "npm-run-all -p serve build:watch",
     "test": "npm-run-all test:*",
