@@ -1,11 +1,11 @@
 import '../pagination/ba-pagination.js';
 import './ba-search-item.js';
 import 'wc-epic-spinners/dist/OrbitSpinner.js';
-import { baseStyles, flexStyles, spacingStyles } from '../../styles/base.js';
 import { connect } from 'pwa-helpers';
 import { css, html, LitElement } from 'lit-element';
 import { formStyles } from '../../styles/form.js';
 import { nextPage, prevPage, queryTerm } from '../../actions/search.js';
+import base from '../../styles/base.js';
 import LoadState from '../../utils/LoadState.js';
 import store from '../../store.js';
 
@@ -21,10 +21,8 @@ class BibleAppSearch extends connect(store)(LitElement) {
 
   static get styles() {
     return [
-      baseStyles,
-      flexStyles,
+      base,
       formStyles,
-      spacingStyles,
 
       css`
         :host {
@@ -49,7 +47,7 @@ class BibleAppSearch extends connect(store)(LitElement) {
     const pagination = this._getPagination();
 
     return html`
-      <form class="d-flex mb-2" @submit="${this._handeSubmit}">
+      <form class="d-flex mb-3" @submit="${this._handeSubmit}">
         <input class="form__input" id="search" placeholder="Search...">
         <button class="form__button">Search</button>
       </form>

@@ -1,13 +1,12 @@
-import { baseStyles, flexStyles } from '../../styles/base.js';
 import { css, html, LitElement } from 'lit-element';
+import base from '../../styles/base.js';
 
 class BibleAppScrollUp extends LitElement {
   static get is() { return 'ba-scrollup'; }
 
   static get styles() {
     return [
-      baseStyles,
-      flexStyles,
+      base,
 
       css`
         div {

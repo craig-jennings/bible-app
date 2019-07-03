@@ -1,5 +1,5 @@
-import { baseStyles, flexStyles } from '../../styles/base.js';
 import { css, html, LitElement } from 'lit-element';
+import base from '../../styles/base.js';
 import classNames from 'classnames';
 
 class BibleAppPagination extends LitElement {
@@ -13,8 +13,7 @@ class BibleAppPagination extends LitElement {
 
   static get styles() {
     return [
-      baseStyles,
-      flexStyles,
+      base,
 
       css`
         .page-btn {

@@ -1,11 +1,11 @@
 import '../errors/ba-404.js';
 import '../scrollers/ba-scrollup.js';
 import 'wc-epic-spinners/dist/OrbitSpinner.js';
-import { baseStyles, flexStyles } from '../../styles/base.js';
 import { connect } from 'pwa-helpers';
 import { css, html, LitElement } from 'lit-element';
 import { decrementPassage, incrementPassage } from '../../actions/passage.js';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+import base from '../../styles/base.js';
 import Hammer from 'hammerjs';
 import store from '../../store.js';
 
@@ -20,14 +20,9 @@ class BibleAppPassage extends connect(store)(LitElement) {
 
   static get styles() {
     return [
-      baseStyles,
-      flexStyles,
+      base,
 
       css`
-        :host {
-          margin: 0 1rem;
-        }
-
         * {
           font-size: 1.25rem;
         }
@@ -36,8 +31,8 @@ class BibleAppPassage extends connect(store)(LitElement) {
           margin-bottom: 1rem;
         }
 
-        .spinner {
-          margin-top: 2rem;
+        .passage {
+          width: 100%;
         }
 
         .verse-num {
@@ -47,14 +42,14 @@ class BibleAppPassage extends connect(store)(LitElement) {
         }
 
         @media screen and (min-width: 768px) {
-          :host {
+          .passage {
             margin: 0 auto;
             width: 50%;
           }
         }
 
         @media screen and (min-width: 1200px) {
-          :host {
+          .passage {
             margin: 0 auto;
             width: 40%;
           }
@@ -76,16 +71,14 @@ class BibleAppPassage extends connect(store)(LitElement) {
 
     if (!isLoaded) {
       return html`
-        <div class="spinner center-content">
+        <div class="spinner center-content mt-3">
           <orbit-spinner color="white"></orbit-spinner>
         </div>
       `;
     }
 
     if (isLoaded && text.length === 0) {
-      return html`
-        <ba-404></ba-404>
-      `;
+      return html`<ba-404></ba-404>`;
     }
 
     return html`

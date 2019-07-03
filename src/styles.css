@@ -19,17 +19,20 @@
 
   --footer__bg-color: #37474f;
 
-  --notification__bg-color: #455a64;
-
   --form__input__border-color: #455a64;
   --form__input--focus__border-color: #78909c;
+
+  --notification__bg-color: #455a64;
+  --notification__color: #fafafa;
+  --notification__button__bg-color: #455a64;
+  --notification__button__bg-color--hover: #78909c;
 
   --selector__border-color: #455a64;
 }
 
 body {
-  background-color: var(--bg-color);
-  color: var(--font-color);
+  background-color: var(--bg-color, #fafafa);
+  color: var(--font-color, #222222);
   font-family: 'Quattrocento Sans', sans-serif;
   line-height: 1.5;
   margin: 0;

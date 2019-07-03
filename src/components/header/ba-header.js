@@ -1,7 +1,7 @@
-import { baseStyles, flexStyles, unstyledStyles } from '../../styles/base.js';
 import { clearResults } from '../../actions/search.js';
 import { connect } from 'pwa-helpers';
 import { css, html, LitElement } from 'lit-element';
+import base from '../../styles/base.js';
 import store from '../../store.js';
 
 class BibleAppHeader extends connect(store)(LitElement) {
@@ -15,9 +15,7 @@ class BibleAppHeader extends connect(store)(LitElement) {
 
   static get styles() {
     return [
-      baseStyles,
-      flexStyles,
-      unstyledStyles,
+      base,
 
       css`
         :host {
@@ -61,7 +59,7 @@ class BibleAppHeader extends connect(store)(LitElement) {
     const chapterEl = _header.chapter ? html`<span class="separator">&gt;</span> <span class="chapter">${_header.chapter}</span>` : '';
 
     return html`
-      <h1>
+      <h1 class="pl-3 pr-3">
         <div class="center-content">
           <a class="unstyled" href="/">Bible</a> ${bookEl} ${chapterEl}
         </div>

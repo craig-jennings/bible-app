@@ -1,6 +1,6 @@
-import { baseStyles, flexStyles, spacingStyles } from '../../styles/base.js';
 import { css, html, LitElement } from 'lit-element';
 import { findBookByLabel } from '../../data/findBook.js';
+import base from '../../styles/base.js';
 
 class BibleAppSearchItem extends LitElement {
   static get is() { return 'ba-search-item'; }
@@ -13,9 +13,7 @@ class BibleAppSearchItem extends LitElement {
 
   static get styles() {
     return [
-      baseStyles,
-      flexStyles,
-      spacingStyles,
+      base,
 
       css`
         .result {
@@ -48,7 +46,7 @@ class BibleAppSearchItem extends LitElement {
     const referenceLink = `/${bookValue}/${chapter}`;
 
     return html`
-      <div class="result mb-2">
+      <div class="result mb-3">
         <a class="reference d-block" href="${referenceLink}">
           <div>${content}</div>
           <div class="underline">${reference}</div>

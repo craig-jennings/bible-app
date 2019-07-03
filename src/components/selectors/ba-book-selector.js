@@ -1,6 +1,6 @@
-import { baseStyles } from '../../styles/base.js';
 import { css, html, LitElement } from 'lit-element';
 import { formStyles } from '../../styles/form.js';
+import base from '../../styles/base.js';
 import NewTestament from '../../data/NewTestament.js';
 import OldTestament from '../../data/OldTestament.js';
 import selectorStyles from './selectorStyles.js';
@@ -17,7 +17,7 @@ class BibleAppBookSelector extends LitElement {
 
   static get styles() {
     return [
-      baseStyles,
+      base,
       formStyles,
       selectorStyles,
 

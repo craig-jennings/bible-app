@@ -12,14 +12,14 @@ import store from './store.js';
 const { dispatch } = store;
 
 const searchPage = () => {
-  const searchTpl = html`<ba-search></ba-search>`;
+  const searchTpl = html`<ba-search class="p-3"></ba-search>`;
 
   dispatch(resetHeader());
   dispatch(setPage(searchTpl));
 };
 
 const bookSelectorPage = () => {
-  const bookSelectorTpl = html`<ba-book-selector></ba-book-selector>`;
+  const bookSelectorTpl = html`<ba-book-selector class="p-3"></ba-book-selector>`;
 
   dispatch(resetHeader());
   dispatch(setPage(bookSelectorTpl));
@@ -28,7 +28,7 @@ const bookSelectorPage = () => {
 const chapterSelectorPage = (ctx) => {
   const { book } = ctx.params;
 
-  const chapterSelectorTpl = html`<ba-chapter-selector .book=${book}></ba-chapter-selector>`;
+  const chapterSelectorTpl = html`<ba-chapter-selector class="p-3" .book=${book}></ba-chapter-selector>`;
 
   dispatch(setHeader(book));
   dispatch(setPage(chapterSelectorTpl));
@@ -37,7 +37,7 @@ const chapterSelectorPage = (ctx) => {
 const passagePage = (ctx) => {
   const { book, chapter } = ctx.params;
 
-  const passageTpl = html`<ba-passage></ba-passage>`;
+  const passageTpl = html`<ba-passage class="mx-3"></ba-passage>`;
 
   dispatch(setHeader(book, chapter));
   dispatch(setPage(passageTpl));

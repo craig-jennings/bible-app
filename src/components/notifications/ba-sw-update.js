@@ -1,21 +1,17 @@
 import './ba-notification.js';
-import { baseStyles } from '../../styles/base.js';
-import { clearNotification } from '../../actions/notification.js';
 import { css, html, LitElement } from 'lit-element';
-import { notificationStyles } from '../../styles/notifications.js';
-import store from '../../store.js';
+import base from '../../styles/base.js';
 
 class BibleAppSWUpdate extends LitElement {
   static get is() { return 'ba-sw-update'; }
 
   static get styles() {
     return [
-      baseStyles,
-      notificationStyles,
+      base,
 
       css`
         button {
-          background-color: var(--notification__bg-color);
+          background-color: var(--notification__button__bg-color, #eaeaea);
           border-radius: .5rem;
           border-style: none;
           color: var(--font-color);
