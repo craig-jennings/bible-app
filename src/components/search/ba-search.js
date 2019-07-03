@@ -3,10 +3,10 @@ import './ba-search-item.js';
 import 'wc-epic-spinners/dist/OrbitSpinner.js';
 import { connect } from 'pwa-helpers';
 import { css, html, LitElement } from 'lit-element';
-import { formStyles } from '../../styles/form.js';
-import { nextPage, prevPage, queryTerm } from '../../actions/search.js';
 import base from '../../styles/base.js';
+import formStyles from '../../styles/form.js';
 import LoadState from '../../utils/LoadState.js';
+import page from 'page';
 import store from '../../store.js';
 
 class BibleAppSearch extends connect(store)(LitElement) {
@@ -15,7 +15,6 @@ class BibleAppSearch extends connect(store)(LitElement) {
   static get properties() {
     return {
       _loadState: { type: String },
-      _results: { type: Array },
     };
   }
 
@@ -48,7 +47,7 @@ class BibleAppSearch extends connect(store)(LitElement) {
 
     return html`
       <form class="d-flex mb-3" @submit="${this._handeSubmit}">
-        <input class="form__input" id="search" placeholder="Search...">
+        <input class="form__input" id="search" placeholder="Search..." value=${this._term}>
         <button class="form__button">Search</button>
       </form>
 
@@ -70,6 +69,7 @@ class BibleAppSearch extends connect(store)(LitElement) {
     this._loadState = search.loadState;
     this._pagination = search.pagination;
     this._results = search.results;
+    this._term = search.term;
   }
 
   _getList() {
@@ -99,13 +99,25 @@ class BibleAppSearch extends connect(store)(LitElement) {
   _handleNextPage(e) {
     e.preventDefault();
 
-    store.dispatch(nextPage());
+    const { _loadState, _pagination, _term } = this;
+
+    if (_loadState !== LoadState.LOADED) return;
+
+    if (_pagination.page === _pagination.totalPages) return;
+
+    page(`/search?q=${_term}&page=${_pagination.page + 1}`);
   }
 
   _handlePrevPage(e) {
     e.preventDefault();
 
-    store.dispatch(prevPage());
+    const { _loadState, _pagination, _term } = this;
+
+    if (_loadState !== LoadState.LOADED) return;
+
+    if (_pagination.page === 1) return;
+
+    page(`/search?q=${_term}&page=${_pagination.page - 1}`);
   }
 
   _handeSubmit(e) {
@@ -113,7 +125,7 @@ class BibleAppSearch extends connect(store)(LitElement) {
 
     const term = this.renderRoot.querySelector('#search').value;
 
-    store.dispatch(queryTerm(term));
+    page(`/search?q=${term}&page=1`);
   }
 }
 

@@ -3,19 +3,32 @@ import './components/passage/ba-passage.js';
 import './components/search/ba-search.js';
 import './components/selectors/ba-book-selector.js';
 import './components/selectors/ba-chapter-selector.js';
+import { clearResults, queryTerm } from './actions/search.js';
 import { fetchPassage } from './actions/passage.js';
 import { html } from 'lit-html';
 import { resetHeader, setHeader } from './actions/header.js';
 import { setPage } from './actions/page.js';
+import parseQueryString from './utils/parseQueryString.js';
 import store from './store.js';
 
 const { dispatch } = store;
 
-const searchPage = () => {
+const searchPage = (ctx) => {
   const searchTpl = html`<ba-search class="p-3"></ba-search>`;
 
   dispatch(resetHeader());
   dispatch(setPage(searchTpl));
+
+  const params = parseQueryString(ctx.querystring);
+
+  const { value: term } = params.find(p => p.key === 'q') || {};
+  const { value: page } = params.find(p => p.key === 'page') || {};
+
+  if (term) {
+    dispatch(queryTerm(term, page));
+  } else {
+    dispatch(clearResults());
+  }
 };
 
 const bookSelectorPage = () => {

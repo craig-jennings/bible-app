@@ -1,6 +1,6 @@
 import { css } from 'lit-element';
 
-const formStyles = css`
+export default css`
   .form__input {
     background-color: var(--bg-color);
     border-radius: .5rem;
@@ -43,7 +43,3 @@ const formStyles = css`
     background-color: var(--form__button--active__bg-color, #9e9e9e);
   }
 `;
-
-export {
-  formStyles,
-};
