@@ -90,8 +90,8 @@ class BibleAppSearch extends connect(store)(LitElement) {
     return html`
       <ba-pagination
         .pagination=${this._pagination}
-        @nextclick=${this._handleNextPage}
-        @prevclick=${this._handlePrevPage}
+        @next-click=${this._handleNextPage}
+        @prev-click=${this._handlePrevPage}
       ></ba-pagination>
     `;
   }
