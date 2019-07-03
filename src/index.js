@@ -1,6 +1,7 @@
 import './components/notifications/ba-sw-update.js';
 import './components/shell/ba-shell.js';
 import './styles.css';
+import { addNotification } from './actions/notifications.js';
 import {
   bookSelectorPage,
   chapterSelectorPage,
@@ -9,7 +10,6 @@ import {
   unknownPage,
 } from './pages.js';
 import { html } from 'lit-html';
-import { setNotification } from './actions/notification.js';
 import page from 'page';
 import store from './store.js';
 
@@ -22,5 +22,5 @@ page('*', unknownPage);
 page.start();
 
 window.updateAvailable.then(() => {
-  store.dispatch(setNotification(html`<ba-sw-update></ba-sw-update>`));
+  store.dispatch(addNotification(html`<ba-sw-update></ba-sw-update>`));
 });

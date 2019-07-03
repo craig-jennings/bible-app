@@ -26,7 +26,7 @@ class BibleAppSWUpdate extends LitElement {
 
         button:focus,
         button:hover {
-          background-color: #78909c;
+          background-color: var(--notification__button__bg-color--hover, #dddddd);
         }
       `,
     ];
@@ -34,21 +34,11 @@ class BibleAppSWUpdate extends LitElement {
 
   render() {
     return html`
-      <ba-notification @click=${this._handleNotificationClick}>
-        <div class="notification">
-          <span>Update Available.</span>
-          <button @click=${this._handleRefreshClick}>Refresh?</button>
-        </div>
-      </ba-notification>
+      <div class="d-flex justify-between align-center">
+        <span>Update Available.</span>
+        <button @click=${this._handleRefreshClick}>Refresh?</button>
+      </div>
     `;
-  }
-
-  firstUpdated() {
-    setTimeout(() => this.renderRoot.querySelector('div').classList.add('notification--enter'), 0);
-  }
-
-  _handleNotificationClick() {
-    store.dispatch(clearNotification());
   }
 
   _handleRefreshClick() {
