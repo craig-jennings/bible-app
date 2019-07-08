@@ -100,7 +100,8 @@ class BibleAppPassage extends connect(store)(LitElement) {
       recognizers: [
         [Hammer.Swipe, {
           direction: Hammer.DIRECTION_LEFT | Hammer.DIRECTION_RIGHT, // eslint-disable-line no-bitwise
-          threshold: 200,
+          threshold: 100,
+          velocity: 0.5,
         }],
       ],
     });
