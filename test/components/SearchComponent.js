@@ -15,10 +15,10 @@ class SearchComponent extends ShadowComponent {
 
   get submitBtn() { return this.container.find('button'); }
 
-  get results() { return SearchResult(this.shadowFind('ba-search-item')); }
+  get results() { return this.container.find('ba-search-item'); }
 
   getNthResult(n) {
-    return SearchResult(this.results.nth(n));
+    return SearchResult(this.shadowFind('ba-search-item').nth(n));
   }
 }
 

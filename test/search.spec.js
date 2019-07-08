@@ -49,6 +49,23 @@ test('Should link to book and chapter', async (t) => {
     .expect(header.chapter.textContent).eql('9');
 });
 
+test('Should show correct url', async (t) => {
+  await t
+    .typeText(searchComponent.searchField, 'test')
+    .click(searchComponent.submitBtn);
+
+  const location = await getWindowLocation();
+
+  await t.expect(location.search).eql('?q=test&page=1');
+});
+
+test.page(`${root}/search?q=test&page=3`)('Should load correct results based on url', async (t) => {
+  await t
+    .expect(searchComponent.results.count).eql(20)
+    .expect(searchComponent.getNthResult(0).textContent).contains('The crucible is for silver')
+    .expect(searchComponent.getNthResult(0).textContent).contains('Proverbs 17:3');
+});
+
 // ISSUE: Search results return 'Psalm' instead of 'Psalms'. This test ensures this stays fixed
 test('Should link to book and chapter - Psalms', async (t) => {
   await t

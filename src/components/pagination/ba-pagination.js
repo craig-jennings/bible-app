@@ -86,13 +86,13 @@ class BibleAppPagination extends LitElement {
   _handleNextPage(e) {
     e.preventDefault();
 
-    this._dispatchEvent('nextclick');
+    this._dispatchEvent('next-click');
   }
 
   _handlePrevPage(e) {
     e.preventDefault();
 
-    this._dispatchEvent('prevclick');
+    this._dispatchEvent('prev-click');
   }
 }
 
