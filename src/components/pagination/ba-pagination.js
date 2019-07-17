@@ -61,7 +61,9 @@ class BibleAppPagination extends LitElement {
           type="button"
           ?disabled=${!hasPrevPage}
           @click=${this._handlePrevPage}
-        >Previous</button>
+        >
+          Previous
+        </button>
 
         <div class="range">
           ${totalResults > 0 ? range : ''}
@@ -72,7 +74,9 @@ class BibleAppPagination extends LitElement {
           type="button"
           ?disabled=${!hasNextPage}
           @click=${this._handleNextPage}
-        >Next</button>
+        >
+          Next
+        </button>
       </div>
     `;
   }

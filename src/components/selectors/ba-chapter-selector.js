@@ -68,7 +68,8 @@ class BibleAppChapterSelector extends LitElement {
           class="form__input"
           placeholder="Find Chapter..."
           type="number"
-          @input="${this.filterChapters}">
+          @input="${this.filterChapters}"
+        >
       </div>
 
       <div class="selector__list">

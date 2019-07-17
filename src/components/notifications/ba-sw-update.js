@@ -1,4 +1,3 @@
-import './ba-notification.js';
 import { css, html, LitElement } from 'lit-element';
 import base from '../../styles/base.js';
 
@@ -36,7 +35,7 @@ class BibleAppSWUpdate extends LitElement {
     return html`
       <div class="d-flex justify-between align-center">
         <span>Update Available.</span>
-        <button @click=${this._handleRefreshClick}>Refresh?</button>
+        <button @click=${this._handleRefreshClick} type="button">Refresh?</button>
       </div>
     `;
   }

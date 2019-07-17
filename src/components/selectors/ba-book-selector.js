@@ -51,7 +51,8 @@ class BibleAppBookSelector extends LitElement {
           aria-label="Book Search Field"
           class="form__input"
           placeholder="Find Book..."
-          @input="${this.filterBooks}">
+          @input="${this.filterBooks}"
+        >
       </div>
 
       <h1>Old Testament</h1>

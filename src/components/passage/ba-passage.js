@@ -58,6 +58,8 @@ class BibleAppPassage extends connect(store)(LitElement) {
     ];
   }
 
+  get $passage() { return this.renderRoot.querySelector('.passage'); }
+
   disconnectedCallback() {
     super.disconnectedCallback();
 
@@ -88,11 +90,9 @@ class BibleAppPassage extends connect(store)(LitElement) {
   }
 
   updated() {
-    const $div = this.renderRoot.querySelector('.passage');
+    if (!this.$passage) return;
 
-    if (!$div) return;
-
-    this._hammer = new Hammer($div, {
+    this._hammer = new Hammer(this.$passage, {
       cssProps: {
         userSelect: 'auto',
       },

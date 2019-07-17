@@ -13,24 +13,6 @@ import store from './store.js';
 
 const { dispatch } = store;
 
-const searchPage = (ctx) => {
-  const searchTpl = html`<ba-search class="p-3"></ba-search>`;
-
-  dispatch(resetHeader());
-  dispatch(setPage(searchTpl));
-
-  const params = parseQueryString(ctx.querystring);
-
-  const { value: term } = params.find(p => p.key === 'q') || {};
-  const { value: page } = params.find(p => p.key === 'page') || {};
-
-  if (term) {
-    dispatch(queryTerm(term, page));
-  } else {
-    dispatch(clearResults());
-  }
-};
-
 const bookSelectorPage = () => {
   const bookSelectorTpl = html`<ba-book-selector class="p-3"></ba-book-selector>`;
 
@@ -55,6 +37,24 @@ const passagePage = (ctx) => {
   dispatch(setHeader(book, chapter));
   dispatch(setPage(passageTpl));
   dispatch(fetchPassage(book, chapter));
+};
+
+const searchPage = (ctx) => {
+  const searchTpl = html`<ba-search class="p-3"></ba-search>`;
+
+  dispatch(resetHeader());
+  dispatch(setPage(searchTpl));
+
+  const params = parseQueryString(ctx.querystring);
+
+  const { value: term } = params.find(p => p.key === 'q') || {};
+  const { value: page } = params.find(p => p.key === 'page') || {};
+
+  if (term) {
+    dispatch(queryTerm(term, page));
+  } else {
+    dispatch(clearResults());
+  }
 };
 
 const unknownPage = () => {
