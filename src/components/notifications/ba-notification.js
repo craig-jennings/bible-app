@@ -1,9 +1,13 @@
 import { css, html, LitElement } from 'lit-element';
 import { removeNotification } from '../../actions/notifications.js';
 import base from '../../styles/base.js';
-import store from '../../store.js';
+import connect from '../../utils/connect.js';
 
-class BibleAppNotification extends LitElement {
+const mapActions = {
+  removeNotification,
+};
+
+class BibleAppNotification extends connect(null, mapActions)(LitElement) {
   static get is() { return 'ba-notification'; }
 
   static get styles() {
@@ -56,7 +60,7 @@ class BibleAppNotification extends LitElement {
   _handleNotificationClick() {
     this.$notification.classList.remove('notification--enter');
 
-    setTimeout(() => store.dispatch(removeNotification(this.notification.key)), 400);
+    setTimeout(() => this._actions.removeNotification(this.notification.key), 400);
   }
 }
 

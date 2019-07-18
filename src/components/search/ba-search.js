@@ -1,22 +1,17 @@
 import '../pagination/ba-pagination.js';
 import './ba-search-item.js';
 import 'wc-epic-spinners/dist/OrbitSpinner.js';
-import { connect } from 'pwa-helpers';
 import { css, html, LitElement } from 'lit-element';
 import base from '../../styles/base.js';
+import connect from '../../utils/connect.js';
 import formStyles from '../../styles/form.js';
 import LoadState from '../../utils/LoadState.js';
 import page from 'page';
-import store from '../../store.js';
 
-class BibleAppSearch extends connect(store)(LitElement) {
+const mapState = ({ search }) => ({ search });
+
+class BibleAppSearch extends connect(mapState)(LitElement) {
   static get is() { return 'ba-search'; }
-
-  static get properties() {
-    return {
-      _loadState: { type: String },
-    };
-  }
 
   static get styles() {
     return [
@@ -42,12 +37,13 @@ class BibleAppSearch extends connect(store)(LitElement) {
   }
 
   render() {
+    const { loadState, term } = this._state.search;
     const list = this._getList();
     const pagination = this._getPagination();
 
     return html`
       <form class="d-flex mb-3" @submit="${this._handeSubmit}">
-        <input class="form__input" id="search" placeholder="Search..." value=${this._term}>
+        <input class="form__input" id="search" placeholder="Search..." value=${term}>
         <button class="form__button">Search</button>
       </form>
 
@@ -56,7 +52,7 @@ class BibleAppSearch extends connect(store)(LitElement) {
       </div>
 
       <div>
-        ${this._loadState === LoadState.LOADED ? pagination : ''}
+        ${loadState === LoadState.LOADED ? pagination : ''}
       </div>
     `;
   }
@@ -65,31 +61,26 @@ class BibleAppSearch extends connect(store)(LitElement) {
     this.renderRoot.querySelector('#search').focus();
   }
 
-  stateChanged({ search }) {
-    this._loadState = search.loadState;
-    this._pagination = search.pagination;
-    this._results = search.results;
-    this._term = search.term;
-  }
-
   _getList() {
-    const { _loadState, _results } = this;
+    const { loadState, results } = this._state.search;
 
-    if (_loadState === LoadState.LOADING) {
+    if (loadState === LoadState.LOADING) {
       return html`<orbit-spinner class="center-content" color="white"></orbit-spinner>`;
     }
 
-    if (_loadState === LoadState.LOADED && _results.length === 0) {
+    if (loadState === LoadState.LOADED && results.length === 0) {
       return html`<div class="center-content">No results</div>`;
     }
 
-    return _results.map(r => html`<ba-search-item .item=${r}></ba-search-item>`);
+    return results.map(r => html`<ba-search-item .item=${r}></ba-search-item>`);
   }
 
   _getPagination() {
+    const { pagination } = this._state.search;
+
     return html`
       <ba-pagination
-        .pagination=${this._pagination}
+        .pagination=${pagination}
         @next-click=${this._handleNextPage}
         @prev-click=${this._handlePrevPage}
       ></ba-pagination>
@@ -99,25 +90,25 @@ class BibleAppSearch extends connect(store)(LitElement) {
   _handleNextPage(e) {
     e.preventDefault();
 
-    const { _loadState, _pagination, _term } = this;
+    const { loadState, pagination, term } = this._state.search;
 
-    if (_loadState !== LoadState.LOADED) return;
+    if (loadState !== LoadState.LOADED) return;
 
-    if (_pagination.page === _pagination.totalPages) return;
+    if (pagination.page === pagination.totalPages) return;
 
-    page(`/search?q=${_term}&page=${_pagination.page + 1}`);
+    page(`/search?q=${term}&page=${pagination.page + 1}`);
   }
 
   _handlePrevPage(e) {
     e.preventDefault();
 
-    const { _loadState, _pagination, _term } = this;
+    const { loadState, pagination, term } = this._state.search;
 
-    if (_loadState !== LoadState.LOADED) return;
+    if (loadState !== LoadState.LOADED) return;
 
-    if (_pagination.page === 1) return;
+    if (pagination.page === 1) return;
 
-    page(`/search?q=${_term}&page=${_pagination.page - 1}`);
+    page(`/search?q=${term}&page=${pagination.page - 1}`);
   }
 
   _handeSubmit(e) {

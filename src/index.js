@@ -9,9 +9,9 @@ import {
   searchPage,
   unknownPage,
 } from './pages.js';
+import { dispatch } from './store.js';
 import { html } from 'lit-html';
 import page from 'page';
-import store from './store.js';
 
 page('/', bookSelectorPage);
 page('/search', searchPage);
@@ -22,5 +22,5 @@ page('*', unknownPage);
 page.start();
 
 window.updateAvailable.then(() => {
-  store.dispatch(addNotification(html`<ba-sw-update></ba-sw-update>`));
+  dispatch(addNotification(html`<ba-sw-update></ba-sw-update>`));
 });

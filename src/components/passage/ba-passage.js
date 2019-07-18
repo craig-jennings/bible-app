@@ -1,22 +1,22 @@
 import '../errors/ba-404.js';
 import '../scrollers/ba-scrollup.js';
 import 'wc-epic-spinners/dist/OrbitSpinner.js';
-import { connect } from 'pwa-helpers';
 import { css, html, LitElement } from 'lit-element';
 import { decrementPassage, incrementPassage } from '../../actions/passage.js';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 import base from '../../styles/base.js';
+import connect from '../../utils/connect.js';
 import Hammer from 'hammerjs';
-import store from '../../store.js';
 
-class BibleAppPassage extends connect(store)(LitElement) {
+const mapState = ({ passage }) => ({ passage });
+
+const mapActions = {
+  decrementPassage,
+  incrementPassage,
+};
+
+class BibleAppPassage extends connect(mapState, mapActions)(LitElement) {
   static get is() { return 'ba-passage'; }
-
-  static get properties() {
-    return {
-      _passage: { type: String },
-    };
-  }
 
   static get styles() {
     return [
@@ -69,7 +69,7 @@ class BibleAppPassage extends connect(store)(LitElement) {
   }
 
   render() {
-    const { isLoaded, text } = this._passage;
+    const { isLoaded, text } = this._state.passage;
 
     if (!isLoaded) {
       return html`
@@ -109,18 +109,14 @@ class BibleAppPassage extends connect(store)(LitElement) {
     this._hammer.on('swipeleft', (e) => {
       if (e.pointerType === 'mouse') return;
 
-      store.dispatch(incrementPassage());
+      this._actions.incrementPassage();
     });
 
     this._hammer.on('swiperight', (e) => {
       if (e.pointerType === 'mouse') return;
 
-      store.dispatch(decrementPassage());
+      this._actions.decrementPassage();
     });
-  }
-
-  stateChanged({ passage }) {
-    this._passage = passage;
   }
 }
 

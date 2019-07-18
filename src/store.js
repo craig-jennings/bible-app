@@ -16,3 +16,5 @@ const store = createStore(
 );
 
 export default store;
+
+export const { dispatch, getState, subscribe } = store;
