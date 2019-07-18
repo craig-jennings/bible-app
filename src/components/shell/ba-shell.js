@@ -1,20 +1,14 @@
 import '../footer/ba-footer.js';
 import '../header/ba-header.js';
 import '../notifications/ba-notifications.js';
-import { connect } from 'pwa-helpers';
 import { css, html, LitElement } from 'lit-element';
 import base from '../../styles/base.js';
-import store from '../../store.js';
+import connect from '../../utils/connect.js';
 
-class BibleAppShell extends connect(store)(LitElement) {
+const mapState = ({ page }) => ({ page });
+
+class BibleAppShell extends connect(mapState)(LitElement) {
   static get is() { return 'ba-shell'; }
-
-  static get properties() {
-    return {
-      _notifications: { type: Array },
-      _page: { type: Object },
-    };
-  }
 
   static get styles() {
     return [
@@ -31,19 +25,14 @@ class BibleAppShell extends connect(store)(LitElement) {
   }
 
   render() {
-    const { _notifications, _page } = this;
+    const { page } = this._state;
 
     return html`
       <ba-header></ba-header>
-      <div>${_page}</div>
+      <div>${page}</div>
       <ba-footer></ba-footer>
-      <ba-notifications .notifications=${_notifications}></ba-notifications>
+      <ba-notifications></ba-notifications>
     `;
-  }
-
-  stateChanged({ notifications, page }) {
-    this._notifications = notifications;
-    this._page = page;
   }
 }
 

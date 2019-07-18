@@ -1,17 +1,16 @@
 import { clearResults } from '../../actions/search.js';
-import { connect } from 'pwa-helpers';
 import { css, html, LitElement } from 'lit-element';
 import base from '../../styles/base.js';
-import store from '../../store.js';
+import connect from '../../utils/connect.js';
 
-class BibleAppHeader extends connect(store)(LitElement) {
+const mapActions = {
+  clearResults,
+};
+
+const mapState = ({ header }) => ({ header });
+
+class BibleAppHeader extends connect(mapState, mapActions)(LitElement) {
   static get is() { return 'ba-header'; }
-
-  static get properties() {
-    return {
-      _header: { type: String },
-    };
-  }
 
   static get styles() {
     return [
@@ -53,10 +52,10 @@ class BibleAppHeader extends connect(store)(LitElement) {
   }
 
   render() {
-    const { _header } = this;
+    const { header } = this._state;
 
-    const bookEl = _header.value ? html`<span class="separator">&gt;</span> <a class="book unstyled" href="/${_header.value}">${_header.label}</a>` : '';
-    const chapterEl = _header.chapter ? html`<span class="separator">&gt;</span> <span class="chapter">${_header.chapter}</span>` : '';
+    const bookEl = header.value && html`<span class="separator">&gt;</span> <a class="book unstyled" href="/${header.value}">${header.label}</a>`;
+    const chapterEl = header.chapter && html`<span class="separator">&gt;</span> <span class="chapter">${header.chapter}</span>`;
 
     return html`
       <h1 class="pl-3 pr-3">
@@ -74,12 +73,8 @@ class BibleAppHeader extends connect(store)(LitElement) {
     `;
   }
 
-  stateChanged({ header }) {
-    this._header = header;
-  }
-
   _handleSearchClick() {
-    store.dispatch(clearResults());
+    this._actions.clearResults();
   }
 }
 

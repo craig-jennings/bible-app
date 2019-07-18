@@ -2,15 +2,12 @@ import './ba-notification.js';
 import { css, html, LitElement } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat.js';
 import base from '../../styles/base.js';
+import connect from '../../utils/connect.js';
 
-class BibleAppNotifications extends LitElement {
+const mapState = ({ notifications }) => ({ notifications });
+
+class BibleAppNotifications extends connect(mapState)(LitElement) {
   static get is() { return 'ba-notifications'; }
-
-  static get properties() {
-    return {
-      notifications: { type: Array },
-    };
-  }
 
   static get styles() {
     return [
@@ -41,15 +38,17 @@ class BibleAppNotifications extends LitElement {
   }
 
   render() {
-    const notifications = repeat(
-      this.notifications,
+    const { notifications } = this._state;
+
+    const _notifications = repeat(
+      notifications,
       n => n.key,
       n => html`<ba-notification class="mb-1" .notification=${n}></ba-notification>`,
     );
 
     return html`
       <div class="d-flex flex-column justify-end">
-        ${notifications}
+        ${_notifications}
       </div>
     `;
   }

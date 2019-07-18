@@ -4,51 +4,48 @@ import './components/search/ba-search.js';
 import './components/selectors/ba-book-selector.js';
 import './components/selectors/ba-chapter-selector.js';
 import { clearResults, queryTerm } from './actions/search.js';
+import { dispatch } from './store.js';
 import { fetchPassage } from './actions/passage.js';
 import { html } from 'lit-html';
 import { resetHeader, setHeader } from './actions/header.js';
 import { setPage } from './actions/page.js';
 import parseQueryString from './utils/parseQueryString.js';
-import store from './store.js';
-
-const { dispatch } = store;
 
 const bookSelectorPage = () => {
-  const bookSelectorTpl = html`<ba-book-selector class="p-3"></ba-book-selector>`;
+  const template = html`<ba-book-selector class="p-3"></ba-book-selector>`;
 
   dispatch(resetHeader());
-  dispatch(setPage(bookSelectorTpl));
+  dispatch(setPage(template));
 };
 
 const chapterSelectorPage = (ctx) => {
   const { book } = ctx.params;
 
-  const chapterSelectorTpl = html`<ba-chapter-selector class="p-3" .book=${book}></ba-chapter-selector>`;
+  const template = html`<ba-chapter-selector class="p-3" .book=${book}></ba-chapter-selector>`;
 
   dispatch(setHeader(book));
-  dispatch(setPage(chapterSelectorTpl));
+  dispatch(setPage(template));
 };
 
 const passagePage = (ctx) => {
   const { book, chapter } = ctx.params;
 
-  const passageTpl = html`<ba-passage class="mx-3"></ba-passage>`;
+  const template = html`<ba-passage class="mx-3"></ba-passage>`;
 
   dispatch(setHeader(book, chapter));
-  dispatch(setPage(passageTpl));
+  dispatch(setPage(template));
   dispatch(fetchPassage(book, chapter));
 };
 
 const searchPage = (ctx) => {
-  const searchTpl = html`<ba-search class="p-3"></ba-search>`;
-
-  dispatch(resetHeader());
-  dispatch(setPage(searchTpl));
-
   const params = parseQueryString(ctx.querystring);
+  const template = html`<ba-search class="p-3"></ba-search>`;
 
   const { value: term } = params.find(p => p.key === 'q') || {};
   const { value: page } = params.find(p => p.key === 'page') || {};
+
+  dispatch(resetHeader());
+  dispatch(setPage(template));
 
   if (term) {
     dispatch(queryTerm(term, page));
@@ -58,9 +55,9 @@ const searchPage = (ctx) => {
 };
 
 const unknownPage = () => {
-  const unknownTpl = html`<ba-404></ba-404>`;
+  const template = html`<ba-404></ba-404>`;
 
-  dispatch(setPage(unknownTpl));
+  dispatch(setPage(template));
 };
 
 export {
