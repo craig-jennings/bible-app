@@ -5,6 +5,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+  devServer: {
+    contentBase: './dist',
+    historyApiFallback: true,
+    open: true,
+  },
+
   entry: {
     main: './src/index.js',
     'sw-installer': './src/service-worker/sw-installer.js',
@@ -67,4 +73,18 @@ module.exports = {
       filename: '[name].css',
     }),
   ],
+
+  stats: {
+    builtAt: false,
+    entrypoints: false,
+
+    excludeAssets: [
+      /images[/\\]/,
+      /precache-manifest\./,
+      /robots\.txt/,
+    ],
+
+    hash: false,
+    modules: false,
+  },
 };

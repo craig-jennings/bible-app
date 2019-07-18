@@ -24,10 +24,17 @@
 
   --notification__bg-color: #455a64;
   --notification__color: #fafafa;
+
   --notification__button__bg-color: #455a64;
   --notification__button__bg-color--hover: #78909c;
 
   --selector__border-color: #455a64;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -35,5 +42,4 @@ body {
   color: var(--font-color, #222222);
   font-family: 'Quattrocento Sans', sans-serif;
   line-height: 1.5;
-  margin: 0;
 }
