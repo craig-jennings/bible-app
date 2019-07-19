@@ -4,6 +4,7 @@
   "main": "index.js",
   "author": "Craig Jennings",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "build:dev": "webpack --mode development",
     "build:prod": "webpack --mode production",
