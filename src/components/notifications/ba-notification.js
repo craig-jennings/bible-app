@@ -10,6 +10,12 @@ const mapActions = {
 class BibleAppNotification extends connect(null, mapActions)(LitElement) {
   static get is() { return 'ba-notification'; }
 
+  static get properties() {
+    return {
+      notification: { type: Object },
+    };
+  }
+
   static get styles() {
     return [
       base,

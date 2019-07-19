@@ -11,10 +11,7 @@ module.exports = {
     open: true,
   },
 
-  entry: {
-    main: './src/index.js',
-    'sw-installer': './src/service-worker/sw-installer.js',
-  },
+  entry: './src/index.js',
 
   module: {
     rules: [
