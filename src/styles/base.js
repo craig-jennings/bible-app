@@ -10,8 +10,8 @@ export default css`
     padding: 0;
   }
 
-  :host         { display: block; }
-  :host[hidden] { display: none; }
+  :host           { display: block; }
+  :host([hidden]) { display: none; }
 
   ${flex}
   ${spacing}

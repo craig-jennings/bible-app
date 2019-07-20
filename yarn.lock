@@ -7058,10 +7058,10 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   dependencies:
     minimalistic-assert "^1.0.0"
 
-wc-epic-spinners@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/wc-epic-spinners/-/wc-epic-spinners-1.0.0.tgz#2dd3e9fa4f642577da5a2b378ffb020015de21e4"
-  integrity sha512-gKIx2ezz4dhANFGvtpy5xv5gelv2PGTymMNJlBCPbRa0kJ4JBbnLc1i+8GDgojHDcuYxeO61oixbCJss5BPIkw==
+wc-epic-spinners@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/wc-epic-spinners/-/wc-epic-spinners-1.0.1.tgz#d3bcd1fa3f70ec3d3307700eb80ed9c672b5176f"
+  integrity sha512-Z4gT2nfJhmXduXHyDLnwpay8xyD8SJhppuYuaABQBUUqElsnFjnMl1sjJTXKojV4mzj4/wTg11UTuTuQAmxt2w==
 
 webauth@^1.1.0:
   version "1.1.0"
