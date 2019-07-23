@@ -1,6 +1,6 @@
 import '../errors/ba-404.js';
 import '../scrollers/ba-scrollup.js';
-import 'wc-epic-spinners/dist/OrbitSpinner.js';
+import 'wc-spinners/dist/orbit-spinner.js';
 import { css, html, LitElement } from 'lit-element';
 import { decrementPassage, incrementPassage } from '../../actions/passage.js';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';

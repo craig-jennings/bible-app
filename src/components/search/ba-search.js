@@ -1,6 +1,6 @@
 import '../pagination/ba-pagination.js';
 import './ba-search-item.js';
-import 'wc-epic-spinners/dist/OrbitSpinner.js';
+import 'wc-spinners/dist/orbit-spinner.js';
 import { css, html, LitElement } from 'lit-element';
 import base from '../../styles/base.js';
 import connect from '../../utils/connect.js';
