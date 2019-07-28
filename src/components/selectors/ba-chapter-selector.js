@@ -55,11 +55,11 @@ class BibleAppChapterSelector extends LitElement {
   }
 
   render() {
-    const chapters = this._chapters.map(c => this._constructChapterElement(c));
-
-    if (chapters.length === 0) {
+    if (this._allChapters.length === 0) {
       return html`<ba-404></ba-404>`;
     }
+
+    const chapters = this._chapters.map(c => this._constructChapterElement(c));
 
     return html`
       <div>
