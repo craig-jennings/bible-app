@@ -9,10 +9,9 @@
     "build:dev": "webpack --mode development",
     "build:prod": "webpack --mode production",
     "clean": "rimraf dist",
-    "deploy": "firebase deploy --only hosting",
     "start": "webpack-dev-server",
     "test": "npm-run-all test:*",
-    "test:e2e": "testcafe chrome,\"chrome:emulation:device=Nexus 5X\",firefox ./test/**/*.spec.js --app \"firebase serve --only hosting\"",
+    "test:e2e": "testcafe chrome,\"chrome:emulation:device=Nexus 5X\",firefox ./test/**/*.spec.js --app \"yarn start\"",
     "test:eslint": "eslint src/ test/ --quiet"
   },
   "dependencies": {

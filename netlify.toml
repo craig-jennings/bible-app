@@ -1,0 +1,8 @@
+[build]
+  command = 'yarn run build:prod'
+  publish = 'dist'
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
