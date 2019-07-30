@@ -11,7 +11,7 @@
     "clean": "rimraf dist",
     "start": "webpack-dev-server",
     "test": "npm-run-all test:e2e test:eslint",
-    "test:ci": "testcafe chrome:headless,\"chrome:headless:emulation:device=Nexus 5X\",firefox:headless ./test/**/*.spec.js --app \"yarn start\" -r xunit:/tmp/test-results/res.xml",
+    "test:ci": "testcafe chrome:headless,\"chrome:headless:emulation:device=Nexus 5X\",firefox:headless ./test/**/*.spec.js --app \"yarn start\"",
     "test:e2e": "testcafe chrome,\"chrome:emulation:device=Nexus 5X\",firefox ./test/**/*.spec.js --app \"yarn start\"",
     "test:eslint": "eslint src/ test/ --quiet"
   },
