@@ -3,12 +3,15 @@ import '../header/ba-header.js';
 import '../notifications/ba-notifications.js';
 import { css, html, LitElement } from 'lit-element';
 import base from '../../styles/base.js';
-import connect from '../../utils/connect.js';
 
-const mapState = ({ page }) => ({ page });
-
-class BibleAppShell extends connect(mapState)(LitElement) {
+class BibleAppShell extends LitElement {
   static get is() { return 'ba-shell'; }
+
+  static get properties() {
+    return {
+      template: { type: Object },
+    };
+  }
 
   static get styles() {
     return [
@@ -25,11 +28,9 @@ class BibleAppShell extends connect(mapState)(LitElement) {
   }
 
   render() {
-    const { page } = this._state;
-
     return html`
       <ba-header></ba-header>
-      <div>${page}</div>
+      <div>${this.template}</div>
       <ba-footer></ba-footer>
       <ba-notifications></ba-notifications>
     `;

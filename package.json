@@ -12,8 +12,8 @@
     "serve": "live-server dist/ --entry-file=index.html --no-browser",
     "start": "webpack-dev-server",
     "test": "npm-run-all test:e2e test:eslint",
-    "test:ci": "testcafe chrome:headless,\"chrome:headless:emulation:device=Nexus 5X\",firefox:headless ./test/**/*.spec.js --app \"yarn run serve\"",
-    "test:e2e": "testcafe chrome,\"chrome:emulation:device=Nexus 5X\",firefox ./test/**/*.spec.js --app \"yarn run serve\"",
+    "test:ci": "testcafe chrome:headless,\"chrome:headless:emulation:device=Nexus 5X\",firefox:headless ./test/**/*.spec.js --app \"yarn serve\"",
+    "test:e2e": "testcafe chrome,\"chrome:emulation:device=Nexus 5X\",firefox ./test/**/*.spec.js --app \"yarn serve\"",
     "test:eslint": "eslint src/ test/ --quiet"
   },
   "dependencies": {

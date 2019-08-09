@@ -10,10 +10,14 @@ import {
 } from './pages.js';
 import page from 'page';
 
-page('/', bookSelectorPage);
-page('/search', searchPage);
-page('/:book', chapterSelectorPage);
-page('/:book/:chapter', passagePage);
-page('*', unknownPage);
+const render = (ctx) => {
+  document.querySelector('ba-shell').template = ctx.template;
+};
+
+page('/', bookSelectorPage, render);
+page('/search', searchPage, render);
+page('/:book', chapterSelectorPage, render);
+page('/:book/:chapter', passagePage, render);
+page('*', unknownPage, render);
 
 page.start();
