@@ -8,12 +8,14 @@
   "scripts": {
     "build:dev": "webpack --mode development",
     "build:prod": "webpack --mode production",
+    "build:watch": "webpack --mode development --watch",
     "clean": "rimraf dist",
-    "serve": "live-server dist/ --entry-file=index.html --no-browser",
-    "start": "webpack-dev-server",
-    "test": "npm-run-all test:e2e test:eslint",
-    "test:ci": "testcafe chrome:headless,\"chrome:headless:emulation:device=Nexus 5X\",firefox:headless ./test/**/*.spec.js --app \"yarn serve\"",
-    "test:e2e": "testcafe chrome,\"chrome:emulation:device=Nexus 5X\",firefox ./test/**/*.spec.js --app \"yarn serve\"",
+    "serve": "live-server dist/ --entry-file=index.html",
+    "serve:ci": "live-server dist/ --entry-file=index.html --no-browser",
+    "start": "npm-run-all -p build:watch serve",
+    "test": "npm-run-all test:eslint test:e2e",
+    "test:ci": "testcafe chrome:headless,\"chrome:headless:emulation:device=Nexus 5X\",firefox:headless ./test/**/*.spec.js --app \"yarn serve:ci\"",
+    "test:e2e": "testcafe chrome,\"chrome:emulation:device=Nexus 5X\",firefox ./test/**/*.spec.js --app \"yarn serve:ci\"",
     "test:eslint": "eslint src/ test/ --quiet"
   },
   "dependencies": {
@@ -44,7 +46,6 @@
     "testcafe": "^1.1.1",
     "webpack": "^4.8.3",
     "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.7.2",
     "workbox-webpack-plugin": "^4.2.0"
   }
 }
