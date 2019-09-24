@@ -42,8 +42,8 @@ class BibleAppNotifications extends connect(mapState)(LitElement) {
 
     const _notifications = repeat(
       notifications,
-      n => n.key,
-      n => html`<ba-notification class="mb-1" .notification=${n}></ba-notification>`,
+      (n) => n.key,
+      (n) => html`<ba-notification class="mb-1" .notification=${n}></ba-notification>`,
     );
 
     return html`

@@ -59,7 +59,7 @@ class BibleAppChapterSelector extends LitElement {
       return html`<ba-404></ba-404>`;
     }
 
-    const chapters = this._chapters.map(c => this._constructChapterElement(c));
+    const chapters = this._chapters.map((c) => this._constructChapterElement(c));
 
     return html`
       <div>
@@ -92,7 +92,7 @@ class BibleAppChapterSelector extends LitElement {
     if (term.trim().length === 0) {
       this._chapters = this._allChapters;
     } else {
-      this._chapters = this._allChapters.filter(c => c.indexOf(term) > -1);
+      this._chapters = this._allChapters.filter((c) => c.indexOf(term) > -1);
     }
   }
 

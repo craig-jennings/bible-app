@@ -9,8 +9,8 @@ class Passage extends ShadowComponent {
     return this.container
       .find('.verse-num')
       .nth(n).addCustomDOMProperties({
-        verseNumber: el => el.innerHTML,
-        verseText: el => el.nextSibling.textContent,
+        verseNumber: (el) => el.innerHTML,
+        verseText: (el) => el.nextSibling.textContent,
       });
   }
 }

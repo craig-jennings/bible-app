@@ -4,7 +4,7 @@ import passagePage from './pages/passagePage.js';
 import searchPage from './pages/searchPage.js';
 import unknownPage from './pages/unknownPage.js';
 
-const wrapper = page => (ctx, next) => {
+const wrapper = (page) => (ctx, next) => {
   const template = page(ctx);
 
   ctx.template = template;

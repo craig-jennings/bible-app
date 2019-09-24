@@ -72,7 +72,7 @@ class BibleAppSearch extends connect(mapState)(LitElement) {
       return html`<div class="center-content">No results</div>`;
     }
 
-    return results.map(r => html`<ba-search-item .item=${r}></ba-search-item>`);
+    return results.map((r) => html`<ba-search-item .item=${r}></ba-search-item>`);
   }
 
   _getPagination() {

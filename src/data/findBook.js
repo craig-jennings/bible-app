@@ -16,14 +16,14 @@ const findBookByLabel = (label) => {
     labelToFind = `${label}s`;
   }
 
-  return NewTestament.find(b => b.label === labelToFind)
-         || OldTestament.find(b => b.label === labelToFind)
-         || Object.assign({}, UNKNOWN_BOOK);
+  return NewTestament.find((b) => b.label === labelToFind)
+         || OldTestament.find((b) => b.label === labelToFind)
+         || ({ ...UNKNOWN_BOOK });
 };
 
-const findBookByValue = key => NewTestament.find(b => b.value === key)
-                               || OldTestament.find(b => b.value === key)
-                               || Object.assign({}, UNKNOWN_BOOK);
+const findBookByValue = (key) => NewTestament.find((b) => b.value === key)
+                               || OldTestament.find((b) => b.value === key)
+                               || ({ ...UNKNOWN_BOOK });
 
 export {
   findBookByLabel,

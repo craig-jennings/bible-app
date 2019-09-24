@@ -12,7 +12,7 @@ const PassageActionType = {
 /* -- Reducer Actions -- */
 /* --------------------- */
 const clearPassage = () => ({ type: PassageActionType.CLEAR_PASSAGE });
-const setPassage = text => ({ text, type: PassageActionType.SET_PASSAGE });
+const setPassage = (text) => ({ text, type: PassageActionType.SET_PASSAGE });
 
 /* ----------------- */
 /* -- API Actions -- */

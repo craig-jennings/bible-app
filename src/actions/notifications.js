@@ -7,9 +7,9 @@ const NotificationActionType = {
 /* --------------------- */
 /* -- Reducer Actions -- */
 /* --------------------- */
-const addNotification = template => ({ template, type: NotificationActionType.ADD_NOTIFICATION });
+const addNotification = (template) => ({ template, type: NotificationActionType.ADD_NOTIFICATION });
 const clearNotifications = () => ({ type: NotificationActionType.CLEAR_NOTIFICATIONS });
-const removeNotification = key => ({ key, type: NotificationActionType.REMOVE_NOTIFICATION });
+const removeNotification = (key) => ({ key, type: NotificationActionType.REMOVE_NOTIFICATION });
 
 export {
   addNotification,

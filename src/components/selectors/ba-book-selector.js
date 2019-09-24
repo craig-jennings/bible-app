@@ -42,8 +42,8 @@ class BibleAppBookSelector extends LitElement {
   }
 
   render() {
-    const newTestamentBooks = this._newTestamentBooks.map(b => this._constructBookElement(b));
-    const oldTestamentBooks = this._oldTestamentBooks.map(b => this._constructBookElement(b));
+    const newTestamentBooks = this._newTestamentBooks.map((b) => this._constructBookElement(b));
+    const oldTestamentBooks = this._oldTestamentBooks.map((b) => this._constructBookElement(b));
 
     return html`
       <div>
@@ -80,8 +80,8 @@ class BibleAppBookSelector extends LitElement {
       this._newTestamentBooks = NewTestament;
       this._oldTestamentBooks = OldTestament;
     } else {
-      this._newTestamentBooks = NewTestament.filter(b => b.label.toLowerCase().indexOf(term) > -1);
-      this._oldTestamentBooks = OldTestament.filter(b => b.label.toLowerCase().indexOf(term) > -1);
+      this._newTestamentBooks = NewTestament.filter((b) => b.label.toLowerCase().indexOf(term) > -1);
+      this._oldTestamentBooks = OldTestament.filter((b) => b.label.toLowerCase().indexOf(term) > -1);
     }
   }
 

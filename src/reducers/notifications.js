@@ -24,7 +24,7 @@ const reducers = {
   },
 
   [NotificationActionType.CLEAR_NOTIFICATIONS]: () => [],
-  [NotificationActionType.REMOVE_NOTIFICATION]: (state, { key }) => state.filter(n => n.key !== key),
+  [NotificationActionType.REMOVE_NOTIFICATION]: (state, { key }) => state.filter((n) => n.key !== key),
 };
 
 const notificationsReducer = createReducer(reducers, INITIAL_STATE);

@@ -1,7 +1,7 @@
 import { dispatch, getState, subscribe } from '../store.js';
 
 // Most of this is pulled from Polymer/pwa-helpers' connect mixin
-const connect = (mapState, mapActions = {}) => baseElement => class extends baseElement {
+const connect = (mapState, mapActions = {}) => (baseElement) => class extends baseElement {
   constructor() {
     super();
 
