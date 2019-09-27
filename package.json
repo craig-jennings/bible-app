@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@hot-loader/react-dom": "^16.8.6",
+    "hammerjs": "2.0.8",
     "history": "4.10.1",
     "prop-types": "15.7.2",
     "react": "16.9.0",

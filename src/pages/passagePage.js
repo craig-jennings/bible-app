@@ -1,18 +1,24 @@
-import '../components/passage/ba-passage.js';
-import { dispatch } from '../store.js';
-import { fetchPassage } from '../actions/passage.js';
-import { html } from 'lit-html';
-import { setHeader } from '../actions/header.js';
+import { clearPassage, fetchPassage } from '../actions/passage';
+import { setHeader } from '../actions/header';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import Passage from '../components/passage/Passage';
 
-const template = html`<ba-passage class="mx-3"></ba-passage>`;
+function PassagePage() {
+  const { book, chapter } = useParams();
+  const dispatch = useDispatch();
 
-const passagePage = (ctx) => {
-  const { book, chapter } = ctx.params;
+  useEffect(() => {
+    dispatch(setHeader(book, chapter));
+    dispatch(fetchPassage(book, chapter));
 
-  dispatch(setHeader(book, chapter));
-  dispatch(fetchPassage(book, chapter));
+    return () => {
+      dispatch(clearPassage());
+    };
+  }, [book, chapter, dispatch]);
 
-  return template;
-};
+  return <Passage />;
+}
 
-export default passagePage;
+export default PassagePage;

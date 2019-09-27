@@ -27,7 +27,7 @@ const decrementPassage = () => async (dispatch, getState) => {
 
   const newChapter = chapterNumber - 1;
 
-  page(`/${book.value}/${newChapter}`);
+  history.push(`/${book.value}/${newChapter}`);
 };
 
 const fetchPassage = (book, chapter) => async (dispatch, getState) => {

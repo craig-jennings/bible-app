@@ -1,42 +1,54 @@
-import { BookSelectorPage, ChapterSelectorPage /* , Passage, Search */ } from './pages';
+import { BookSelectorPage, ChapterSelectorPage, PassagePage /* , SearchPage */ } from './pages';
 import { hot } from 'react-hot-loader/root';
 import { Provider } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
+import Footer from './components/footer/Footer';
 import GlobalStyles from './GlobalStyles';
 import history from './history';
 import store from './store';
+import styled from 'styled-components';
 // TODO
 // import Header from './components/header/Header';
 // import Notifications from './components/notifications/Notifications';
+
+const AppContainer = styled.div`
+  display: grid;
+  /* grid-template-rows: 3rem 1fr 1.5rem; */
+  grid-template-rows: 1fr 1.5rem;
+  min-height: 100vh;
+`;
 
 const App = () => (
   <Provider store={store}>
     <GlobalStyles />
 
-    <Router history={history}>
-      {/* <Header /> */}
-      <Route exact path="/">
-        <BookSelectorPage />
-      </Route>
-
-      <Switch>
-        {/* <Route exact path="/search">
-          <Search />
-        </Route> */}
-
-        <Route exact path="/:book">
-          <ChapterSelectorPage />
+    <AppContainer>
+      <Router history={history}>
+        {/* <Header /> */}
+        <Route exact path="/">
+          <BookSelectorPage />
         </Route>
-      </Switch>
 
-      {/* <Route exact path="/:book/:chapter">
-        <PassagePage />
-      </Route> */}
+        <Switch>
+          {/* <Route exact path="/search">
+            <Search />
+          </Route> */}
 
-      {/* TODO: Handle unknown route */}
+          <Route exact path="/:book">
+            <ChapterSelectorPage />
+          </Route>
+        </Switch>
 
-      {/* <Notifications /> */}
-    </Router>
+        <Route exact path="/:book/:chapter">
+          <PassagePage />
+        </Route>
+
+        {/* TODO: Handle unknown route */}
+
+        {/* <Notifications /> */}
+        <Footer />
+      </Router>
+    </AppContainer>
   </Provider>
 );
 
