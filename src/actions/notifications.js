@@ -11,9 +11,4 @@ const addNotification = (template) => ({ template, type: NotificationActionType.
 const clearNotifications = () => ({ type: NotificationActionType.CLEAR_NOTIFICATIONS });
 const removeNotification = (key) => ({ key, type: NotificationActionType.REMOVE_NOTIFICATION });
 
-export {
-  addNotification,
-  clearNotifications,
-  NotificationActionType,
-  removeNotification,
-};
+export { addNotification, clearNotifications, NotificationActionType, removeNotification };

@@ -1,12 +1,14 @@
-// import { resetHeader } from '../actions/header';
+import { resetHeader } from '../actions/header';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import BookSelector from '../components/selectors/BookSelector';
 
 function BookSelectorPage() {
-  // const [, headerDispatch] = useContext(HeaderContext);
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   headerDispatch(resetHeader());
-  // }, []);
+  useEffect(() => {
+    dispatch(resetHeader());
+  }, [dispatch]);
 
   return <BookSelector />;
 }

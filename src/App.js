@@ -1,42 +1,43 @@
-import { BookSelectorPage /* , ChapterSelector, Passage, Search */ } from './pages';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BookSelectorPage, ChapterSelectorPage /* , Passage, Search */ } from './pages';
 import { hot } from 'react-hot-loader/root';
-// import { Provider } from 'react-redux';
+import { Provider } from 'react-redux';
+import { Route, Router, Switch } from 'react-router-dom';
 import GlobalStyles from './GlobalStyles';
+import history from './history';
+import store from './store';
 // TODO
+// import Header from './components/header/Header';
 // import Notifications from './components/notifications/Notifications';
-// import store from './store';
 
 const App = () => (
-  // <Provider store={store}>
-  <>
+  <Provider store={store}>
     <GlobalStyles />
 
-    <BrowserRouter>
+    <Router history={history}>
+      {/* <Header /> */}
       <Route exact path="/">
         <BookSelectorPage />
       </Route>
 
-      {/* <Switch>
-        <Route exact path="/search">
+      <Switch>
+        {/* <Route exact path="/search">
           <Search />
-        </Route>
+        </Route> */}
 
         <Route exact path="/:book">
-          <ChapterSelector />
+          <ChapterSelectorPage />
         </Route>
       </Switch>
 
-      <Route exact path="/:book/:chapter">
-        <Passage />
+      {/* <Route exact path="/:book/:chapter">
+        <PassagePage />
       </Route> */}
 
       {/* TODO: Handle unknown route */}
 
       {/* <Notifications /> */}
-    </BrowserRouter>
-  </>
-  // </Provider>
+    </Router>
+  </Provider>
 );
 
 export default hot(App);

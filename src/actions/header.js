@@ -1,4 +1,4 @@
-import { findBookByValue } from '../data/findBook.js';
+import { findBookByValue } from '../data/findBook';
 
 const HeaderActionType = {
   RESET_HEADER: 'header:reset',
@@ -16,8 +16,4 @@ const setHeader = (book, chapter) => ({
   type: HeaderActionType.SET_HEADER,
 });
 
-export {
-  HeaderActionType,
-  resetHeader,
-  setHeader,
-};
+export { HeaderActionType, resetHeader, setHeader };

@@ -1,3 +1,4 @@
+import { Box } from '../base/Box';
 import { FormInput } from '../base/Form';
 import { SelectorList, SelectorListItem } from './SelectorList';
 import { useFormInput } from '../../hooks';
@@ -5,12 +6,7 @@ import NewTestament from '../../data/NewTestament';
 import OldTestament from '../../data/OldTestament';
 import styled from 'styled-components';
 
-const Container = styled.div`
-  padding: 1rem;
-`;
-
 const Header = styled.h1`
-  margin: 0.5rem 0;
   text-align: center;
 `;
 
@@ -35,7 +31,7 @@ function BookSelector() {
   const oldTestamentBooks = buildBookList(OldTestament, searchInput.value.toLowerCase());
 
   return (
-    <Container>
+    <Box p={3}>
       <div>
         <FormInput
           aria-label="Book Search Field"
@@ -45,11 +41,18 @@ function BookSelector() {
         />
       </div>
 
-      <Header>Old Testament</Header>
+      <Box my={2}>
+        <Header>Old Testament</Header>
+      </Box>
+
       <SelectorList>{oldTestamentBooks}</SelectorList>
-      <Header>New Testament</Header>
+
+      <Box my={2}>
+        <Header>New Testament</Header>
+      </Box>
+
       <SelectorList>{newTestamentBooks}</SelectorList>
-    </Container>
+    </Box>
   );
 }
 

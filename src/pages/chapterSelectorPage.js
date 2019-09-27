@@ -1,19 +1,18 @@
-import '../components/selectors/ba-chapter-selector.js';
-import { dispatch } from '../store.js';
-import { html } from 'lit-html';
-import { setHeader } from '../actions/header.js';
+import { setHeader } from '../actions/header';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import ChapterSelector from '../components/selectors/ChapterSelector';
 
-const template = (book) => html`
-  <ba-chapter-selector class="p-3" .book=${book}></ba-chapter-selector>
-`;
+function ChapterSelectorPage() {
+  const { book } = useParams();
+  const dispatch = useDispatch();
 
-const chapterSelectorPage = (ctx) => {
-  const { book } = ctx.params;
+  useEffect(() => {
+    dispatch(setHeader(book));
+  }, [book, dispatch]);
 
-  dispatch(setHeader(book));
+  return <ChapterSelector book={book} />;
+}
 
-  return template(book);
-};
-
-
-export default chapterSelectorPage;
+export default ChapterSelectorPage;

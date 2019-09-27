@@ -1,5 +1,5 @@
 export { default as BookSelectorPage } from './BookSelectorPage';
-// import chapterSelectorPage from './pages/chapterSelectorPage.js';
+export { default as ChapterSelectorPage } from './ChapterSelectorPage';
 // import passagePage from './pages/passagePage.js';
 // import searchPage from './pages/searchPage.js';
 // import unknownPage from './pages/unknownPage.js';

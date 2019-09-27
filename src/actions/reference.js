@@ -11,7 +11,4 @@ const setReference = (book, chapter) => ({
   type: ReferenceActionType.SET_REFERENCE,
 });
 
-export {
-  ReferenceActionType,
-  setReference,
-};
+export { ReferenceActionType, setReference };
