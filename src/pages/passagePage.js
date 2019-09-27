@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Passage from '../components/passage/Passage';
+import ScrollUp from '../components/scrollers/ScrollUp';
 
 function PassagePage() {
   const { book, chapter } = useParams();
@@ -18,7 +19,12 @@ function PassagePage() {
     };
   }, [book, chapter, dispatch]);
 
-  return <Passage />;
+  return (
+    <div>
+      <Passage />
+      <ScrollUp />
+    </div>
+  );
 }
 
 export default PassagePage;

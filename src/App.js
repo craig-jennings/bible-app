@@ -3,7 +3,6 @@ import { hot } from 'react-hot-loader/root';
 import { Provider } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
 import Footer from './components/footer/Footer';
-import GlobalStyles from './GlobalStyles';
 import history from './history';
 import store from './store';
 import styled from 'styled-components';
@@ -20,11 +19,10 @@ const AppContainer = styled.div`
 
 const App = () => (
   <Provider store={store}>
-    <GlobalStyles />
-
     <AppContainer>
       <Router history={history}>
         {/* <Header /> */}
+
         <Route exact path="/">
           <BookSelectorPage />
         </Route>

@@ -1,5 +1,3 @@
-// import Page404 from '../errors/Page404';
-// import '../scrollers/ba-scrollup.js';
 import 'wc-spinners/dist/orbit-spinner';
 import { CenterBox } from '../base/Box';
 import { decrementPassage, incrementPassage } from '../../actions/passage';
@@ -82,7 +80,7 @@ function Passage() {
 
   if (!isLoaded) {
     return (
-      <CenterBox>
+      <CenterBox mt={4}>
         <orbit-spinner color="white" />
       </CenterBox>
     );
@@ -92,11 +90,7 @@ function Passage() {
     return <Page404 />;
   }
 
-  return (
-    <PassageContainer dangerouslySetInnerHTML={{ __html: text }} ref={passageRef} />
-    // TODO
-    // <ba-scrollup></ba-scrollup>
-  );
+  return <PassageContainer dangerouslySetInnerHTML={{ __html: text }} ref={passageRef} />;
 }
 
 export default Passage;
