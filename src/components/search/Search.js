@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { useFormInput } from '../../hooks';
 import history from '../../utils/history';
 import LoadState from '../../utils/LoadState';
+import Pagination from '../pagination/Pagination';
 import PropTypes from 'prop-types';
 import SearchItem from './SearchItem';
 
@@ -44,7 +45,7 @@ function Search({ page, term }) {
 
   useEffect(() => {
     searchInput.onChange({ target: { value: term } });
-  }, [searchInput, term]);
+  }, [term]);
 
   /* -- Event Handlers -- */
   const handleNextPage = (e) => {
@@ -91,13 +92,13 @@ function Search({ page, term }) {
 
       <div>{list}</div>
 
-      {/* {search.loadState === LoadState.LOADED && (
+      {search.loadState === LoadState.LOADED && (
         <Pagination
           pagination={search.pagination}
           onNextClick={handleNextPage}
           onPrevClick={handlePrevPage}
         />
-      )} */}
+      )}
     </Box>
   );
 }
