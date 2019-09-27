@@ -11,9 +11,8 @@ const SearchActionType = {
 /* --------------------- */
 const clearResults = () => ({ type: SearchActionType.ClearResults });
 
-const setResults = (results, term) => ({
+const setResults = (results) => ({
   results,
-  term,
   type: SearchActionType.SetResults,
 });
 
@@ -32,7 +31,7 @@ const queryTerm = (term, page = 1) => async (dispatch) => {
   try {
     const results = await api.search(term, page);
 
-    dispatch(setResults(results, term));
+    dispatch(setResults(results));
   } catch (e) {
     console.error(e);
   }

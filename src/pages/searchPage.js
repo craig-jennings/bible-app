@@ -1,27 +1,21 @@
-import '../components/search/ba-search.js';
-import { clearResults, queryTerm } from '../actions/search.js';
-import { dispatch } from '../store.js';
-import { html } from 'lit-html';
-import { resetHeader } from '../actions/header.js';
-import parseQueryString from '../utils/parseQueryString.js';
+import { resetHeader } from '../actions/header';
+import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import parseQueryString from '../utils/parseQueryString';
+import Search from '../components/search/Search';
 
-const template = html`<ba-search class="p-3"></ba-search>`;
+function SearchPage() {
+  const location = useLocation();
+  const dispatch = useDispatch();
 
-const searchPage = (ctx) => {
-  const params = parseQueryString(ctx.querystring);
+  const params = parseQueryString(location.search);
 
   const { value: page } = params.find((p) => p.key === 'page') || {};
   const { value: term } = params.find((p) => p.key === 'q') || {};
 
   dispatch(resetHeader());
 
-  if (term) {
-    dispatch(queryTerm(term, page));
-  } else {
-    dispatch(clearResults());
-  }
+  return <Search page={page} term={term} />;
+}
 
-  return template;
-};
-
-export default searchPage;
+export default SearchPage;

@@ -1,7 +1,7 @@
 import { findBookByValue } from '../data/findBook';
 import { setReference } from './reference';
 import api from '../services/api';
-import history from '../history';
+import history from '../utils/history';
 
 const PassageActionType = {
   CLEAR_PASSAGE: 'passage:clear',

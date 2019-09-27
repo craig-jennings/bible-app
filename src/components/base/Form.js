@@ -1,4 +1,11 @@
+import spacing from './mixins/spacing';
 import styled from 'styled-components';
+
+const Form = styled.form`
+  display: flex;
+
+  ${spacing};
+`;
 
 const FormInput = styled.input`
   background-color: var(--bg-color);
@@ -39,4 +46,4 @@ const FormButton = styled.button`
   }
 `;
 
-export { FormButton, FormInput };
+export { Form, FormButton, FormInput };

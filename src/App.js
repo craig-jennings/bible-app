@@ -1,10 +1,10 @@
-import { BookSelectorPage, ChapterSelectorPage, PassagePage /* , SearchPage */ } from './pages';
+import { BookSelectorPage, ChapterSelectorPage, PassagePage, SearchPage} from './pages';
 import { hot } from 'react-hot-loader/root';
 import { Provider } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
-import history from './history';
+import history from './utils/history';
 import store from './store';
 import styled from 'styled-components';
 // TODO
@@ -27,9 +27,9 @@ const App = () => (
         </Route>
 
         <Switch>
-          {/* <Route exact path="/search">
-            <Search />
-          </Route> */}
+          <Route exact path="/search">
+            <SearchPage />
+          </Route>
 
           <Route exact path="/:book">
             <ChapterSelectorPage />
