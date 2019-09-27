@@ -1,4 +1,4 @@
-import '../errors/ba-404.js';
+import '../errors/Page404.js/index.js';
 import '../scrollers/ba-scrollup.js';
 import 'wc-spinners/dist/orbit-spinner.js';
 import { css, html, LitElement } from 'lit-element';
@@ -15,8 +15,13 @@ const mapActions = {
   incrementPassage,
 };
 
-class BibleAppPassage extends connect(mapState, mapActions)(LitElement) {
-  static get is() { return 'ba-passage'; }
+class BibleAppPassage extends connect(
+  mapState,
+  mapActions,
+)(LitElement) {
+  static get is() {
+    return 'ba-passage';
+  }
 
   static get styles() {
     return [
@@ -58,7 +63,9 @@ class BibleAppPassage extends connect(mapState, mapActions)(LitElement) {
     ];
   }
 
-  get $passage() { return this.renderRoot.querySelector('.passage'); }
+  get $passage() {
+    return this.renderRoot.querySelector('.passage');
+  }
 
   disconnectedCallback() {
     super.disconnectedCallback();
@@ -80,7 +87,9 @@ class BibleAppPassage extends connect(mapState, mapActions)(LitElement) {
     }
 
     if (isLoaded && text.length === 0) {
-      return html`<ba-404></ba-404>`;
+      return html`
+        <ba-404></ba-404>
+      `;
     }
 
     return html`
@@ -98,11 +107,14 @@ class BibleAppPassage extends connect(mapState, mapActions)(LitElement) {
       },
 
       recognizers: [
-        [Hammer.Swipe, {
-          direction: Hammer.DIRECTION_LEFT | Hammer.DIRECTION_RIGHT, // eslint-disable-line no-bitwise
-          threshold: 100,
-          velocity: 0.5,
-        }],
+        [
+          Hammer.Swipe,
+          {
+            direction: Hammer.DIRECTION_LEFT | Hammer.DIRECTION_RIGHT, // eslint-disable-line no-bitwise
+            threshold: 100,
+            velocity: 0.5,
+          },
+        ],
       ],
     });
 

@@ -1,14 +1,14 @@
-import '../components/selectors/ba-book-selector.js';
-import { dispatch } from '../store.js';
-import { html } from 'lit-html';
-import { resetHeader } from '../actions/header.js';
+// import { resetHeader } from '../actions/header';
+import BookSelector from '../components/selectors/BookSelector';
 
-const template = html`<ba-book-selector class="p-3"></ba-book-selector>`;
+function BookSelectorPage() {
+  // const [, headerDispatch] = useContext(HeaderContext);
 
-const bookSelectorPage = () => {
-  dispatch(resetHeader());
+  // useEffect(() => {
+  //   headerDispatch(resetHeader());
+  // }, []);
 
-  return template;
-};
+  return <BookSelector />;
+}
 
-export default bookSelectorPage;
+export default BookSelectorPage;

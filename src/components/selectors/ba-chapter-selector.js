@@ -1,4 +1,4 @@
-import '../errors/ba-404.js';
+import '../errors/Page404.js/index.js';
 import { css, html, LitElement } from 'lit-element';
 import { findBookByValue } from '../../data/findBook.js';
 import base from '../../styles/base.js';
@@ -6,7 +6,9 @@ import formStyles from '../../styles/form.js';
 import selectorStyles from './selectorStyles.js';
 
 class BibleAppChapterSelector extends LitElement {
-  static get is() { return 'ba-chapter-selector'; }
+  static get is() {
+    return 'ba-chapter-selector';
+  }
 
   static get properties() {
     return {
@@ -30,7 +32,6 @@ class BibleAppChapterSelector extends LitElement {
           margin-bottom: 1rem;
         }
       `,
-
     ];
   }
 
@@ -56,7 +57,9 @@ class BibleAppChapterSelector extends LitElement {
 
   render() {
     if (this._allChapters.length === 0) {
-      return html`<ba-404></ba-404>`;
+      return html`
+        <ba-404></ba-404>
+      `;
     }
 
     const chapters = this._chapters.map((c) => this._constructChapterElement(c));
@@ -69,7 +72,7 @@ class BibleAppChapterSelector extends LitElement {
           placeholder="Find Chapter..."
           type="number"
           @input="${this.filterChapters}"
-        >
+        />
       </div>
 
       <div class="selector__list">
