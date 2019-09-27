@@ -3,17 +3,16 @@ import { hot } from 'react-hot-loader/root';
 import { Provider } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
 import Footer from './components/footer/Footer';
+import Header from './components/header/Header';
 import history from './history';
 import store from './store';
 import styled from 'styled-components';
 // TODO
-// import Header from './components/header/Header';
 // import Notifications from './components/notifications/Notifications';
 
 const AppContainer = styled.div`
   display: grid;
-  /* grid-template-rows: 3rem 1fr 1.5rem; */
-  grid-template-rows: 1fr 1.5rem;
+  grid-template-rows: 3rem 1fr 1.5rem;
   min-height: 100vh;
 `;
 
@@ -21,7 +20,7 @@ const App = () => (
   <Provider store={store}>
     <AppContainer>
       <Router history={history}>
-        {/* <Header /> */}
+        <Header />
 
         <Route exact path="/">
           <BookSelectorPage />

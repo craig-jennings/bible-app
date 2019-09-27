@@ -20,10 +20,10 @@ function PassagePage() {
   }, [book, chapter, dispatch]);
 
   return (
-    <div>
+    <>
       <Passage />
       <ScrollUp />
-    </div>
+    </>
   );
 }
 

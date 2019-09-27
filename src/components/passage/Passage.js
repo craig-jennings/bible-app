@@ -11,16 +11,6 @@ const PassageContainer = styled.div`
   font-size: 1.25rem;
   margin: 0 1rem;
 
-  p {
-    margin-bottom: 1rem;
-  }
-
-  .verse-num {
-    font-size: smaller;
-    font-style: italic;
-    vertical-align: super;
-  }
-
   @media screen and (min-width: 768px) {
     margin: 0 auto;
     width: 50%;
@@ -29,6 +19,17 @@ const PassageContainer = styled.div`
   @media screen and (min-width: 1200px) {
     margin: 0 auto;
     width: 40%;
+  }
+
+  /* Styles for returned passage */
+  p {
+    margin-bottom: 1rem;
+  }
+
+  .verse-num {
+    font-size: smaller;
+    font-style: italic;
+    vertical-align: super;
   }
 `;
 
@@ -80,7 +81,7 @@ function Passage() {
 
   if (!isLoaded) {
     return (
-      <CenterBox mt={4}>
+      <CenterBox>
         <orbit-spinner color="white" />
       </CenterBox>
     );
