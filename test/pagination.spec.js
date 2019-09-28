@@ -1,69 +1,70 @@
-import { root } from './utils/root.js';
-import PaginationComponent from './components/PaginationComponent.js';
-import SearchComponent from './components/SearchComponent.js';
+import { root } from './utils/root';
+import Pagination from './components/Pagination';
+import Search from './components/Search';
 
-const paginationComponent = new PaginationComponent('ba-shell |> ba-search |> ba-pagination');
-const searchComponent = new SearchComponent('ba-shell |> ba-search');
+const pagination = new Pagination();
+const search = new Search();
 
 fixture('Pagination').page(`${root}/search`);
 
 test('Should show the range', async (t) => {
   await t
-    .typeText(searchComponent.searchField, 'test')
-    .click(searchComponent.submitBtn)
-    .expect(paginationComponent.prevBtn.exists).ok()
-    .expect(paginationComponent.nextBtn.exists).ok()
-    .expect(paginationComponent.prevBtn.classNames).contains('disabled');
+    .typeText(search.searchField, 'test')
+    .click(search.submitBtn)
+    .expect(pagination.prevBtn.exists).ok()
+    .expect(pagination.nextBtn.exists).ok()
+    .expect(pagination.prevBtn.hasAttribute('disabled')).ok()
+    .expect(pagination.nextBtn.hasAttribute('disabled')).notOk();
 
-  const range = await paginationComponent.range.textContent;
+  const range = await pagination.range.textContent;
 
   await t.expect(range.trim()).eql('1 - 20 of 99');
 });
 
 test('Should show the buttons', async (t) => {
   await t
-    .typeText(searchComponent.searchField, 'test')
-    .click(searchComponent.submitBtn)
-    .expect(paginationComponent.prevBtn.exists).ok()
-    .expect(paginationComponent.nextBtn.exists).ok()
-    .expect(paginationComponent.prevBtn.classNames).contains('disabled')
-    .expect(paginationComponent.nextBtn.classNames).notContains('disabled');
+    .typeText(search.searchField, 'test')
+    .click(search.submitBtn)
+    .expect(pagination.prevBtn.exists).ok()
+    .expect(pagination.nextBtn.exists).ok()
+    .expect(pagination.prevBtn.hasAttribute('disabled')).ok()
+    .expect(pagination.nextBtn.hasAttribute('disabled')).notOk();
 });
 
-test.skip('Should go to next and previous pages', async (t) => {
+test('Should go to next and previous pages', async (t) => {
   await t
-    .typeText(searchComponent.searchField, 'test')
-    .click(searchComponent.submitBtn)
-    .expect(searchComponent.getNthResult(0).textContent).contains('Genesis 22:1')
-    .expect(paginationComponent.nextBtn.textContent).eql('Next')
-    .click(paginationComponent.nextBtn)
-    .expect(searchComponent.getNthResult(0).textContent).contains('1 Kings 10:1')
-    .expect(paginationComponent.prevBtn.classNames).notContains('disabled')
-    .expect(paginationComponent.nextBtn.classNames).notContains('disabled');
+    .typeText(search.searchField, 'test')
+    .click(search.submitBtn)
+    .expect(search.getNthResult(0).reference.textContent).contains('Genesis 22:1')
+    .expect(pagination.nextBtn.textContent).eql('Next')
+    .click(pagination.nextBtn)
+    .expect(search.getNthResult(0).reference.textContent).contains('1 Kings 10:1')
+    .expect(pagination.prevBtn.hasAttribute('disabled')).notOk()
+    .expect(pagination.nextBtn.hasAttribute('disabled')).notOk();
 
-  let range = await paginationComponent.range.textContent;
+  let range = await pagination.range.textContent;
 
   await t.expect(range.trim()).eql('21 - 40 of 99');
 
   await t
-    .click(paginationComponent.prevBtn)
-    .expect(searchComponent.getNthResult(0).textContent).contains('Genesis 22:1')
-    .expect(paginationComponent.prevBtn.classNames).contains('disabled')
-    .expect(paginationComponent.nextBtn.classNames).notContains('disabled');
+    .click(pagination.prevBtn)
+    .expect(search.getNthResult(0).reference.textContent).contains('Genesis 22:1')
+    .expect(pagination.prevBtn.hasAttribute('disabled')).ok()
+    .expect(pagination.nextBtn.hasAttribute('disabled')).notOk();
 
-  range = await paginationComponent.range.textContent;
+  range = await pagination.range.textContent;
 
   await t.expect(range.trim()).eql('1 - 20 of 99');
 });
 
 test('Should not show range when no results', async (t) => {
   await t
-    .typeText(searchComponent.searchField, 'asdfjasdf')
-    .click(searchComponent.submitBtn)
-    .expect(paginationComponent.prevBtn.classNames).contains('disabled')
-    .expect(paginationComponent.nextBtn.classNames).contains('disabled');
+    .typeText(search.searchField, 'asdfjasdf')
+    .click(search.submitBtn)
+    .expect(pagination.prevBtn.hasAttribute('disabled')).ok()
+    .expect(pagination.nextBtn.hasAttribute('disabled')).ok();
 
-  const range = await paginationComponent.range.textContent;
+  const range = await pagination.range.textContent;
 
   await t.expect(range.trim()).eql('');
 });

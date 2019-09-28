@@ -7,18 +7,18 @@ const getWindowScroll = ClientFunction(() => ({
   scrollY: window.scrollY,
 }));
 
-const setWindowScroll = ({ behavior = 'auto', left = 0, top }) => (ClientFunction(() => {
-  window.scrollTo({ behavior, left, top });
-}, {
-  dependencies: {
-    behavior,
-    left,
-    top,
-  },
-}))();
+const setWindowScroll = ({ behavior = 'auto', left = 0, top }) =>
+  ClientFunction(
+    () => {
+      window.scrollTo({ behavior, left, top });
+    },
+    {
+      dependencies: {
+        behavior,
+        left,
+        top,
+      },
+    },
+  )();
 
-export {
-  getWindowLocation,
-  getWindowScroll,
-  setWindowScroll,
-};
+export { getWindowLocation, getWindowScroll, setWindowScroll };

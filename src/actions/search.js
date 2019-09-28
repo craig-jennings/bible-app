@@ -1,4 +1,4 @@
-import api from '../services/api.js';
+import api from '../services/api';
 
 const SearchActionType = {
   ClearResults: 'search:clear_results',
@@ -11,9 +11,8 @@ const SearchActionType = {
 /* --------------------- */
 const clearResults = () => ({ type: SearchActionType.ClearResults });
 
-const setResults = (results, term) => ({
+const setResults = (results) => ({
   results,
-  term,
   type: SearchActionType.SetResults,
 });
 
@@ -32,15 +31,10 @@ const queryTerm = (term, page = 1) => async (dispatch) => {
   try {
     const results = await api.search(term, page);
 
-    dispatch(setResults(results, term));
+    dispatch(setResults(results));
   } catch (e) {
     console.error(e);
   }
 };
 
-export {
-  clearResults,
-  queryTerm,
-  SearchActionType,
-  setResults,
-};
+export { clearResults, queryTerm, SearchActionType, setResults };

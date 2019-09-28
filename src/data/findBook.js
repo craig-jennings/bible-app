@@ -1,5 +1,5 @@
-import NewTestament from './NewTestament.js';
-import OldTestament from './OldTestament.js';
+import NewTestament from './NewTestament';
+import OldTestament from './OldTestament';
 
 const UNKNOWN_BOOK = {
   chapterCount: 0,
@@ -16,16 +16,14 @@ const findBookByLabel = (label) => {
     labelToFind = `${label}s`;
   }
 
-  return NewTestament.find((b) => b.label === labelToFind)
-         || OldTestament.find((b) => b.label === labelToFind)
-         || ({ ...UNKNOWN_BOOK });
+  return (
+    NewTestament.find((b) => b.label === labelToFind) ||
+    OldTestament.find((b) => b.label === labelToFind) || { ...UNKNOWN_BOOK }
+  );
 };
 
-const findBookByValue = (key) => NewTestament.find((b) => b.value === key)
-                               || OldTestament.find((b) => b.value === key)
-                               || ({ ...UNKNOWN_BOOK });
+const findBookByValue = (key) =>
+  NewTestament.find((b) => b.value === key) ||
+  OldTestament.find((b) => b.value === key) || { ...UNKNOWN_BOOK };
 
-export {
-  findBookByLabel,
-  findBookByValue,
-};
+export { findBookByLabel, findBookByValue };

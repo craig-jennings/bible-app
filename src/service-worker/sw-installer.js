@@ -1,15 +1,20 @@
-import '../components/notifications/ba-sw-update.js';
-import { addNotification } from '../actions/notifications.js';
-import { dispatch } from '../store.js';
-import { html } from 'lit-html';
+import { addNotification } from '../actions/notifications';
+import { dispatch } from '../store';
 import { Workbox } from 'workbox-window';
+import SWUpdate from '../components/notifications/SWUpdate';
 
 if ('serviceWorker' in navigator) {
   const wb = new Workbox('./service-worker.js');
 
+  let updatePending = false;
+
   wb.addEventListener('message', (event) => {
     if (event.data.type === 'CACHE_UPDATED') {
-      dispatch(addNotification(html`<ba-sw-update></ba-sw-update>`));
+      if (updatePending) return;
+
+      updatePending = true;
+
+      dispatch(addNotification(SWUpdate));
     }
   });
 

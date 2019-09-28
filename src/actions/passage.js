@@ -1,7 +1,7 @@
-import { findBookByValue } from '../data/findBook.js';
-import { setReference } from './reference.js';
-import api from '../services/api.js';
-import page from 'page';
+import { findBookByValue } from '../data/findBook';
+import { setReference } from './reference';
+import api from '../services/api';
+import history from '../utils/history';
 
 const PassageActionType = {
   CLEAR_PASSAGE: 'passage:clear',
@@ -27,7 +27,7 @@ const decrementPassage = () => async (dispatch, getState) => {
 
   const newChapter = chapterNumber - 1;
 
-  page(`/${book.value}/${newChapter}`);
+  history.push(`/${book.value}/${newChapter}`);
 };
 
 const fetchPassage = (book, chapter) => async (dispatch, getState) => {
@@ -57,7 +57,7 @@ const incrementPassage = () => async (dispatch, getState) => {
 
   const newChapter = chapterNumber + 1;
 
-  page(`/${book.value}/${newChapter}`);
+  history.push(`/${book.value}/${newChapter}`);
 };
 
 export {

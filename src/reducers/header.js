@@ -1,5 +1,5 @@
-import { HeaderActionType } from '../actions/header.js';
-import createReducer from '../utils/createReducer.js';
+import { HeaderActionType } from '../actions/header';
+import createReducer from '../utils/createReducer';
 
 const INITIAL_STATE = {};
 

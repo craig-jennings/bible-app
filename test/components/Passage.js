@@ -1,14 +1,19 @@
-import ShadowComponent from '../utils/ShadowComponent.js';
+import { selectorByTestId } from '../utils/selectByTestId';
 
-class Passage extends ShadowComponent {
-  get errorEl() { return this.container.find('ba-404'); }
+class Passage {
+  constructor() {
+    this.container = selectorByTestId('passage');
+  }
 
-  get passage() { return this.container.find('div'); }
+  get errorEl() {
+    return selectorByTestId('page-404');
+  }
 
   getNthVerse(n) {
     return this.container
       .find('.verse-num')
-      .nth(n).addCustomDOMProperties({
+      .nth(n)
+      .addCustomDOMProperties({
         verseNumber: (el) => el.innerHTML,
         verseText: (el) => el.nextSibling.textContent,
       });

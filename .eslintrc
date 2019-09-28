@@ -3,26 +3,56 @@
     "browser": true
   },
 
-  "extends": "airbnb-base",
+  "extends": [
+    "airbnb",
+    "prettier",
+  ],
+
+  "globals": {
+    "React": false,
+  },
 
   "plugins": [
+    "prettier",
+    "react-hooks",
     "sort-imports-es6-autofix"
   ],
 
   "rules": {
     "class-methods-use-this": "off",
     "func-names": ["error", "as-needed"],
-    "import/extensions": ["error", "always", { "ignorePackages" : true}],
     "import/first": ["error", { "absolute-first": false }],
     "import/no-unresolved": "off",
     "import/order": "off",
     "import/prefer-default-export": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
     "max-len": ["warn", 100],
     "no-continue": "off",
     "no-param-reassign": "warn",
     "no-plusplus": "off",
     "no-underscore-dangle": "off",
     "object-curly-newline": ["error", { "consistent": true }],
+    "prettier/prettier": "error",
+
+    "react/sort-comp": [1, {
+      "order": [
+        "static-methods",
+        "lifecycle",
+        "render",
+        "/^handle.+$",
+        "everything-else"
+      ],
+    }],
+
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react/jsx-filename-extension": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/no-unused-state": "off",
+    "react/react-in-jsx-scope": "off",
 
     "sort-imports-es6-autofix/sort-imports-es6": ["error", {
       "ignoreCase": true,

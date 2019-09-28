@@ -1,5 +1,5 @@
-import { PassageActionType } from '../actions/passage.js';
-import createReducer from '../utils/createReducer.js';
+import { PassageActionType } from '../actions/passage';
+import createReducer from '../utils/createReducer';
 
 const INITIAL_STATE = {
   isLoaded: false,

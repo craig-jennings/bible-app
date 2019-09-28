@@ -1,32 +1,46 @@
 const { InjectManifest } = require('workbox-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   devServer: {
     contentBase: './dist',
     historyApiFallback: true,
+    hot: true,
     open: true,
   },
 
-  entry: './src/index.js',
+  devtool: 'cheap-source-map',
+
+  entry: ['react-hot-loader/patch', './src/index.js'],
 
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          {
-            loader: 'css-loader',
-          },
-        ],
+        test: /\.js$/,
+        use: 'babel-loader',
       },
     ],
+  },
+
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          chunks: 'initial',
+          minChunks: 2,
+        },
+
+        vendor: {
+          test: /node_modules/,
+          chunks: 'initial',
+          name: 'vendor',
+          priority: 10,
+          enforce: true,
+        },
+      },
+    },
   },
 
   output: {
@@ -54,32 +68,30 @@ module.exports = {
     ]),
 
     new HtmlWebpackPlugin({
-      inlineSource: '.css$',
       minify: true,
       template: './src/index.html',
     }),
-
-    new HtmlWebpackInlineSourcePlugin(),
 
     new InjectManifest({
       swSrc: './src/service-worker/service-worker.js',
     }),
 
-    new MiniCssExtractPlugin({
-      chunkFilename: '[id].css',
-      filename: '[name].css',
+    new webpack.ProvidePlugin({
+      React: 'react',
     }),
   ],
+
+  resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
+  },
 
   stats: {
     builtAt: false,
     entrypoints: false,
 
-    excludeAssets: [
-      /images[/\\]/,
-      /precache-manifest\./,
-      /robots\.txt/,
-    ],
+    excludeAssets: [/images[/\\]/, /precache-manifest\./, /robots\.txt/],
 
     hash: false,
     modules: false,

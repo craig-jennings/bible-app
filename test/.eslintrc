@@ -5,6 +5,8 @@
   },
 
   "rules": {
-    "newline-per-chained-call": "off"
+    "max-classes-per-file": "off",
+    "newline-per-chained-call": "off",
+    "prettier/prettier": "warn"
   }
 }

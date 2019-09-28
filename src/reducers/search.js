@@ -1,6 +1,6 @@
-import { SearchActionType } from '../actions/search.js';
-import createReducer from '../utils/createReducer.js';
-import LoadState from '../utils/LoadState.js';
+import { SearchActionType } from '../actions/search';
+import createReducer from '../utils/createReducer';
+import LoadState from '../utils/LoadState';
 
 const PAGE_SIZE = 20;
 
@@ -18,7 +18,6 @@ const INITIAL_STATE = {
   loadState: LoadState.NOT_LOADED,
   pagination: DEFAULT_PAGINATION,
   results: [],
-  term: '',
 };
 
 const reducers = {
@@ -27,7 +26,7 @@ const reducers = {
     pagination: DEFAULT_PAGINATION,
   }),
 
-  [SearchActionType.SetResults]: (state, { results, term }) => {
+  [SearchActionType.SetResults]: (state, { results }) => {
     const { page, results: searchResults, totalPages, totalResults } = results;
 
     const hasNextPage = page < totalPages;
@@ -50,7 +49,6 @@ const reducers = {
       loadState: LoadState.LOADED,
       pagination,
       results: searchResults,
-      term,
     };
   },
 

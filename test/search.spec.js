@@ -1,43 +1,43 @@
-import { getWindowLocation } from './utils/clientFunctions.js';
-import { root } from './utils/root.js';
-import Header from './components/Header.js';
-import Passage from './components/Passage.js';
-import SearchComponent from './components/SearchComponent.js';
+import { getWindowLocation } from './utils/clientFunctions';
+import { root } from './utils/root';
+import Header from './components/Header';
+import Passage from './components/Passage';
+import Search from './components/Search';
 
-const header = new Header('ba-shell |> ba-header');
-const passage = new Passage('ba-shell |> ba-passage');
-const searchComponent = new SearchComponent('ba-shell |> ba-search');
+const header = new Header();
+const passage = new Passage();
+const search = new Search();
 
 fixture('Search').page(`${root}/search`);
 
 test('Should render the search page', async (t) => {
   await t
-    .expect(searchComponent.searchField.exists).ok()
-    .expect(searchComponent.submitBtn.exists).ok();
+    .expect(search.searchField.exists).ok()
+    .expect(search.submitBtn.exists).ok();
 });
 
 test('Should display search results', async (t) => {
   await t
-    .typeText(searchComponent.searchField, 'cheerful giver')
-    .click(searchComponent.submitBtn)
-    .expect(searchComponent.results.count).eql(1)
-    .expect(searchComponent.getNthResult(0).textContent).contains('God loves a cheerful giver')
-    .expect(searchComponent.getNthResult(0).textContent).contains('2 Corinthians 9:7');
+    .typeText(search.searchField, 'cheerful giver')
+    .click(search.submitBtn)
+    .expect(search.results.count).eql(1)
+    .expect(search.getNthResult(0).container.textContent).contains('God loves a cheerful giver')
+    .expect(search.getNthResult(0).reference.textContent).eql('2 Corinthians 9:7');
 });
 
 test('Should display message with no results', async (t) => {
   await t
-    .typeText(searchComponent.searchField, 'asdfasdf')
-    .click(searchComponent.submitBtn)
-    .expect(searchComponent.noResults.exists).ok()
-    .expect(searchComponent.noResults.textContent).eql('No results');
+    .typeText(search.searchField, 'asdfasdf')
+    .click(search.submitBtn)
+    .expect(search.noResults.exists).ok()
+    .expect(search.noResults.textContent).eql('No results');
 });
 
 test('Should link to book and chapter', async (t) => {
   await t
-    .typeText(searchComponent.searchField, 'cheerful giver')
-    .click(searchComponent.submitBtn)
-    .click(searchComponent.getNthResult(0).link);
+    .typeText(search.searchField, 'cheerful giver')
+    .click(search.submitBtn)
+    .click(search.getNthResult(0).container);
 
   const location = await getWindowLocation();
 
@@ -51,8 +51,8 @@ test('Should link to book and chapter', async (t) => {
 
 test('Should show correct url', async (t) => {
   await t
-    .typeText(searchComponent.searchField, 'test')
-    .click(searchComponent.submitBtn);
+    .typeText(search.searchField, 'test')
+    .click(search.submitBtn);
 
   const location = await getWindowLocation();
 
@@ -61,17 +61,17 @@ test('Should show correct url', async (t) => {
 
 test.page(`${root}/search?q=test&page=3`)('Should load correct results based on url', async (t) => {
   await t
-    .expect(searchComponent.results.count).eql(20)
-    .expect(searchComponent.getNthResult(0).textContent).contains('The crucible is for silver')
-    .expect(searchComponent.getNthResult(0).textContent).contains('Proverbs 17:3');
+    .expect(search.results.count).eql(20)
+    .expect(search.getNthResult(0).container.textContent).contains('The crucible is for silver')
+    .expect(search.getNthResult(0).reference.textContent).eql('Proverbs 17:3');
 });
 
 // ISSUE: Search results return 'Psalm' instead of 'Psalms'. This test ensures this stays fixed
 test('Should link to book and chapter - Psalms', async (t) => {
   await t
-    .typeText(searchComponent.searchField, 'walks not in the counsel')
-    .click(searchComponent.submitBtn)
-    .click(searchComponent.getNthResult(0).link);
+    .typeText(search.searchField, 'walks not in the counsel')
+    .click(search.submitBtn)
+    .click(search.getNthResult(0).container);
 
   const location = await getWindowLocation();
 
