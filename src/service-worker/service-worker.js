@@ -11,9 +11,7 @@ workbox.core.setCacheNameDetails({
 
 workbox.precaching.cleanupOutdatedCaches();
 
-workbox.precaching.addPlugins([
-  new workbox.broadcastUpdate.Plugin('precache-updates'),
-]);
+workbox.precaching.addPlugins([new workbox.broadcastUpdate.Plugin('precache-updates')]);
 
 workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
 

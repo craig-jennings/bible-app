@@ -1,4 +1,4 @@
-import { findBookByValue } from '../data/findBook.js';
+import { findBookByValue } from '../data/findBook';
 
 class Api {
   constructor() {

@@ -1,14 +1,13 @@
-import { BookSelectorPage, ChapterSelectorPage, PassagePage, SearchPage} from './pages';
+import { BookSelectorPage, ChapterSelectorPage, PassagePage, SearchPage } from './pages';
 import { hot } from 'react-hot-loader/root';
 import { Provider } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 import history from './utils/history';
+import Notifications from './components/notifications/Notifications';
 import store from './store';
 import styled from 'styled-components';
-// TODO
-// import Notifications from './components/notifications/Notifications';
 
 const AppContainer = styled.div`
   display: grid;
@@ -42,7 +41,7 @@ const App = () => (
 
         {/* TODO: Handle unknown route */}
 
-        {/* <Notifications /> */}
+        <Notifications />
         <Footer />
       </Router>
     </AppContainer>
@@ -51,23 +50,7 @@ const App = () => (
 
 export default hot(App);
 
-// import './components/shell/ba-shell.js';
-// import './service-worker/sw-installer.js';
-// import './styles.css';
-// import {
-//   bookSelectorPage,
-//   chapterSelectorPage,
-//   passagePage,
-//   searchPage,
-//   unknownPage,
-// } from './pages.js';
-// import page from 'page';
-
 // const LS_PATH_KEY = 'current:path';
-
-// const render = (ctx) => {
-//   document.querySelector('ba-shell').template = ctx.template;
-// };
 
 // const storeCurrentLocation = (ctx, next) => {
 //   localStorage.setItem(LS_PATH_KEY, ctx.path);
@@ -76,10 +59,6 @@ export default hot(App);
 // };
 
 // page('*', storeCurrentLocation);
-// page('/', bookSelectorPage, render);
-// page('/search', searchPage, render);
-// page('/:book', chapterSelectorPage, render);
-// page('/:book/:chapter', passagePage, render);
 // page('*', unknownPage, render);
 
 // const currentPath = localStorage.getItem(LS_PATH_KEY);
@@ -87,5 +66,3 @@ export default hot(App);
 // if (currentPath) {
 //   page.redirect(currentPath);
 // }
-
-// page.start();
