@@ -1,4 +1,6 @@
-module.exports = () => {
+module.exports = (api) => {
+  api.cache(true);
+
   const isRelease = process.env.RELEASE === 'true';
   console.log('isRelease: ', isRelease);
 
