@@ -1,5 +1,4 @@
-// TODO
-// import './service-worker/sw-installer';
+import './service-worker/sw-installer';
 import App from './App';
 import GlobalStyles from './GlobalStyles';
 import ReactDOM from 'react-dom';

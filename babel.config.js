@@ -8,8 +8,6 @@ module.exports = (api) => {
 
   if (isProd) {
     config.plugins.push('transform-react-remove-prop-types');
-
-    // config.plugins.push(['react-remove-properties', { properties: ['data-testid'] }]);
   }
 
   return config;
