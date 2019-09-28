@@ -44,7 +44,7 @@ function ScrollUp() {
   };
 
   return (
-    <Container isHidden={isHidden} onClick={handleClick}>
+    <Container data-testid="scroll-up" isHidden={isHidden} onClick={handleClick}>
       <UpCaret />
     </Container>
   );

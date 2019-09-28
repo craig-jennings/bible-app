@@ -1,12 +1,12 @@
-import { getWindowLocation } from './utils/clientFunctions.js';
-import { root } from './utils/root.js';
-import BookSelector from './components/BookSelector.js';
-import ChapterSelector from './components/ChapterSelector.js';
-import Header from './components/Header.js';
+import { getWindowLocation } from './utils/clientFunctions';
+import { root } from './utils/root';
+import BookSelector from './components/BookSelector';
+import ChapterSelector from './components/ChapterSelector';
+import Header from './components/Header';
 
-const bookSelector = new BookSelector('ba-shell |> ba-book-selector');
-const chapterSelector = new ChapterSelector('ba-shell |> ba-chapter-selector');
-const header = new Header('ba-shell |> ba-header');
+const bookSelector = new BookSelector();
+const chapterSelector = new ChapterSelector();
+const header = new Header();
 
 fixture('Book Selection').page(root);
 

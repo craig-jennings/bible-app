@@ -18,7 +18,7 @@ function buildChapterList(book, chapterCount, term) {
   }
 
   return filteredChapters.map((chapter) => (
-    <SelectorListItem key={chapter} to={`${book}/${chapter}`}>
+    <SelectorListItem data-testid="selector-list-item" key={chapter} to={`${book}/${chapter}`}>
       {chapter}
     </SelectorListItem>
   ));
@@ -32,11 +32,12 @@ function ChapterSelector({ book }) {
   const chapters = buildChapterList(book, chapterCount, searchInput.value);
 
   return chapterCount !== 0 ? (
-    <Box p={3}>
+    <Box p={3} data-testid="chapter-selector">
       <Box mb={3}>
         <FormInput
           autoFocus
           aria-label="Chapter Search Field"
+          data-testid="chapter-selector-input"
           placeholder="Find Chapter..."
           type="number"
           {...searchInput}

@@ -18,7 +18,7 @@ function buildBookList(books, term) {
   }
 
   return filteredBooks.map(({ label, value }) => (
-    <SelectorListItem key={value} to={value}>
+    <SelectorListItem data-testid="selector-list-item" key={value} to={value}>
       {label}
     </SelectorListItem>
   ));
@@ -31,11 +31,12 @@ function BookSelector() {
   const oldTestamentBooks = buildBookList(OldTestament, searchInput.value.toLowerCase());
 
   return (
-    <Box p={3}>
+    <Box p={3} data-testid="book-selector">
       <div>
         <FormInput
           aria-label="Book Search Field"
           autoFocus
+          data-testid="book-selector-input"
           placeholder="Find Book..."
           {...searchInput}
         />

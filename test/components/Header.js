@@ -1,9 +1,17 @@
-import ShadowComponent from '../utils/ShadowComponent.js';
+import { byTestId, selectorByTestId } from '../utils/selectByTestId';
 
-class Header extends ShadowComponent {
-  get book() { return this.container.find('.book'); }
+class Header {
+  constructor() {
+    this.container = selectorByTestId('header');
+  }
 
-  get chapter() { return this.container.find('.chapter'); }
+  get book() {
+    return this.container.find(byTestId('book'));
+  }
+
+  get chapter() {
+    return this.container.find(byTestId('chapter'));
+  }
 }
 
 export default Header;

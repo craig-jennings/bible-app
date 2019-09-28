@@ -91,7 +91,13 @@ function Passage() {
     return <Page404 />;
   }
 
-  return <PassageContainer dangerouslySetInnerHTML={{ __html: text }} ref={passageRef} />;
+  return (
+    <PassageContainer
+      dangerouslySetInnerHTML={{ __html: text }}
+      data-testid="passage"
+      ref={passageRef}
+    />
+  );
 }
 
 export default Passage;

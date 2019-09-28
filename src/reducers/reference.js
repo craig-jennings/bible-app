@@ -1,5 +1,5 @@
-import { ReferenceActionType } from '../actions/reference.js';
-import createReducer from '../utils/createReducer.js';
+import { ReferenceActionType } from '../actions/reference';
+import createReducer from '../utils/createReducer';
 
 const INITIAL_STATE = {};
 

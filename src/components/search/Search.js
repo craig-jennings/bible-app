@@ -23,7 +23,7 @@ function getList(search) {
   }
 
   if (loadState === LoadState.LOADED && results.length === 0) {
-    return <CenterBox>No results</CenterBox>;
+    return <CenterBox data-testid="no-results">No results</CenterBox>;
   }
 
   return results.map((r) => <SearchItem item={r} key={r.reference} />);
@@ -48,9 +48,7 @@ function Search({ page, term }) {
   }, [term]);
 
   /* -- Event Handlers -- */
-  const handleNextPage = (e) => {
-    e.preventDefault();
-
+  const handleNextPage = () => {
     const { loadState, pagination } = search;
 
     if (loadState !== LoadState.LOADED) return;
@@ -60,9 +58,7 @@ function Search({ page, term }) {
     history.push(`/search?q=${searchInput.value}&page=${pagination.page + 1}`);
   };
 
-  const handlePrevPage = (e) => {
-    e.preventDefault();
-
+  const handlePrevPage = () => {
     const { loadState, pagination } = search;
 
     if (loadState !== LoadState.LOADED) return;
@@ -81,12 +77,14 @@ function Search({ page, term }) {
   const list = getList(search);
 
   return (
-    <Box p={3}>
+    <Box data-testid="search" p={3}>
       <Form mb={3} onSubmit={handeSubmit}>
-        <FormInput autoFocus id="search" placeholder="Search..." {...searchInput} />
+        <FormInput autoFocus data-testid="search-input" placeholder="Search..." {...searchInput} />
 
         <InlineBox ml={3}>
-          <FormButton type="submit">Search</FormButton>
+          <FormButton data-testid="search-submit" type="submit">
+            Search
+          </FormButton>
         </InlineBox>
       </Form>
 

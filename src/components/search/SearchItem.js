@@ -33,10 +33,10 @@ function SearchItem({ item }) {
   const referenceLink = `/${bookValue}/${chapter}`;
 
   return (
-    <SearchItemContainer mb={3}>
+    <SearchItemContainer data-testid="search-item" mb={3}>
       <ReferenceLink to={referenceLink}>
         <div>{content}</div>
-        <Underline>{reference}</Underline>
+        <Underline data-testid="reference">{reference}</Underline>
       </ReferenceLink>
     </SearchItemContainer>
   );

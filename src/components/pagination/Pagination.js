@@ -17,8 +17,8 @@ const PaginationButton = styled.button`
     outline: none;
   }
 
-  ${({ isEnabled }) =>
-    !isEnabled &&
+  ${({ disabled }) =>
+    disabled &&
     css`
       cursor: not-allowed;
       opacity: 0.5;
@@ -40,15 +40,37 @@ function Pagination({ pagination, onNextClick, onPrevClick }) {
     </>
   );
 
+  const handlePrevClick = () => {
+    if (!hasPrevPage) return;
+
+    onPrevClick();
+  };
+
+  const handleNextClick = () => {
+    if (!hasNextPage) return;
+
+    onNextClick();
+  };
+
   return (
-    <FlexBox justifyContent="space-between">
-      <PaginationButton isEnabled={hasPrevPage} onClick={onPrevClick} type="button">
+    <FlexBox data-testid="pagination" justifyContent="space-between">
+      <PaginationButton
+        data-testid="prev-btn"
+        disabled={!hasPrevPage}
+        onClick={handlePrevClick}
+        type="button"
+      >
         Previous
       </PaginationButton>
 
-      <div className="range">{totalResults > 0 ? range : ''}</div>
+      <div data-testid="range">{totalResults > 0 ? range : ''}</div>
 
-      <PaginationButton isEnabled={hasNextPage} onClick={onNextClick} type="button">
+      <PaginationButton
+        data-testid="next-btn"
+        disabled={!hasNextPage}
+        onClick={handleNextClick}
+        type="button"
+      >
         Next
       </PaginationButton>
     </FlexBox>

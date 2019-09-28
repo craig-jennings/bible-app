@@ -1,11 +1,21 @@
-import ShadowComponent from '../utils/ShadowComponent.js';
+import { byTestId, selectorByTestId } from '../utils/selectByTestId';
 
-class ChapterSelector extends ShadowComponent {
-  get chapters() { return this.container.find('.selector__item'); }
+class ChapterSelector {
+  constructor() {
+    this.container = selectorByTestId('chapter-selector');
+  }
 
-  get errorEl() { return this.container.find('ba-404'); }
+  get errorEl() {
+    return selectorByTestId('page-404');
+  }
 
-  get filterInput() { return this.container.find('.form__input'); }
+  get filterInput() {
+    return this.container.find(byTestId('chapter-selector-input'));
+  }
+
+  get chapters() {
+    return this.container.find(byTestId('selector-list-item'));
+  }
 }
 
 export default ChapterSelector;

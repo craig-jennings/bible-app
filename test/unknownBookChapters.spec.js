@@ -1,11 +1,11 @@
-import { root } from './utils/root.js';
-import ChapterSelector from './components/ChapterSelector.js';
-import Header from './components/Header.js';
-import Passage from './components/Passage.js';
+import { root } from './utils/root';
+import ChapterSelector from './components/ChapterSelector';
+import Header from './components/Header';
+import Passage from './components/Passage';
 
-const chapterSelector = new ChapterSelector('ba-shell |> ba-chapter-selector');
-const header = new Header('ba-shell |> ba-header');
-const passage = new Passage('ba-shell |> ba-passage');
+const chapterSelector = new ChapterSelector();
+const header = new Header();
+const passage = new Passage();
 
 fixture('Unknown Book').page(`${root}/asdf`);
 

@@ -35,13 +35,15 @@ function Header() {
   const bookEl = header.value && (
     <>
       <Separator>&gt;</Separator>{' '}
-      <UnstyledLink to={`/${header.value}`}>{header.label}</UnstyledLink>
+      <UnstyledLink data-testid="book" to={`/${header.value}`}>
+        {header.label}
+      </UnstyledLink>
     </>
   );
 
   const chapterEl = header.chapter && (
     <>
-      <Separator>&gt;</Separator> <span>{header.chapter}</span>
+      <Separator>&gt;</Separator> <span data-testid="chapter">{header.chapter}</span>
     </>
   );
 
@@ -50,7 +52,7 @@ function Header() {
   };
 
   return (
-    <HeaderContainer justifyContent="space-between" px={3}>
+    <HeaderContainer data-testid="header" justifyContent="space-between" px={3}>
       <h1>
         <CenterBox>
           <UnstyledLink to="/">Bible</UnstyledLink> {bookEl} {chapterEl}
