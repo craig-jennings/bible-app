@@ -18,6 +18,7 @@
     "test:e2e": "testcafe chrome ./test/**/*.spec.js --app \"yarn serve:ci\"",
     "test:ci": "npm-run-all test:ci:*",
     "test:ci:chrome": "testcafe chrome:headless ./test/**/*.spec.js --app \"yarn serve:ci\"",
+    "test:ci:chrome-small": "testcafe \"chrome:headless:emulation:device=Nexus 5X\" ./test/**/*.spec.js --app \"yarn serve:ci\"",
     "test:ci:firefox": "testcafe firefox:headless ./test/**/*.spec.js --app \"yarn serve:ci\"",
     "test:eslint": "eslint src/ test/ --quiet"
   },
