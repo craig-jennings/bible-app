@@ -8,6 +8,7 @@ import history from './utils/history';
 import Notifications from './components/notifications/Notifications';
 import store from './store';
 import styled from 'styled-components';
+import UnknownPage from './pages/unknownPage';
 
 const AppContainer = styled.div`
   display: grid;
@@ -21,11 +22,11 @@ const App = () => (
       <Router history={history}>
         <Header />
 
-        <Route exact path="/">
-          <BookSelectorPage />
-        </Route>
-
         <Switch>
+          <Route exact path="/">
+            <BookSelectorPage />
+          </Route>
+
           <Route exact path="/search">
             <SearchPage />
           </Route>
@@ -33,13 +34,15 @@ const App = () => (
           <Route exact path="/:book">
             <ChapterSelectorPage />
           </Route>
+
+          <Route exact path="/:book/:chapter">
+            <PassagePage />
+          </Route>
+
+          <Route>
+            <UnknownPage />
+          </Route>
         </Switch>
-
-        <Route exact path="/:book/:chapter">
-          <PassagePage />
-        </Route>
-
-        {/* TODO: Handle unknown route */}
 
         <Notifications />
         <Footer />
