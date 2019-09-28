@@ -100,6 +100,12 @@ jobs:
       - init_repo
 
       - run:
+          name: Build Production Bundle w/ Release Flag
+          command: yarn build:prod
+          environment:
+            RELEASE: 'true'
+
+      - run:
           name: Install Netlify-CLI
           command: sudo yarn global add netlify-cli
 
