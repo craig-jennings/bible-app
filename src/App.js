@@ -1,4 +1,10 @@
-import { BookSelectorPage, ChapterSelectorPage, PassagePage, SearchPage } from './pages';
+import {
+  BookSelectorPage,
+  ChapterSelectorPage,
+  PassagePage,
+  SearchPage,
+  UnknownPage,
+} from './pages';
 import { hot } from 'react-hot-loader/root';
 import { Provider } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
@@ -8,7 +14,6 @@ import history from './utils/history';
 import Notifications from './components/notifications/Notifications';
 import store from './store';
 import styled from 'styled-components';
-import UnknownPage from './pages/unknownPage';
 
 const AppContainer = styled.div`
   display: grid;
