@@ -2,7 +2,6 @@ module.exports = (api) => {
   api.cache(true);
 
   const isRelease = process.env.RELEASE === 'true';
-  console.log('isRelease: ', isRelease);
 
   const config = {
     plugins: [['babel-plugin-styled-components', { fileName: false }], 'react-hot-loader/babel'],
