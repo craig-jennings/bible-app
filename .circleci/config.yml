@@ -105,4 +105,4 @@ jobs:
 
       - run:
           name: Deploy to Netlify
-          command: netlify deploy --prod --message "Deployment of $CIRCLE_TAG"
+          command: netlify deploy --dir dist --prod --message "Deployment of $CIRCLE_TAG"
