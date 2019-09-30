@@ -1,3 +1,4 @@
+import { queryTerm } from '../actions/search';
 import { resetHeader } from '../actions/header';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
@@ -5,8 +6,8 @@ import parseQueryString from '../utils/parseQueryString';
 import Search from '../components/search/Search';
 
 function SearchPage() {
-  const location = useLocation();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const params = parseQueryString(location.search);
 
@@ -15,7 +16,11 @@ function SearchPage() {
 
   dispatch(resetHeader());
 
-  return <Search page={page} term={term} />;
+  if (term) {
+    dispatch(queryTerm(decodeURIComponent(term), page));
+  }
+
+  return <Search />;
 }
 
 export default SearchPage;

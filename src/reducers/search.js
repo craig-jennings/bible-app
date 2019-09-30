@@ -18,15 +18,16 @@ const INITIAL_STATE = {
   loadState: LoadState.NOT_LOADED,
   pagination: DEFAULT_PAGINATION,
   results: [],
+  term: '',
 };
 
 const reducers = {
-  [SearchActionType.ClearResults]: () => ({
+  [SearchActionType.CLEAR_RESULTS]: () => ({
     ...INITIAL_STATE,
     pagination: DEFAULT_PAGINATION,
   }),
 
-  [SearchActionType.SetResults]: (state, { results }) => {
+  [SearchActionType.SET_RESULTS]: (state, { results }) => {
     const { page, results: searchResults, totalPages, totalResults } = results;
 
     const hasNextPage = page < totalPages;
@@ -46,15 +47,21 @@ const reducers = {
     };
 
     return {
+      ...state,
       loadState: LoadState.LOADED,
       pagination,
       results: searchResults,
     };
   },
 
-  [SearchActionType.SetResultsLoading]: (state) => ({
+  [SearchActionType.SET_RESULTS_LOADING]: (state) => ({
     ...state,
     loadState: LoadState.LOADING,
+  }),
+
+  [SearchActionType.SET_TERM]: (state, { term }) => ({
+    ...state,
+    term,
   }),
 };
 

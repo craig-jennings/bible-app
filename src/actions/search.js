@@ -1,22 +1,25 @@
 import api from '../services/api';
 
 const SearchActionType = {
-  ClearResults: 'search:clear_results',
-  SetResults: 'search:set_results',
-  SetResultsLoading: 'search:loading_results',
+  CLEAR_RESULTS: 'search:clear_results',
+  SET_RESULTS: 'search:set_results',
+  SET_RESULTS_LOADING: 'search:loading_results',
+  SET_TERM: 'search:set_term',
 };
 
 /* --------------------- */
 /* -- Reducer Actions -- */
 /* --------------------- */
-const clearResults = () => ({ type: SearchActionType.ClearResults });
+const clearResults = () => ({ type: SearchActionType.CLEAR_RESULTS });
 
 const setResults = (results) => ({
   results,
-  type: SearchActionType.SetResults,
+  type: SearchActionType.SET_RESULTS,
 });
 
-const setResultsLoading = () => ({ type: SearchActionType.SetResultsLoading });
+const setResultsLoading = () => ({ type: SearchActionType.SET_RESULTS_LOADING });
+
+const setTerm = (term) => ({ term, type: SearchActionType.SET_TERM });
 
 /* ----------------- */
 /* -- API Actions -- */
@@ -24,9 +27,10 @@ const setResultsLoading = () => ({ type: SearchActionType.SetResultsLoading });
 const queryTerm = (term, page = 1) => async (dispatch) => {
   dispatch(clearResults());
 
-  if (term.length === 0) return;
+  if (term.trim().length === 0) return;
 
   dispatch(setResultsLoading());
+  dispatch(setTerm(term));
 
   try {
     const results = await api.search(term, page);
@@ -37,4 +41,4 @@ const queryTerm = (term, page = 1) => async (dispatch) => {
   }
 };
 
-export { clearResults, queryTerm, SearchActionType, setResults };
+export { clearResults, queryTerm, SearchActionType, setResults, setTerm };
