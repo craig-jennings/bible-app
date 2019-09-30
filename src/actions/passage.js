@@ -30,14 +30,8 @@ const decrementPassage = () => async (dispatch, getState) => {
   history.push(`/${book.value}/${newChapter}`);
 };
 
-const fetchPassage = (book, chapter) => async (dispatch, getState) => {
-  const { reference } = getState();
-
-  if (reference.book === book && reference.chapter === chapter) return;
-
+const fetchPassage = (book, chapter) => async (dispatch) => {
   try {
-    dispatch(clearPassage());
-
     const passage = await api.fetchPassage(book, chapter);
 
     dispatch(setReference(book, chapter));
