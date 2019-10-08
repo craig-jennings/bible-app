@@ -18,7 +18,7 @@ function buildBookList(books, term) {
   }
 
   return filteredBooks.map(({ label, value }) => (
-    <SelectorListItem data-testid="selector-list-item" key={value} to={value}>
+    <SelectorListItem data-testid="selector-list-item" href={value} key={value}>
       {label}
     </SelectorListItem>
   ));

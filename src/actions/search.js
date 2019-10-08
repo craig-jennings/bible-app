@@ -4,7 +4,6 @@ const SearchActionType = {
   CLEAR_RESULTS: 'search:clear_results',
   SET_RESULTS: 'search:set_results',
   SET_RESULTS_LOADING: 'search:loading_results',
-  SET_TERM: 'search:set_term',
 };
 
 /* --------------------- */
@@ -19,8 +18,6 @@ const setResults = (results) => ({
 
 const setResultsLoading = () => ({ type: SearchActionType.SET_RESULTS_LOADING });
 
-const setTerm = (term) => ({ term, type: SearchActionType.SET_TERM });
-
 /* ----------------- */
 /* -- API Actions -- */
 /* ----------------- */
@@ -30,7 +27,6 @@ const queryTerm = (term, page = 1) => async (dispatch) => {
   if (term.trim().length === 0) return;
 
   dispatch(setResultsLoading());
-  dispatch(setTerm(term));
 
   try {
     const results = await api.search(term, page);
@@ -41,4 +37,4 @@ const queryTerm = (term, page = 1) => async (dispatch) => {
   }
 };
 
-export { clearResults, queryTerm, SearchActionType, setResults, setTerm };
+export { clearResults, queryTerm, SearchActionType, setResults };

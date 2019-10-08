@@ -1,6 +1,6 @@
+import { A } from 'hookrouter';
 import { Box } from '../base/Box';
 import { findBookByLabel } from '../../data/findBook';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -10,7 +10,7 @@ const SearchItemContainer = styled(Box)`
   padding: 0.25rem 0.5rem;
 `;
 
-const ReferenceLink = styled(Link)`
+const ReferenceLink = styled(A)`
   color: inherit;
   display: block;
   font-style: italic;
@@ -34,7 +34,7 @@ function SearchItem({ item }) {
 
   return (
     <SearchItemContainer data-testid="search-item" mb={3}>
-      <ReferenceLink to={referenceLink}>
+      <ReferenceLink href={referenceLink}>
         <div>{content}</div>
         <Underline data-testid="reference">{reference}</Underline>
       </ReferenceLink>

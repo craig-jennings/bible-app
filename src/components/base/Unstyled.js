@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { A } from 'hookrouter';
 import styled from 'styled-components';
 
 const UnstyledButton = styled.button`
@@ -12,7 +12,7 @@ const UnstyledButton = styled.button`
   padding: 0;
 `;
 
-const UnstyledLink = styled(Link)`
+const UnstyledLink = styled(A)`
   color: inherit;
   text-decoration: none;
 

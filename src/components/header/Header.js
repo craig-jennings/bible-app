@@ -3,6 +3,7 @@ import { clearResults } from '../../actions/search';
 import { SearchIcon } from '../base/Icons';
 import { UnstyledLink } from '../base/Unstyled';
 import { useDispatch, useSelector } from 'react-redux';
+import { useQueryParams } from 'hookrouter';
 import styled from 'styled-components';
 
 const HeaderContainer = styled(FlexBox)`
@@ -31,11 +32,12 @@ const SearchLink = styled(UnstyledLink)`
 function Header() {
   const dispatch = useDispatch();
   const header = useSelector((state) => state.header);
+  const [, setQueryParams] = useQueryParams();
 
   const bookEl = header.value && (
     <>
       <Separator>&gt;</Separator>{' '}
-      <UnstyledLink data-testid="book" to={`/${header.value}`}>
+      <UnstyledLink data-testid="book" href={`/${header.value}`}>
         {header.label}
       </UnstyledLink>
     </>
@@ -49,18 +51,21 @@ function Header() {
 
   const handleSearchClick = () => {
     dispatch(clearResults());
+
+    // HACK: This is a workaround for https://github.com/Paratron/hookrouter/issues/62
+    setQueryParams({}, true);
   };
 
   return (
     <HeaderContainer data-testid="header" justifyContent="space-between" px={3}>
       <h1>
         <CenterBox>
-          <UnstyledLink to="/">Bible</UnstyledLink> {bookEl} {chapterEl}
+          <UnstyledLink href="/">Bible</UnstyledLink> {bookEl} {chapterEl}
         </CenterBox>
       </h1>
 
       <CenterBox>
-        <SearchLink aria-label="Search" to="/search" onClick={handleSearchClick}>
+        <SearchLink aria-label="Search" href="/search" onClick={handleSearchClick}>
           <SearchIcon />
         </SearchLink>
       </CenterBox>

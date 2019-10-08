@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { A } from 'hookrouter';
 import styled from 'styled-components';
 
 const SelectorList = styled.div`
@@ -9,7 +9,7 @@ const SelectorList = styled.div`
   width: 100%;
 `;
 
-const SelectorListItem = styled(Link)`
+const SelectorListItem = styled(A)`
   align-items: center;
   border: 1px solid var(--selector__border-color);
   border-radius: 0.5rem;

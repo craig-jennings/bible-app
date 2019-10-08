@@ -1,9 +1,11 @@
 import 'wc-spinners/dist/orbit-spinner';
 import { Box, CenterBox, InlineBox } from '../base/Box';
 import { Form, FormButton, FormInput } from '../base/Form';
-import { setTerm } from '../../actions/search';
+import { queryTerm } from '../../actions/search';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useFormInput } from '../../hooks';
+import { useQueryParams } from 'hookrouter';
 import LoadState from '../../utils/LoadState';
 import Pagination from '../pagination/Pagination';
 import SearchItem from './SearchItem';
@@ -29,38 +31,45 @@ function getList(search) {
 function Search() {
   /* -- Hooks -- */
   const dispatch = useDispatch();
-  const history = useHistory();
+  const [queryParams, setQueryParams] = useQueryParams();
+
+  const searchBuffer = useFormInput(queryParams.q || '');
   const search = useSelector((state) => state.search);
+
+  useEffect(() => {
+    if (queryParams.q) {
+      dispatch(queryTerm(queryParams.q, queryParams.page));
+    }
+  }, [dispatch, queryParams.page, queryParams.q]);
 
   /* -- Event Handlers -- */
   const handleNextPage = () => {
-    const { loadState, pagination, term } = search;
+    const { loadState, pagination } = search;
 
     if (loadState !== LoadState.LOADED) return;
 
     if (!pagination.hasNextPage) return;
 
-    history.push(`/search?q=${term}&page=${pagination.page + 1}`);
+    setQueryParams({ page: pagination.page + 1 });
   };
 
   const handlePrevPage = () => {
-    const { loadState, pagination, term } = search;
+    const { loadState, pagination } = search;
 
     if (loadState !== LoadState.LOADED) return;
 
     if (!pagination.hasPrevPage) return;
 
-    history.push(`/search?q=${term}&page=${pagination.page - 1}`);
-  };
-
-  const handleSearchChange = (e) => {
-    dispatch(setTerm(e.target.value));
+    setQueryParams({ page: pagination.page - 1 });
   };
 
   const handeSubmit = (e) => {
     e.preventDefault();
 
-    history.push(`/search?q=${search.term}&page=1`);
+    setQueryParams({
+      page: 1,
+      q: searchBuffer.value,
+    });
   };
 
   const list = getList(search);
@@ -68,13 +77,7 @@ function Search() {
   return (
     <Box data-testid="search" p={3}>
       <Form mb={3} onSubmit={handeSubmit}>
-        <FormInput
-          autoFocus
-          data-testid="search-input"
-          onChange={handleSearchChange}
-          value={search.term}
-          placeholder="Search..."
-        />
+        <FormInput autoFocus data-testid="search-input" placeholder="Search..." {...searchBuffer} />
 
         <InlineBox ml={3}>
           <FormButton data-testid="search-submit" type="submit">

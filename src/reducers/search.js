@@ -18,7 +18,6 @@ const INITIAL_STATE = {
   loadState: LoadState.NOT_LOADED,
   pagination: DEFAULT_PAGINATION,
   results: [],
-  term: '',
 };
 
 const reducers = {
@@ -57,11 +56,6 @@ const reducers = {
   [SearchActionType.SET_RESULTS_LOADING]: (state) => ({
     ...state,
     loadState: LoadState.LOADING,
-  }),
-
-  [SearchActionType.SET_TERM]: (state, { term }) => ({
-    ...state,
-    term,
   }),
 };
 

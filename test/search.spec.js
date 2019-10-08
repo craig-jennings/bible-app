@@ -56,7 +56,9 @@ test('Should show correct url', async (t) => {
 
   const location = await getWindowLocation();
 
-  await t.expect(location.search).eql('?q=test&page=1');
+  await t
+    .expect(location.search).contains('q=test')
+    .expect(location.search).contains('page=1');
 });
 
 test.page(`${root}/search?q=test&page=3`)('Should load correct results based on url', async (t) => {

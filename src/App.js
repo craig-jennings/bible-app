@@ -7,10 +7,9 @@ import {
 } from './pages';
 import { hot } from 'react-hot-loader/root';
 import { Provider } from 'react-redux';
-import { Route, Router, Switch } from 'react-router-dom';
+import { useRoutes } from 'hookrouter';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
-import history from './utils/history';
 import Notifications from './components/notifications/Notifications';
 import store from './store';
 import styled from 'styled-components';
@@ -21,40 +20,29 @@ const AppContainer = styled.div`
   min-height: 100vh;
 `;
 
-const App = () => (
-  <Provider store={store}>
-    <AppContainer>
-      <Router history={history}>
+/* eslint-disable react/prop-types */
+const routes = {
+  '/': () => <BookSelectorPage />,
+  '/search': () => <SearchPage />,
+  '/:book': ({ book }) => <ChapterSelectorPage book={book} />,
+  '/:book/:chapter': ({ book, chapter }) => <PassagePage book={book} chapter={chapter} />,
+};
+/* eslint-enable */
+
+const App = () => {
+  const routeResult = useRoutes(routes);
+
+  return (
+    <Provider store={store}>
+      <AppContainer>
         <Header />
-
-        <Switch>
-          <Route exact path="/">
-            <BookSelectorPage />
-          </Route>
-
-          <Route exact path="/search">
-            <SearchPage />
-          </Route>
-
-          <Route exact path="/:book">
-            <ChapterSelectorPage />
-          </Route>
-
-          <Route exact path="/:book/:chapter">
-            <PassagePage />
-          </Route>
-
-          <Route>
-            <UnknownPage />
-          </Route>
-        </Switch>
-
+        {routeResult || <UnknownPage />}
         <Notifications />
         <Footer />
-      </Router>
-    </AppContainer>
-  </Provider>
-);
+      </AppContainer>
+    </Provider>
+  );
+};
 
 export default hot(App);
 
