@@ -6,8 +6,9 @@ import {
   UnknownPage,
 } from './pages';
 import { hot } from 'react-hot-loader/root';
+import { navigate, useRoutes } from 'hookrouter';
 import { Provider } from 'react-redux';
-import { useRoutes } from 'hookrouter';
+import { useEffect } from 'react';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 import Notifications from './components/notifications/Notifications';
@@ -29,8 +30,24 @@ const routes = {
 };
 /* eslint-enable */
 
+const LS_PATH_KEY = 'current:path';
+
+const storeCurrentLocation = (location) => {
+  localStorage.setItem(LS_PATH_KEY, location);
+};
+
+const currentPath = localStorage.getItem(LS_PATH_KEY);
+
+if (currentPath) {
+  navigate(currentPath);
+}
+
 const App = () => {
   const routeResult = useRoutes(routes);
+
+  useEffect(() => {
+    storeCurrentLocation(window.location.pathname);
+  });
 
   return (
     <Provider store={store}>
@@ -45,20 +62,3 @@ const App = () => {
 };
 
 export default hot(App);
-
-// const LS_PATH_KEY = 'current:path';
-
-// const storeCurrentLocation = (ctx, next) => {
-//   localStorage.setItem(LS_PATH_KEY, ctx.path);
-
-//   next();
-// };
-
-// page('*', storeCurrentLocation);
-// page('*', unknownPage, render);
-
-// const currentPath = localStorage.getItem(LS_PATH_KEY);
-
-// if (currentPath) {
-//   page.redirect(currentPath);
-// }
