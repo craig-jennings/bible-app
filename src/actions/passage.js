@@ -1,7 +1,7 @@
 import { findBookByValue } from '../data/findBook';
+import { navigate } from 'hookrouter';
 import { setReference } from './reference';
 import api from '../services/api';
-import history from '../utils/history';
 
 const PassageActionType = {
   CLEAR_PASSAGE: 'passage:clear',
@@ -27,7 +27,7 @@ const decrementPassage = () => async (dispatch, getState) => {
 
   const newChapter = chapterNumber - 1;
 
-  history.push(`/${book.value}/${newChapter}`);
+  navigate(`/${book.value}/${newChapter}`);
 };
 
 const fetchPassage = (book, chapter) => async (dispatch) => {
@@ -51,7 +51,7 @@ const incrementPassage = () => async (dispatch, getState) => {
 
   const newChapter = chapterNumber + 1;
 
-  history.push(`/${book.value}/${newChapter}`);
+  navigate(`/${book.value}/${newChapter}`);
 };
 
 export {
