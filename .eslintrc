@@ -5,11 +5,11 @@
 
   "extends": [
     "airbnb",
-    "prettier",
+    "prettier"
   ],
 
   "globals": {
-    "React": false,
+    "React": false
   },
 
   "plugins": [
@@ -21,7 +21,7 @@
   "rules": {
     "class-methods-use-this": "off",
     "func-names": ["error", "as-needed"],
-    "import/first": ["error", { "absolute-first": false }],
+    "import/first": "error",
     "import/no-unresolved": "off",
     "import/order": "off",
     "import/prefer-default-export": "off",
@@ -35,17 +35,6 @@
     "no-underscore-dangle": "off",
     "object-curly-newline": ["error", { "consistent": true }],
     "prettier/prettier": "error",
-
-    "react/sort-comp": [1, {
-      "order": [
-        "static-methods",
-        "lifecycle",
-        "render",
-        "/^handle.+$",
-        "everything-else"
-      ],
-    }],
-
     "react-hooks/exhaustive-deps": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react/jsx-filename-extension": "off",
