@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from '@reduxjs/toolkit';
 import header from './header';
 import notifications from './notifications';
 import passage from './passage';

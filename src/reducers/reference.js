@@ -1,12 +1,11 @@
+import { createReducer } from '@reduxjs/toolkit';
 import { ReferenceActionType } from '../actions/reference';
-import createReducer from '../utils/createReducer';
 
 const INITIAL_STATE = {};
 
-const reducers = {
-  [ReferenceActionType.SET_REFERENCE]: (state, { book, chapter }) => ({ book, chapter }),
-};
-
-const referenceReducer = createReducer(reducers, INITIAL_STATE);
-
-export default referenceReducer;
+export default createReducer(INITIAL_STATE, {
+  [ReferenceActionType.SET_REFERENCE]: (state, { payload: { book, chapter } }) => ({
+    book,
+    chapter,
+  }),
+});

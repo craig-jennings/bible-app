@@ -1,12 +1,7 @@
-import { applyMiddleware, createStore, compose as reduxCompose } from 'redux';
-import reducers from './reducers';
-import thunk from 'redux-thunk';
+import { configureStore } from '@reduxjs/toolkit';
+import reducer from './reducers';
 
-// Sets up a Chrome extension for time travel debugging.
-// See https://github.com/zalmoxisus/redux-devtools-extension for more information.
-const compose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || reduxCompose;
-
-const store = createStore(reducers, compose(applyMiddleware(thunk)));
+const store = configureStore({ reducer });
 
 export default store;
 

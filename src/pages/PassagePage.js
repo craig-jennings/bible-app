@@ -11,7 +11,7 @@ function PassagePage({ book, chapter }) {
 
   useEffect(() => {
     dispatch(setHeader(book, chapter));
-    dispatch(fetchPassage(book, chapter));
+    dispatch(fetchPassage({ book, chapter }));
 
     return () => {
       dispatch(clearPassage());

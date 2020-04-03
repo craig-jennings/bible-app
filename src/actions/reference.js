@@ -1,14 +1,12 @@
+import { createAction } from '@reduxjs/toolkit';
+
 const ReferenceActionType = {
-  SET_REFERENCE: 'reference:set',
+  SET_REFERENCE: 'reference/set',
 };
 
-/* --------------------- */
-/* -- Reducer Actions -- */
-/* --------------------- */
-const setReference = (book, chapter) => ({
-  book,
-  chapter,
-  type: ReferenceActionType.SET_REFERENCE,
-});
+/* -------------------- */
+/* -- Simple Actions -- */
+/* -------------------- */
+const setReference = createAction(ReferenceActionType.SET_REFERENCE);
 
 export { ReferenceActionType, setReference };

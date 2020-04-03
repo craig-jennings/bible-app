@@ -1,23 +1,27 @@
-import { PassageActionType } from '../actions/passage';
-import createReducer from '../utils/createReducer';
+import { createReducer } from '@reduxjs/toolkit';
+import { fetchPassage, PassageActionType } from '../actions/passage';
+import LoadState from '../utils/LoadState';
 
 const INITIAL_STATE = {
-  isLoaded: false,
+  loadState: LoadState.NOT_LOADED,
   text: '',
 };
 
-const reducers = {
-  [PassageActionType.CLEAR_PASSAGE]: () => ({
-    isLoaded: false,
-    text: '',
-  }),
+export default createReducer(INITIAL_STATE, {
+  [PassageActionType.CLEAR_PASSAGE]: () => ({ ...INITIAL_STATE }),
 
-  [PassageActionType.SET_PASSAGE]: (state, { text }) => ({
-    isLoaded: true,
-    text,
-  }),
-};
+  [fetchPassage.fulfilled]: (state, { payload: text }) => {
+    state.loadState = LoadState.LOADED;
+    state.text = text;
+  },
 
-const passageReducer = createReducer(reducers, INITIAL_STATE);
+  [fetchPassage.pending]: (state) => {
+    state.loadState = LoadState.LOADING;
+    state.text = '';
+  },
 
-export default passageReducer;
+  [fetchPassage.rejected]: (state) => {
+    state.loadState = LoadState.ERROR;
+    state.text = '';
+  },
+});

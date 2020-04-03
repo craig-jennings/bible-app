@@ -1,23 +1,23 @@
+import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { findBookByValue } from '../data/findBook';
 import { navigate } from 'hookrouter';
 import { setReference } from './reference';
 import api from '../services/api';
 
 const PassageActionType = {
-  CLEAR_PASSAGE: 'passage:clear',
-  SET_PASSAGE: 'passage:set',
+  CLEAR_PASSAGE: 'passage/clear',
+  FETCH_PASSAGE: 'passage/fetch',
 };
 
-/* --------------------- */
-/* -- Reducer Actions -- */
-/* --------------------- */
-const clearPassage = () => ({ type: PassageActionType.CLEAR_PASSAGE });
-const setPassage = (text) => ({ text, type: PassageActionType.SET_PASSAGE });
+/* -------------------- */
+/* -- Simple Actions -- */
+/* -------------------- */
+const clearPassage = createAction(PassageActionType.CLEAR_PASSAGE);
 
-/* ----------------- */
-/* -- API Actions -- */
-/* ----------------- */
-const decrementPassage = () => async (dispatch, getState) => {
+/* ------------------- */
+/* -- Thunk Actions -- */
+/* ------------------- */
+const decrementPassage = () => (dispatch, getState) => {
   const { reference } = getState();
 
   const book = findBookByValue(reference.book);
@@ -30,18 +30,20 @@ const decrementPassage = () => async (dispatch, getState) => {
   navigate(`/${book.value}/${newChapter}`);
 };
 
-const fetchPassage = (book, chapter) => async (dispatch) => {
-  try {
+const fetchPassage = createAsyncThunk(
+  PassageActionType.FETCH_PASSAGE,
+  async ({ book, chapter }, { dispatch }) => {
+    dispatch(setReference(book, chapter));
+
     const passage = await api.fetchPassage(book, chapter);
 
-    dispatch(setReference(book, chapter));
-    dispatch(setPassage(passage));
-  } catch (e) {
-    console.error(e);
-  }
-};
+    if (passage.length === 0) return Promise.reject();
 
-const incrementPassage = () => async (dispatch, getState) => {
+    return passage;
+  },
+);
+
+const incrementPassage = () => (dispatch, getState) => {
   const { reference } = getState();
 
   const book = findBookByValue(reference.book);
@@ -54,11 +56,4 @@ const incrementPassage = () => async (dispatch, getState) => {
   navigate(`/${book.value}/${newChapter}`);
 };
 
-export {
-  clearPassage,
-  decrementPassage,
-  fetchPassage,
-  incrementPassage,
-  PassageActionType,
-  setPassage,
-};
+export { clearPassage, decrementPassage, fetchPassage, incrementPassage, PassageActionType };

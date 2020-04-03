@@ -1,19 +1,21 @@
+import { createAction } from '@reduxjs/toolkit';
 import { findBookByValue } from '../data/findBook';
 
 const HeaderActionType = {
-  RESET_HEADER: 'header:reset',
-  SET_HEADER: 'header:set',
+  RESET_HEADER: 'header/reset',
+  SET_HEADER: 'header/set',
 };
 
-/* --------------------- */
-/* -- Reducer Actions -- */
-/* --------------------- */
-const resetHeader = () => ({ type: HeaderActionType.RESET_HEADER });
+/* -------------------- */
+/* -- Simple Actions -- */
+/* -------------------- */
+const resetHeader = createAction(HeaderActionType.RESET_HEADER);
 
-const setHeader = (book, chapter) => ({
-  book: findBookByValue(book),
-  chapter,
-  type: HeaderActionType.SET_HEADER,
-});
+const setHeader = createAction(HeaderActionType.SET_HEADER, (book, chapter) => ({
+  payload: {
+    book: findBookByValue(book),
+    chapter,
+  },
+}));
 
 export { HeaderActionType, resetHeader, setHeader };

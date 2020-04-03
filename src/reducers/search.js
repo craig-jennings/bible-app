@@ -1,5 +1,5 @@
-import { SearchActionType } from '../actions/search';
-import createReducer from '../utils/createReducer';
+import { createReducer } from '@reduxjs/toolkit';
+import { queryTerm, SearchActionType } from '../actions/search';
 import LoadState from '../utils/LoadState';
 
 const PAGE_SIZE = 20;
@@ -20,14 +20,14 @@ const INITIAL_STATE = {
   results: [],
 };
 
-const reducers = {
+export default createReducer(INITIAL_STATE, {
   [SearchActionType.CLEAR_RESULTS]: () => ({
     ...INITIAL_STATE,
-    pagination: DEFAULT_PAGINATION,
+    pagination: { ...DEFAULT_PAGINATION },
   }),
 
-  [SearchActionType.SET_RESULTS]: (state, { results }) => {
-    const { page, results: searchResults, totalPages, totalResults } = results;
+  [queryTerm.fulfilled]: (state, { payload }) => {
+    const { page, results, totalPages, totalResults } = payload;
 
     const hasNextPage = page < totalPages;
     const hasPrevPage = page > 1;
@@ -45,20 +45,16 @@ const reducers = {
       totalResults,
     };
 
-    return {
-      ...state,
-      loadState: LoadState.LOADED,
-      pagination,
-      results: searchResults,
-    };
+    state.loadState = LoadState.LOADED;
+    state.pagination = pagination;
+    state.results = results;
   },
 
-  [SearchActionType.SET_RESULTS_LOADING]: (state) => ({
-    ...state,
-    loadState: LoadState.LOADING,
-  }),
-};
+  [queryTerm.pending]: (state) => {
+    state.loadState = LoadState.LOADING;
+  },
 
-const searchReducer = createReducer(reducers, INITIAL_STATE);
-
-export default searchReducer;
+  [queryTerm.rejected]: (state) => {
+    state.results = [];
+  },
+});

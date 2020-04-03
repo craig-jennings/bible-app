@@ -4,6 +4,7 @@ import { decrementPassage, incrementPassage } from '../../actions/passage';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef } from 'react';
 import Hammer from 'hammerjs';
+import LoadState from '../../utils/LoadState';
 import Page404 from '../errors/Page404';
 import styled from 'styled-components';
 
@@ -73,13 +74,13 @@ const useHammerEffect = (ref) => {
 };
 
 function Passage() {
-  const { isLoaded, text } = useSelector((state) => state.passage);
+  const { loadState, text } = useSelector((state) => state.passage);
 
   const passageRef = useRef();
 
   useHammerEffect(passageRef);
 
-  if (!isLoaded) {
+  if (loadState === LoadState.LOADING) {
     return (
       <CenterBox>
         <orbit-spinner color="white" />
@@ -87,7 +88,7 @@ function Passage() {
     );
   }
 
-  if (isLoaded && text.length === 0) {
+  if (loadState === LoadState.ERROR) {
     return <Page404 />;
   }
 

@@ -10,9 +10,7 @@ import LoadState from '../../utils/LoadState';
 import Pagination from '../pagination/Pagination';
 import SearchItem from './SearchItem';
 
-function getList(search) {
-  const { loadState, results } = search;
-
+function getList({ loadState, results }) {
   if (loadState === LoadState.LOADING) {
     return (
       <CenterBox>
@@ -38,7 +36,12 @@ function Search() {
 
   useEffect(() => {
     if (queryParams.q) {
-      dispatch(queryTerm(queryParams.q, queryParams.page));
+      dispatch(
+        queryTerm({
+          page: queryParams.page,
+          term: queryParams.q,
+        }),
+      );
     }
   }, [dispatch, queryParams.page, queryParams.q]);
 
