@@ -73,7 +73,7 @@ module.exports = {
     }),
 
     new InjectManifest({
-      swSrc: './src/service-worker/service-worker.js',
+      swSrc: './src/service-worker.js',
     }),
 
     new webpack.ProvidePlugin({

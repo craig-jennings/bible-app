@@ -12,10 +12,17 @@ const GlobalStyles = createGlobalStyle`
     --form__input__border-color: #455a64;
     --form__input--focus__border-color: #78909c;
 
-    --notification__bg-color: #455a64;
-    --notification__color: #fafafa;
+    --danger: hsl(0, 91%, 66%);
+    --danger-text: hsl(0, 0%, 13%);
 
-    --notification__button__bg-color: #455a64;
+    --neutral: hsl(211, 19%, 84%);
+    --neutral--active: hsl(211, 9%, 74%);
+    --neutral--hover: hsl(211, 14%, 79%);
+    --neutral-text: hsl(0, 0%, 13%);
+
+    --primary: hsl(200, 90%, 56%);
+    --primary-text: hsl(0, 0%, 100%);
+
     --notification__button__bg-color--hover: #78909c;
 
     --selector__border-color: #455a64;

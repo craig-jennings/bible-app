@@ -4,15 +4,15 @@ import {
   PassagePage,
   SearchPage,
   UnknownPage,
-} from './pages';
+} from '../pages';
 import { hot } from 'react-hot-loader/root';
 import { navigate, useRoutes } from 'hookrouter';
 import { Provider } from 'react-redux';
 import { useEffect } from 'react';
-import Footer from './components/footer/Footer';
-import Header from './components/header/Header';
-import Notifications from './components/notifications/Notifications';
-import store from './store';
+import Footer from './footer/Footer';
+import Header from './header/Header';
+import Notifications from './notifications/Notifications';
+import store from '../store';
 import styled from 'styled-components';
 
 const AppContainer = styled.div`

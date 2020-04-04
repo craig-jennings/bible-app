@@ -1,12 +1,16 @@
-import './service-worker/sw-installer';
-import App from './App';
-import GlobalStyles from './GlobalStyles';
+import { Provider } from 'react-redux';
+import App from './components/App';
+import GlobalStyles from './components/GlobalStyles';
 import ReactDOM from 'react-dom';
+import store from './store';
+import SWInstaller from './components/SWInstaller';
 
-ReactDOM.render(
-  <div>
+const Root = () => (
+  <Provider store={store}>
     <GlobalStyles />
     <App />
-  </div>,
-  document.querySelector('main'),
+    <SWInstaller />
+  </Provider>
 );
+
+ReactDOM.render(<Root />, document.querySelector('main'));

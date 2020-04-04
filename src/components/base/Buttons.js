@@ -1,6 +1,32 @@
 import { UnstyledButton } from './Unstyled';
 import styled from 'styled-components';
 
+const Button = styled.button`
+  background-color: var(--neutral);
+  border-radius: 1rem;
+  border-width: 0px;
+  color: var(--neutral-text);
+  padding: 0.5rem 1rem;
+  transition: all 0.25s;
+
+  :focus,
+  :hover {
+    background-color: var(--neutral--hover);
+    cursor: pointer;
+    outline: none;
+  }
+
+  :active {
+    background-color: var(--neutral--active);
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    background-color: var(--neutral--disabled);
+    color: var(--neutral-text--disabled);
+  }
+`;
+
 const IconButton = styled(UnstyledButton)`
   align-items: center;
   background-color: inherit;
@@ -38,4 +64,4 @@ const IconButton = styled(UnstyledButton)`
   }
 `;
 
-export { IconButton };
+export { Button, IconButton };
