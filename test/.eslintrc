@@ -5,6 +5,7 @@
   },
 
   "rules": {
+    "import/no-extraneous-dependencies": "off",
     "max-classes-per-file": "off",
     "newline-per-chained-call": "off",
     "prettier/prettier": "off"

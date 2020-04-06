@@ -1,4 +1,4 @@
-import { byTestId, selectorByTestId } from '../utils/selectByTestId';
+import TestComponent, { byTestId } from '../utils/TestComponent';
 
 class SearchItem {
   constructor(container) {
@@ -10,9 +10,9 @@ class SearchItem {
   }
 }
 
-class Search {
-  constructor() {
-    this.container = selectorByTestId('search');
+class Search extends TestComponent {
+  static get testId() {
+    return 'search';
   }
 
   get noResults() {

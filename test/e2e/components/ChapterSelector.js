@@ -1,12 +1,12 @@
-import { byTestId, selectorByTestId } from '../utils/selectByTestId';
+import TestComponent, { byTestId, getSelectorByTestId } from '../utils/TestComponent';
 
-class ChapterSelector {
-  constructor() {
-    this.container = selectorByTestId('chapter-selector');
+class ChapterSelector  extends TestComponent {
+  static get testId() {
+    return 'chapter-selector';
   }
 
   get errorEl() {
-    return selectorByTestId('page-404');
+    return getSelectorByTestId('page-404');
   }
 
   get filterInput() {

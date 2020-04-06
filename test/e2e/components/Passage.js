@@ -1,12 +1,12 @@
-import { selectorByTestId } from '../utils/selectByTestId';
+import TestComponent, { getSelectorByTestId } from '../utils/TestComponent';
 
-class Passage {
-  constructor() {
-    this.container = selectorByTestId('passage');
+class Passage extends TestComponent {
+  static get testId() {
+    return 'passage';
   }
 
   get errorEl() {
-    return selectorByTestId('page-404');
+    return getSelectorByTestId('page-404');
   }
 
   getNthVerse(n) {

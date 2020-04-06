@@ -1,8 +1,8 @@
-import { byTestId, selectorByTestId } from '../utils/selectByTestId';
+import TestComponent, { byTestId } from '../utils/TestComponent';
 
-class Header {
-  constructor() {
-    this.container = selectorByTestId('header');
+class Header extends TestComponent {
+  static get testId() {
+    return 'header';
   }
 
   get book() {

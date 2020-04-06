@@ -5,3 +5,4 @@ node_modules/
 
 # Files
 yarn-debug.log
+yarn-error.log

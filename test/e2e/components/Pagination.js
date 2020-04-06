@@ -1,8 +1,8 @@
-import { byTestId, selectorByTestId } from '../utils/selectByTestId';
+import TestComponent, { byTestId } from '../utils/TestComponent';
 
-class Pagination {
-  constructor() {
-    this.container = selectorByTestId('pagination');
+class Pagination extends TestComponent {
+  static get testId() {
+    return 'pagination';
   }
 
   get nextBtn() {
