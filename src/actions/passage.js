@@ -1,24 +1,23 @@
-import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { findBookByValue } from '../data/findBook';
 import { navigate } from 'hookrouter';
 import { setReference } from './reference';
+import { store } from 'react-recollect';
 import api from '../services/api';
+import LoadState from '../utils/LoadState';
 
-const PassageActionType = {
-  CLEAR_PASSAGE: 'passage/clear',
-  FETCH_PASSAGE: 'passage/fetch',
+const INITIAL_STATE = {
+  loadState: LoadState.NOT_LOADED,
+  text: '',
 };
 
-/* -------------------- */
-/* -- Simple Actions -- */
-/* -------------------- */
-const clearPassage = createAction(PassageActionType.CLEAR_PASSAGE);
+store.passage = INITIAL_STATE;
 
-/* ------------------- */
-/* -- Thunk Actions -- */
-/* ------------------- */
-const decrementPassage = () => (dispatch, getState) => {
-  const { reference } = getState();
+function clearPassage() {
+  store.passage = INITIAL_STATE;
+}
+
+function decrementPassage() {
+  const { reference } = store;
 
   const book = findBookByValue(reference.book);
   const chapterNumber = parseInt(reference.chapter, 10);
@@ -28,23 +27,35 @@ const decrementPassage = () => (dispatch, getState) => {
   const newChapter = chapterNumber - 1;
 
   navigate(`/${book.value}/${newChapter}`);
-};
+}
 
-const fetchPassage = createAsyncThunk(
-  PassageActionType.FETCH_PASSAGE,
-  async ({ book, chapter }, { dispatch }) => {
-    dispatch(setReference(book, chapter));
+async function fetchPassage(book, chapter) {
+  setReference(book, chapter);
 
-    const passage = await api.fetchPassage(book, chapter);
+  store.passage = {
+    loadState: LoadState.LOADING,
+    text: '',
+  };
 
-    if (passage.length === 0) return Promise.reject();
+  const passage = await api.fetchPassage(book, chapter);
 
-    return passage;
-  },
-);
+  if (passage.length === 0) {
+    store.passage = {
+      loadState: LoadState.ERROR,
+      text: '',
+    };
 
-const incrementPassage = () => (dispatch, getState) => {
-  const { reference } = getState();
+    return;
+  }
+
+  store.passage = {
+    loadState: LoadState.LOADED,
+    text: passage,
+  };
+}
+
+function incrementPassage() {
+  const { reference } = store;
 
   const book = findBookByValue(reference.book);
   const chapterNumber = parseInt(reference.chapter, 10);
@@ -54,6 +65,6 @@ const incrementPassage = () => (dispatch, getState) => {
   const newChapter = chapterNumber + 1;
 
   navigate(`/${book.value}/${newChapter}`);
-};
+}
 
-export { clearPassage, decrementPassage, fetchPassage, incrementPassage, PassageActionType };
+export { clearPassage, decrementPassage, fetchPassage, incrementPassage };

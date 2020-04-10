@@ -1,7 +1,7 @@
 import { A } from 'hookrouter';
 import { Box } from '../base/Box';
 import { findBookByLabel } from '../../data/findBook';
-import PropTypes from 'prop-types';
+import { PropTypes } from 'react-recollect';
 import styled from 'styled-components';
 
 const SearchItemContainer = styled(Box)`

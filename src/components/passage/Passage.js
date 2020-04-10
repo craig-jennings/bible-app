@@ -1,7 +1,7 @@
 import 'wc-spinners/dist/orbit-spinner';
 import { CenterBox } from '../base/Box';
+import { collect, PropTypes } from 'react-recollect';
 import { decrementPassage, incrementPassage } from '../../actions/passage';
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef } from 'react';
 import Hammer from 'hammerjs';
 import LoadState from '../../utils/LoadState';
@@ -35,8 +35,6 @@ const PassageContainer = styled.div`
 `;
 
 const useHammerEffect = (ref) => {
-  const dispatch = useDispatch();
-
   useEffect(() => {
     if (!ref.current) return undefined;
 
@@ -60,21 +58,21 @@ const useHammerEffect = (ref) => {
     hammerInstance.on('swipeleft', (e) => {
       if (e.pointerType === 'mouse') return;
 
-      dispatch(incrementPassage());
+      incrementPassage();
     });
 
     hammerInstance.on('swiperight', (e) => {
       if (e.pointerType === 'mouse') return;
 
-      dispatch(decrementPassage());
+      decrementPassage();
     });
 
     return () => hammerInstance.destroy();
   });
 };
 
-function Passage() {
-  const { loadState, text } = useSelector((state) => state.passage);
+function Passage({ store }) {
+  const { loadState, text } = store.passage;
 
   const passageRef = useRef();
 
@@ -101,4 +99,13 @@ function Passage() {
   );
 }
 
-export default Passage;
+Passage.propTypes = {
+  store: PropTypes.shape({
+    passage: PropTypes.shape({
+      loadState: PropTypes.oneOf(LoadState),
+      text: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
+};
+
+export default collect(Passage);

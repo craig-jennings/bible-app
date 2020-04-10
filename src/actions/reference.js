@@ -1,12 +1,10 @@
-import { createAction } from '@reduxjs/toolkit';
+import { store } from 'react-recollect';
 
-const ReferenceActionType = {
-  SET_REFERENCE: 'reference/set',
-};
+function setReference(book, chapter) {
+  store.reference = {
+    book,
+    chapter,
+  };
+}
 
-/* -------------------- */
-/* -- Simple Actions -- */
-/* -------------------- */
-const setReference = createAction(ReferenceActionType.SET_REFERENCE);
-
-export { ReferenceActionType, setReference };
+export { setReference };

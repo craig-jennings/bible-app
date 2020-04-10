@@ -1,8 +1,8 @@
 import 'wc-spinners/dist/orbit-spinner';
 import { Box, CenterBox, InlineBox } from '../base/Box';
+import { collect, PropTypes } from 'react-recollect';
 import { Form, FormButton, FormInput } from '../base/Form';
 import { queryTerm } from '../../actions/search';
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useFormInput } from '../../hooks';
 import { useQueryParams } from 'hookrouter';
@@ -26,24 +26,17 @@ function getList({ loadState, results }) {
   return results.map((r) => <SearchItem item={r} key={r.reference} />);
 }
 
-function Search() {
+function Search({ store: { search } }) {
   /* -- Hooks -- */
-  const dispatch = useDispatch();
   const [queryParams, setQueryParams] = useQueryParams();
 
   const searchBuffer = useFormInput(queryParams.q || '');
-  const search = useSelector((state) => state.search);
 
   useEffect(() => {
     if (queryParams.q) {
-      dispatch(
-        queryTerm({
-          page: queryParams.page,
-          term: queryParams.q,
-        }),
-      );
+      queryTerm(queryParams.q, queryParams.page);
     }
-  }, [dispatch, queryParams.page, queryParams.q]);
+  }, [queryParams.page, queryParams.q]);
 
   /* -- Event Handlers -- */
   const handleNextPage = () => {
@@ -75,6 +68,7 @@ function Search() {
     });
   };
 
+  /* -- Rendering -- */
   const list = getList(search);
 
   return (
@@ -102,4 +96,14 @@ function Search() {
   );
 }
 
-export default Search;
+Search.propTypes = {
+  store: PropTypes.shape({
+    search: PropTypes.shape({
+      loadState: PropTypes.oneOf(LoadState),
+      pagination: PropTypes.object,
+      results: PropTypes.array,
+    }).isRequired,
+  }).isRequired,
+};
+
+export default collect(Search);

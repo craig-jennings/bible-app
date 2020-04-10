@@ -1,12 +1,30 @@
-import { createAction } from '@reduxjs/toolkit';
+import { store } from 'react-recollect';
+
+store.notifications = [];
 
 let keyCounter = 0;
 
-const NotificationActionType = {
-  ADD: 'notifications/add',
-  CLEAR: 'notifications/clear',
-  REMOVE: 'notifications/remove',
-};
+function addNotification(notificationType, contents) {
+  const { notifications } = store;
+
+  if (notifications.length === 3) {
+    notifications.pop();
+  }
+
+  notifications.unshift({
+    contents,
+    key: ++keyCounter,
+    notificationType,
+  });
+}
+
+function clearNotifications() {
+  store.notifications = [];
+}
+
+function removeNotification(key) {
+  store.notifications = store.notifications.filter((n) => n.key !== key);
+}
 
 const NotificationType = {
   ERROR: 'error',
@@ -14,27 +32,4 @@ const NotificationType = {
   SUCCESS: 'success',
 };
 
-/* -------------------- */
-/* -- Simple Actions -- */
-/* -------------------- */
-const addNotification = createAction(NotificationActionType.ADD, (notificationType, contents) => ({
-  payload: {
-    contents,
-    key: keyCounter++,
-    notificationType,
-  },
-}));
-
-const clearNotifications = createAction(NotificationActionType.CLEAR);
-
-const removeNotification = createAction(NotificationActionType.REMOVE, (key) => ({
-  payload: { key },
-}));
-
-export {
-  addNotification,
-  clearNotifications,
-  NotificationActionType,
-  NotificationType,
-  removeNotification,
-};
+export { addNotification, clearNotifications, NotificationType, removeNotification };

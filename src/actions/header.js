@@ -1,21 +1,18 @@
-import { createAction } from '@reduxjs/toolkit';
 import { findBookByValue } from '../data/findBook';
+import { store } from 'react-recollect';
 
-const HeaderActionType = {
-  RESET_HEADER: 'header/reset',
-  SET_HEADER: 'header/set',
-};
+store.header = {};
 
-/* -------------------- */
-/* -- Simple Actions -- */
-/* -------------------- */
-const resetHeader = createAction(HeaderActionType.RESET_HEADER);
+function resetHeader() {
+  store.header = {};
+}
 
-const setHeader = createAction(HeaderActionType.SET_HEADER, (book, chapter) => ({
-  payload: {
-    book: findBookByValue(book),
-    chapter,
-  },
-}));
+function setHeader(bookValue, chapter) {
+  const book = findBookByValue(bookValue);
 
-export { HeaderActionType, resetHeader, setHeader };
+  store.header.chapter = chapter;
+  store.header.label = book.label;
+  store.header.value = book.value;
+}
+
+export { resetHeader, setHeader };

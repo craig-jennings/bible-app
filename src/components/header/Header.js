@@ -1,8 +1,8 @@
 import { CenterBox, FlexBox } from '../base/Box';
 import { clearResults } from '../../actions/search';
+import { collect, PropTypes } from 'react-recollect';
 import { SearchIcon } from '../base/Icons';
 import { UnstyledLink } from '../base/Unstyled';
-import { useDispatch, useSelector } from 'react-redux';
 import { useQueryParams } from 'hookrouter';
 import styled from 'styled-components';
 
@@ -29,9 +29,7 @@ const SearchLink = styled(UnstyledLink)`
   display: flex;
 `;
 
-function Header() {
-  const dispatch = useDispatch();
-  const header = useSelector((state) => state.header);
+function Header({ store: { header } }) {
   const [, setQueryParams] = useQueryParams();
 
   const bookEl = header.value && (
@@ -50,7 +48,7 @@ function Header() {
   );
 
   const handleSearchClick = () => {
-    dispatch(clearResults());
+    clearResults();
 
     // HACK: This is a workaround for https://github.com/Paratron/hookrouter/issues/62
     setQueryParams({}, true);
@@ -73,4 +71,14 @@ function Header() {
   );
 }
 
-export default Header;
+Header.propTypes = {
+  store: PropTypes.shape({
+    header: PropTypes.shape({
+      chapter: PropTypes.string,
+      label: PropTypes.string,
+      value: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
+};
+
+export default collect(Header);

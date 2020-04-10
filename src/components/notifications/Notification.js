@@ -1,17 +1,13 @@
+import { PropTypes } from 'react-recollect';
 import { removeNotification } from '../../actions/notifications';
-import { useDispatch } from 'react-redux';
 import getNotificationComponent from './getNotificationComponent';
-import PropTypes from 'prop-types';
 
 function Notification({ notification }) {
-  const { contents, notificationType } = notification;
-
-  /* -- Hooks -- */
-  const dispatch = useDispatch();
+  const { contents, key, notificationType } = notification;
 
   /* -- Event Handlers -- */
   const handleDismissClick = () => {
-    dispatch(removeNotification(notification.key));
+    removeNotification(key);
   };
 
   const Component = getNotificationComponent(notificationType);

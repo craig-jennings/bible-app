@@ -1,15 +1,12 @@
+import { PropTypes } from 'react-recollect';
 import { setHeader } from '../actions/header';
-import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import ChapterSelector from '../components/selectors/ChapterSelector';
-import PropTypes from 'prop-types';
 
 function ChapterSelectorPage({ book }) {
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(setHeader(book));
-  }, [book, dispatch]);
+    setHeader(book);
+  }, [book]);
 
   return <ChapterSelector book={book} />;
 }

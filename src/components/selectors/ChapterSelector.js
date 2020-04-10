@@ -1,10 +1,10 @@
 import { Box, CenterBox } from '../base/Box';
 import { findBookByValue } from '../../data/findBook';
 import { FormInput } from '../base/Form';
+import { PropTypes } from 'react-recollect';
 import { SelectorList, SelectorListItem } from './SelectorList';
 import { useFormInput } from '../../hooks';
 import Page404 from '../errors/Page404';
-import PropTypes from 'prop-types';
 
 function buildChapterList(book, chapterCount, term) {
   let filteredChapters = [];

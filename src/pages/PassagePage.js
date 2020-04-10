@@ -1,22 +1,19 @@
 import { clearPassage, fetchPassage } from '../actions/passage';
+import { PropTypes } from 'react-recollect';
 import { setHeader } from '../actions/header';
-import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import Passage from '../components/passage/Passage';
-import PropTypes from 'prop-types';
 import ScrollUp from '../components/scrollers/ScrollUp';
 
 function PassagePage({ book, chapter }) {
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(setHeader(book, chapter));
-    dispatch(fetchPassage({ book, chapter }));
+    setHeader(book, chapter);
+    fetchPassage(book, chapter);
 
     return () => {
-      dispatch(clearPassage());
+      clearPassage();
     };
-  }, [book, chapter, dispatch]);
+  }, [book, chapter]);
 
   return (
     <>

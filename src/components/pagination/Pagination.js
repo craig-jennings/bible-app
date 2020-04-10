@@ -1,5 +1,5 @@
 import { FlexBox } from '../base/Box';
-import PropTypes from 'prop-types';
+import { PropTypes } from 'react-recollect';
 import styled, { css } from 'styled-components';
 
 const PaginationButton = styled.button`
