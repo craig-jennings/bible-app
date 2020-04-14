@@ -18,7 +18,7 @@ function buildChapterList(book, chapterCount, term) {
   }
 
   return filteredChapters.map((chapter) => (
-    <SelectorListItem data-testid="selector-list-item" href={`${book}/${chapter}`} key={chapter}>
+    <SelectorListItem data-testid="selector-list-item" key={chapter} to={chapter}>
       {chapter}
     </SelectorListItem>
   ));

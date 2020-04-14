@@ -1,11 +1,11 @@
 import 'wc-spinners/dist/orbit-spinner';
 import { Box, CenterBox, InlineBox } from '../base/Box';
+import { clearResults, queryTerm } from '../../actions/search';
 import { collect, PropTypes } from 'react-recollect';
 import { Form, FormButton, FormInput } from '../base/Form';
-import { queryTerm } from '../../actions/search';
 import { useEffect } from 'react';
 import { useFormInput } from '../../hooks';
-import { useQueryParams } from 'hookrouter';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import LoadState from '../../utils/LoadState';
 import Pagination from '../pagination/Pagination';
 import SearchItem from './SearchItem';
@@ -28,15 +28,21 @@ function getList({ loadState, results }) {
 
 function Search({ store: { search } }) {
   /* -- Hooks -- */
-  const [queryParams, setQueryParams] = useQueryParams();
+  const navigate = useNavigate();
+  const searchParams = useSearchParams();
 
-  const searchBuffer = useFormInput(queryParams.q || '');
+  const searchBuffer = useFormInput(searchParams.get('q') || '');
 
   useEffect(() => {
-    if (queryParams.q) {
-      queryTerm(queryParams.q, queryParams.page);
+    const page = searchParams.get('page');
+    const q = searchParams.get('q');
+
+    if (q) {
+      queryTerm(q, page);
+    } else {
+      clearResults();
     }
-  }, [queryParams.page, queryParams.q]);
+  }, [searchParams]);
 
   /* -- Event Handlers -- */
   const handleNextPage = () => {
@@ -46,7 +52,9 @@ function Search({ store: { search } }) {
 
     if (!pagination.hasNextPage) return;
 
-    setQueryParams({ page: pagination.page + 1 });
+    searchParams.set('page', pagination.page + 1);
+
+    navigate(`/search?${searchParams}`);
   };
 
   const handlePrevPage = () => {
@@ -56,16 +64,18 @@ function Search({ store: { search } }) {
 
     if (!pagination.hasPrevPage) return;
 
-    setQueryParams({ page: pagination.page - 1 });
+    searchParams.set('page', pagination.page - 1);
+
+    navigate(`/search?${searchParams}`);
   };
 
   const handeSubmit = (e) => {
     e.preventDefault();
 
-    setQueryParams({
-      page: 1,
-      q: searchBuffer.value,
-    });
+    searchParams.set('q', searchBuffer.value);
+    searchParams.set('page', 1);
+
+    navigate(`/search?${searchParams}`);
   };
 
   /* -- Rendering -- */
@@ -99,7 +109,7 @@ function Search({ store: { search } }) {
 Search.propTypes = {
   store: PropTypes.shape({
     search: PropTypes.shape({
-      loadState: PropTypes.oneOf(LoadState),
+      loadState: PropTypes.oneOf(Object.values(LoadState)),
       pagination: PropTypes.object,
       results: PropTypes.array,
     }).isRequired,

@@ -1,5 +1,4 @@
 import { findBookByValue } from '../data/findBook';
-import { navigate } from 'hookrouter';
 import { setReference } from './reference';
 import { store } from 'react-recollect';
 import api from '../services/api';
@@ -16,7 +15,7 @@ function clearPassage() {
   store.passage = INITIAL_STATE;
 }
 
-function decrementPassage() {
+function decrementPassage(navigate) {
   const { reference } = store;
 
   const book = findBookByValue(reference.book);
@@ -54,7 +53,7 @@ async function fetchPassage(book, chapter) {
   };
 }
 
-function incrementPassage() {
+function incrementPassage(navigate) {
   const { reference } = store;
 
   const book = findBookByValue(reference.book);

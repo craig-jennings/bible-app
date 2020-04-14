@@ -26,7 +26,7 @@ function clearResults() {
   store.search = INITIAL_STATE;
 }
 
-async function queryTerm(term, page = 1) {
+async function queryTerm(term, currentPage = 1) {
   if (term.trim().length === 0) {
     store.search.pagination = DEFAULT_PAGINATION;
     store.search.results = [];
@@ -37,7 +37,7 @@ async function queryTerm(term, page = 1) {
   store.search.loadState = LoadState.LOADING;
 
   try {
-    const { results, totalPages, totalResults } = await api.search(term, page);
+    const { page, results, totalPages, totalResults } = await api.search(term, currentPage);
 
     const hasNextPage = page < totalPages;
     const hasPrevPage = page > 1;

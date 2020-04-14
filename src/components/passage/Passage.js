@@ -3,6 +3,7 @@ import { CenterBox } from '../base/Box';
 import { collect, PropTypes } from 'react-recollect';
 import { decrementPassage, incrementPassage } from '../../actions/passage';
 import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Hammer from 'hammerjs';
 import LoadState from '../../utils/LoadState';
 import Page404 from '../errors/Page404';
@@ -35,6 +36,8 @@ const PassageContainer = styled.div`
 `;
 
 const useHammerEffect = (ref) => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (!ref.current) return undefined;
 
@@ -58,13 +61,13 @@ const useHammerEffect = (ref) => {
     hammerInstance.on('swipeleft', (e) => {
       if (e.pointerType === 'mouse') return;
 
-      incrementPassage();
+      incrementPassage(navigate);
     });
 
     hammerInstance.on('swiperight', (e) => {
       if (e.pointerType === 'mouse') return;
 
-      decrementPassage();
+      decrementPassage(navigate);
     });
 
     return () => hammerInstance.destroy();
@@ -102,7 +105,7 @@ function Passage({ store }) {
 Passage.propTypes = {
   store: PropTypes.shape({
     passage: PropTypes.shape({
-      loadState: PropTypes.oneOf(LoadState),
+      loadState: PropTypes.oneOf(Object.values(LoadState)),
       text: PropTypes.string,
     }).isRequired,
   }).isRequired,

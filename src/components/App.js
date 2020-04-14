@@ -5,11 +5,11 @@ import {
   SearchPage,
   UnknownPage,
 } from '../pages';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
-import { navigate, useRoutes } from 'hookrouter';
-import { useEffect } from 'react';
 import Footer from './footer/Footer';
 import Header from './header/Header';
+import LocationTracker from './base/LocationTracker';
 import Notifications from './notifications/Notifications';
 import styled from 'styled-components';
 
@@ -19,42 +19,24 @@ const AppContainer = styled.div`
   min-height: 100vh;
 `;
 
-/* eslint-disable react/prop-types */
-const routes = {
-  '/': () => <BookSelectorPage />,
-  '/search': () => <SearchPage />,
-  '/:book': ({ book }) => <ChapterSelectorPage book={book} />,
-  '/:book/:chapter': ({ book, chapter }) => <PassagePage book={book} chapter={chapter} />,
-};
-/* eslint-enable */
-
-const LS_PATH_KEY = 'current:path';
-
-const storeCurrentLocation = (location) => {
-  localStorage.setItem(LS_PATH_KEY, location);
-};
-
-const currentPath = localStorage.getItem(LS_PATH_KEY);
-
-if (currentPath) {
-  navigate(currentPath);
-}
-
-const App = () => {
-  const routeResult = useRoutes(routes);
-
-  useEffect(() => {
-    storeCurrentLocation(window.location.pathname);
-  });
-
-  return (
-    <AppContainer>
+const App = () => (
+  <AppContainer>
+    <BrowserRouter>
       <Header />
-      {routeResult || <UnknownPage />}
-      <Notifications />
+
+      <Routes>
+        <Route path="/" element={<BookSelectorPage />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/:book" element={<ChapterSelectorPage />} />
+        <Route path="/:book/:chapter" element={<PassagePage />} />
+        <Route path="*" element={<UnknownPage />} />
+      </Routes>
+
       <Footer />
-    </AppContainer>
-  );
-};
+      <LocationTracker />
+      <Notifications />
+    </BrowserRouter>
+  </AppContainer>
+);
 
 export default hot(App);

@@ -1,18 +1,16 @@
-import { PropTypes } from 'react-recollect';
 import { setHeader } from '../actions/header';
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import ChapterSelector from '../components/selectors/ChapterSelector';
 
-function ChapterSelectorPage({ book }) {
+function ChapterSelectorPage() {
+  const { book } = useParams();
+
   useEffect(() => {
     setHeader(book);
   }, [book]);
 
   return <ChapterSelector book={book} />;
 }
-
-ChapterSelectorPage.propTypes = {
-  book: PropTypes.string.isRequired,
-};
 
 export default ChapterSelectorPage;

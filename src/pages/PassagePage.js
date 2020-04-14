@@ -1,18 +1,20 @@
 import { clearPassage, fetchPassage } from '../actions/passage';
-import { PropTypes } from 'react-recollect';
 import { setHeader } from '../actions/header';
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Passage from '../components/passage/Passage';
 import ScrollUp from '../components/scrollers/ScrollUp';
 
-function PassagePage({ book, chapter }) {
+function PassagePage() {
+  const { book, chapter } = useParams();
+
+  useEffect(() => {
+    clearPassage();
+  }, []);
+
   useEffect(() => {
     setHeader(book, chapter);
     fetchPassage(book, chapter);
-
-    return () => {
-      clearPassage();
-    };
   }, [book, chapter]);
 
   return (
@@ -22,10 +24,5 @@ function PassagePage({ book, chapter }) {
     </>
   );
 }
-
-PassagePage.propTypes = {
-  book: PropTypes.string.isRequired,
-  chapter: PropTypes.string.isRequired,
-};
 
 export default PassagePage;
