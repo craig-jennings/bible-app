@@ -49,23 +49,25 @@ module.exports = {
   },
 
   plugins: [
-    new CopyWebpackPlugin([
-      {
-        flatten: true,
-        from: './src/images/*',
-        to: 'images/',
-      },
-      {
-        flatten: true,
-        from: './src/manifest.json',
-        to: './',
-      },
-      {
-        flatten: true,
-        from: './src/robots.txt',
-        to: './',
-      },
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          flatten: true,
+          from: './src/images/*',
+          to: 'images/',
+        },
+        {
+          flatten: true,
+          from: './src/manifest.json',
+          to: './',
+        },
+        {
+          flatten: true,
+          from: './src/robots.txt',
+          to: './',
+        },
+      ],
+    }),
 
     new HtmlWebpackPlugin({
       minify: true,

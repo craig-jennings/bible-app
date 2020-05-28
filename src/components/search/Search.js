@@ -5,7 +5,7 @@ import { collect, PropTypes } from 'react-recollect';
 import { Form, FormButton, FormInput } from '../base/Form';
 import { useEffect } from 'react';
 import { useFormInput } from '../../hooks';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import LoadState from '../../utils/LoadState';
 import Pagination from '../pagination/Pagination';
 import SearchItem from './SearchItem';
@@ -28,8 +28,7 @@ function getList({ loadState, results }) {
 
 function Search({ store: { search } }) {
   /* -- Hooks -- */
-  const navigate = useNavigate();
-  const searchParams = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const searchBuffer = useFormInput(searchParams.get('q') || '');
 
@@ -52,9 +51,10 @@ function Search({ store: { search } }) {
 
     if (!pagination.hasNextPage) return;
 
-    searchParams.set('page', pagination.page + 1);
-
-    navigate(`/search?${searchParams}`);
+    setSearchParams({
+      page: pagination.page + 1,
+      q: searchParams.get('q'),
+    });
   };
 
   const handlePrevPage = () => {
@@ -64,18 +64,19 @@ function Search({ store: { search } }) {
 
     if (!pagination.hasPrevPage) return;
 
-    searchParams.set('page', pagination.page - 1);
-
-    navigate(`/search?${searchParams}`);
+    setSearchParams({
+      page: pagination.page - 1,
+      q: searchParams.get('q'),
+    });
   };
 
   const handeSubmit = (e) => {
     e.preventDefault();
 
-    searchParams.set('q', searchBuffer.value);
-    searchParams.set('page', 1);
-
-    navigate(`/search?${searchParams}`);
+    setSearchParams({
+      page: 1,
+      q: searchBuffer.value,
+    });
   };
 
   /* -- Rendering -- */
