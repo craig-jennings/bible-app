@@ -1,4 +1,3 @@
-import { PropTypes } from 'react-recollect';
 import { removeNotification } from '../../actions/notifications';
 import getNotificationComponent from './getNotificationComponent';
 

@@ -1,17 +1,15 @@
-import {
-  BookSelectorPage,
-  ChapterSelectorPage,
-  PassagePage,
-  SearchPage,
-  UnknownPage,
-} from '../pages';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
+import BookSelectorPage from '../pages/BookSelectorPage';
+import ChapterSelectorPage from '../pages/ChapterSelectorPage';
 import Footer from './footer/Footer';
 import Header from './header/Header';
 import LocationTracker from './base/LocationTracker';
 import Notifications from './notifications/Notifications';
+import PassagePage from '../pages/PassagePage';
+import SearchPage from '../pages/SearchPage';
 import styled from 'styled-components';
+import UnknownPage from '../pages/UnknownPage';
 
 const AppContainer = styled.div`
   display: grid;

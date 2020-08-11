@@ -1,7 +1,6 @@
 import { Button, IconButton } from '../../base/Buttons';
 import { CloseIcon } from '../../base/Icons';
 import { FlexBox } from '../../base/Box';
-import { PropTypes } from 'react-recollect';
 import NotificationContainer from './NotificationContainer';
 import styled from 'styled-components';
 

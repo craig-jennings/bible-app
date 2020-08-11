@@ -1,10 +1,10 @@
 import { Box } from '../base/Box';
 import { FormInput } from '../base/Form';
 import { SelectorList, SelectorListItem } from './SelectorList';
-import { useFormInput } from '../../hooks';
 import NewTestament from '../../data/NewTestament';
 import OldTestament from '../../data/OldTestament';
 import styled from 'styled-components';
+import useFormInput from '../../hooks/useFormInput';
 
 const Header = styled.h1`
   text-align: center;

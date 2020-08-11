@@ -79,6 +79,7 @@ module.exports = {
     }),
 
     new webpack.ProvidePlugin({
+      PropTypes: 'prop-types',
       React: 'react',
     }),
   ],
@@ -92,9 +93,7 @@ module.exports = {
   stats: {
     builtAt: false,
     entrypoints: false,
-
     excludeAssets: [/images[/\\]/, /precache-manifest\./, /robots\.txt/],
-
     hash: false,
     modules: false,
   },

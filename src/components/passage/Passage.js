@@ -1,13 +1,6 @@
-import 'wc-spinners/dist/orbit-spinner';
-import { CenterBox } from '../base/Box';
-import { collect, PropTypes } from 'react-recollect';
-import { decrementPassage, incrementPassage } from '../../actions/passage';
-import { useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Hammer from 'hammerjs';
-import LoadState from '../../utils/LoadState';
-import Page404 from '../errors/Page404';
+import { useRef } from 'react';
 import styled from 'styled-components';
+import useHammerEffect from '../../hooks/useHammerEffect';
 
 const PassageContainer = styled.div`
   font-size: 1.25rem;
@@ -35,67 +28,25 @@ const PassageContainer = styled.div`
   }
 `;
 
-const useHammerEffect = (ref) => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!ref.current) return undefined;
-
-    const hammerInstance = new Hammer(ref.current, {
-      cssProps: {
-        userSelect: 'auto',
-      },
-
-      recognizers: [
-        [
-          Hammer.Swipe,
-          {
-            direction: Hammer.DIRECTION_LEFT | Hammer.DIRECTION_RIGHT, // eslint-disable-line no-bitwise
-            threshold: 100,
-            velocity: 0.5,
-          },
-        ],
-      ],
-    });
-
-    hammerInstance.on('swipeleft', (e) => {
-      if (e.pointerType === 'mouse') return;
-
-      incrementPassage(navigate);
-    });
-
-    hammerInstance.on('swiperight', (e) => {
-      if (e.pointerType === 'mouse') return;
-
-      decrementPassage(navigate);
-    });
-
-    return () => hammerInstance.destroy();
-  });
-};
-
-function Passage({ store }) {
-  const { loadState, text } = store.passage;
-
+function Passage({ onDecrement, onIncrement, passage }) {
+  /* -- Hooks -- */
   const passageRef = useRef();
 
-  useHammerEffect(passageRef);
+  useHammerEffect(passageRef, [
+    {
+      action: 'swipeleft',
+      callback: () => onIncrement(),
+    },
+    {
+      action: 'swiperight',
+      callback: () => onDecrement(),
+    },
+  ]);
 
-  if (loadState === LoadState.LOADING) {
-    return (
-      <CenterBox>
-        <orbit-spinner color="white" />
-      </CenterBox>
-    );
-  }
-
-  if (loadState === LoadState.ERROR) {
-    return <Page404 />;
-  }
-
+  /* -- Rendering -- */
   return (
     <PassageContainer
-      dangerouslySetInnerHTML={{ __html: text }}
+      dangerouslySetInnerHTML={{ __html: passage }}
       data-testid="passage"
       ref={passageRef}
     />
@@ -103,12 +54,9 @@ function Passage({ store }) {
 }
 
 Passage.propTypes = {
-  store: PropTypes.shape({
-    passage: PropTypes.shape({
-      loadState: PropTypes.oneOf(Object.values(LoadState)),
-      text: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
+  onDecrement: PropTypes.func.isRequired,
+  onIncrement: PropTypes.func.isRequired,
+  passage: PropTypes.string.isRequired,
 };
 
-export default collect(Passage);
+export default Passage;

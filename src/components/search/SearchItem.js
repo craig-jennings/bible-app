@@ -1,7 +1,6 @@
 import { Box } from '../base/Box';
 import { findBookByLabel } from '../../data/findBook';
 import { Link } from 'react-router-dom';
-import { PropTypes } from 'react-recollect';
 import styled from 'styled-components';
 
 const SearchItemContainer = styled(Box)`

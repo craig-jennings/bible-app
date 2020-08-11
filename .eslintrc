@@ -9,6 +9,7 @@
   ],
 
   "globals": {
+    "PropTypes": false,
     "React": false
   },
 
