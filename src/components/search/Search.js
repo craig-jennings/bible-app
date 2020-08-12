@@ -1,7 +1,7 @@
 import 'wc-spinners/dist/orbit-spinner';
 import { Box, CenterBox, InlineBox } from '../base/Box';
 import { Form, FormButton, FormInput } from '../base/Form';
-import { queryTerm } from '../../actions/search';
+import { search } from '../../api/search';
 import { useQuery } from 'react-query';
 import { useSearchParams } from 'react-router-dom';
 import Pagination from '../pagination/Pagination';
@@ -34,7 +34,7 @@ function Search() {
   const page = searchParams.get('page');
   const q = searchParams.get('q');
 
-  const { data, status } = useQuery(['search', q, page], queryTerm, {
+  const { data, status } = useQuery(['search', q, page], () => search(q, page), {
     refetchOnWindowFocus: false,
     staleTime: 60 * 1000,
   });

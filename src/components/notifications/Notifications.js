@@ -1,6 +1,6 @@
 import { animated, useTransition } from 'react-spring';
-import { collect, PropTypes } from 'react-recollect';
 import { FlexBox } from '../base/Box';
+import { useSelector } from 'react-redux';
 import Notification from './Notification';
 import styled from 'styled-components';
 
@@ -18,8 +18,10 @@ const NotificationsContainer = styled(FlexBox)`
   }
 `;
 
-function Notifications({ store: { notifications } }) {
+function Notifications() {
   /* -- Hooks -- */
+  const notifications = useSelector((state) => state.notifications);
+
   const animatedNotifications = useTransition(notifications, (n) => n.key, {
     config: {
       clamp: true,
@@ -63,10 +65,4 @@ function Notifications({ store: { notifications } }) {
   );
 }
 
-Notifications.propTypes = {
-  store: PropTypes.shape({
-    notifications: PropTypes.arrayOf(PropTypes.object).isRequired,
-  }).isRequired,
-};
-
-export default collect(Notifications);
+export default Notifications;

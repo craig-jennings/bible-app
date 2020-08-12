@@ -1,11 +1,12 @@
 import 'wc-spinners/dist/orbit-spinner';
 import { CenterBox } from '../components/base/Box';
+import { fetchPassage } from '../api/passage';
 import { findBookByValue } from '../data/findBook';
 import { setHeader } from '../actions/header';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import api from '../services/api';
 import Page404 from '../components/errors/Page404';
 import Passage from '../components/passage/Passage';
 import ScrollUp from '../components/scrollers/ScrollUp';
@@ -13,15 +14,16 @@ import ScrollUp from '../components/scrollers/ScrollUp';
 function PassagePage() {
   /* -- Hooks -- */
   const { book, chapter } = useParams();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    setHeader(book, chapter);
-  }, [book, chapter]);
+    dispatch(setHeader(book, chapter));
+  }, [book, chapter, dispatch]);
 
   const { data: passage, status } = useQuery(
     ['passage', book, chapter],
-    () => api.fetchPassage(book, chapter),
+    () => fetchPassage(book, chapter),
     {
       refetchOnWindowFocus: false,
       staleTime: 60 * 1000,

@@ -1,14 +1,17 @@
-import { removeNotification } from '../../actions/notifications';
+import { removeNotifications } from '../../actions/notifications';
+import { useDispatch } from 'react-redux';
 import getNotificationComponent from './getNotificationComponent';
 
 function Notification({ notification }) {
   const { contents, key, notificationType } = notification;
 
-  /* -- Event Handlers -- */
-  const handleDismissClick = () => {
-    removeNotification(key);
-  };
+  /* -- Hooks -- */
+  const dispatch = useDispatch();
 
+  /* -- Event Handlers -- */
+  const handleDismissClick = () => dispatch(removeNotifications({ key }));
+
+  /* -- Rendering -- */
   const Component = getNotificationComponent(notificationType);
 
   return <Component contents={contents} onDismiss={handleDismissClick} type={notificationType} />;

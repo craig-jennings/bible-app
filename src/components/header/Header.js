@@ -1,7 +1,7 @@
 import { CenterBox, FlexBox } from '../base/Box';
-import { collect, PropTypes } from 'react-recollect';
 import { SearchIcon } from '../base/Icons';
 import { UnstyledLink } from '../base/Unstyled';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 const HeaderContainer = styled(FlexBox)`
@@ -27,7 +27,11 @@ const SearchLink = styled(UnstyledLink)`
   display: flex;
 `;
 
-function Header({ store: { header } }) {
+function Header() {
+  /* -- Hooks -- */
+  const header = useSelector((state) => state.header);
+
+  /* -- Rendering -- */
   const bookEl = header.value && (
     <>
       <Separator>&gt;</Separator>{' '}
@@ -60,14 +64,4 @@ function Header({ store: { header } }) {
   );
 }
 
-Header.propTypes = {
-  store: PropTypes.shape({
-    header: PropTypes.shape({
-      chapter: PropTypes.string,
-      label: PropTypes.string,
-      value: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
-};
-
-export default collect(Header);
+export default Header;

@@ -1,8 +1,9 @@
-import api from '../services/api';
+const _searchUrl = 'https://api.esv.org/v3/passage/search/?q=';
+const _token = 'b960fb5d8eee535706d94159a4cce424b2414538';
 
 const PAGE_SIZE = 20;
 
-async function queryTerm(key, term = '', currentPage = 1) {
+async function search(term = '', currentPage = 1) {
   if (!term || term.trim().length === 0) {
     return {
       pagination: null,
@@ -10,7 +11,13 @@ async function queryTerm(key, term = '', currentPage = 1) {
     };
   }
 
-  const { page, results, totalPages, totalResults } = await api.search(term, currentPage);
+  const url = `${_searchUrl}${term}&page=${currentPage}`;
+
+  const res = await fetch(url, {
+    headers: { Authorization: `Token ${_token}` },
+  });
+
+  const { page, results, total_pages: totalPages, total_results: totalResults } = await res.json();
 
   const hasNextPage = page < totalPages;
   const hasPrevPage = page > 1;
@@ -31,4 +38,4 @@ async function queryTerm(key, term = '', currentPage = 1) {
   return { pagination, results };
 }
 
-export { queryTerm };
+export { search };
