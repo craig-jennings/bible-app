@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { hot } from 'react-hot-loader/root';
 import BookSelectorPage from '../pages/BookSelectorPage';
 import ChapterSelectorPage from '../pages/ChapterSelectorPage';
 import Footer from './footer/Footer';
@@ -37,4 +36,4 @@ const App = () => (
   </AppContainer>
 );
 
-export default hot(App);
+export default App;

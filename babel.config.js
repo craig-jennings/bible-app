@@ -1,14 +1,14 @@
 module.exports = (api) => {
-  api.cache(true);
-
-  const isRelease = process.env.RELEASE === 'true';
-
   const config = {
-    plugins: [['babel-plugin-styled-components', { fileName: false }], 'react-hot-loader/babel'],
-    presets: ['@babel/preset-react'],
+    plugins: [
+      ['babel-plugin-styled-components', { fileName: false }],
+      !api.env('production') && 'react-refresh/babel',
+    ],
+
+    presets: [['@babel/preset-react', { runtime: 'automatic' }]],
   };
 
-  if (isRelease) {
+  if (process.env.RELEASE === 'true') {
     config.plugins.push('transform-react-remove-prop-types');
     config.plugins.push(['react-remove-properties', { properties: ['data-testid'] }]);
   }

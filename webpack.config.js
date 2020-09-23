@@ -1,7 +1,10 @@
 const { InjectManifest } = require('workbox-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const webpack = require('webpack');
+
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   devServer: {
@@ -11,9 +14,8 @@ module.exports = {
     open: true,
   },
 
-  devtool: 'cheap-source-map',
-
-  entry: ['react-hot-loader/patch', './src/index.js'],
+  devtool: 'source-map',
+  entry: './src/index.js',
 
   module: {
     rules: [
@@ -80,15 +82,10 @@ module.exports = {
 
     new webpack.ProvidePlugin({
       PropTypes: 'prop-types',
-      React: 'react',
     }),
-  ],
 
-  resolve: {
-    alias: {
-      'react-dom': '@hot-loader/react-dom',
-    },
-  },
+    isDevelopment && new ReactRefreshWebpackPlugin(),
+  ],
 
   stats: {
     builtAt: false,
