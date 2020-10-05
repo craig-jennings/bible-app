@@ -9,6 +9,7 @@ import { useQuery } from 'react-query';
 import Page404 from '../components/errors/Page404';
 import Passage from '../components/passage/Passage';
 import ScrollUp from '../components/scrollers/ScrollUp';
+import WakeLock from '../components/base/WakeLock';
 
 function PassagePage() {
   /* -- Hooks -- */
@@ -72,6 +73,7 @@ function PassagePage() {
         <>
           <Passage onDecrement={handleDecrement} onIncrement={handleIncrement} passage={passage} />
           <ScrollUp />
+          <WakeLock />
         </>
       );
   }
