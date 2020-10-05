@@ -1,5 +1,5 @@
-const { HeaderProvider } = require('./contexts/HeaderContext');
-const { NotificationProvider } = require('./contexts/NotificationContext');
+import { HeaderProvider } from '../contexts/HeaderContext';
+import { NotificationProvider } from '../contexts/NotificationContext';
 
 const Providers = ({ children }) => (
   <HeaderProvider>

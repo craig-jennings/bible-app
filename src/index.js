@@ -1,7 +1,7 @@
 import { LS_PATH_KEY } from './components/base/LocationTracker';
 import App from './components/App';
 import GlobalStyles from './components/GlobalStyles';
-import Providers from './Providers';
+import Providers from './components/Providers';
 import ReactDOM from 'react-dom';
 import SWInstaller from './components/SWInstaller';
 

@@ -10,7 +10,10 @@
 
   "globals": {
     "PropTypes": false,
-    "React": false
+  },
+
+  "parserOptions": {
+    "ecmaVersion": 2020
   },
 
   "plugins": [
@@ -43,6 +46,7 @@
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-props-no-spreading": "off",
     "react/no-unused-state": "off",
+    "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
 
     "sort-imports-es6-autofix/sort-imports-es6": ["error", {
