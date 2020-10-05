@@ -1,10 +1,8 @@
 import { LS_PATH_KEY } from './components/base/LocationTracker';
-import { NotificationProvider } from './contexts/NotificationContext';
-import { Provider } from 'react-redux';
 import App from './components/App';
 import GlobalStyles from './components/GlobalStyles';
+import Providers from './Providers';
 import ReactDOM from 'react-dom';
-import store from './store';
 import SWInstaller from './components/SWInstaller';
 
 (() => {
@@ -17,13 +15,11 @@ import SWInstaller from './components/SWInstaller';
   }
 
   const Root = () => (
-    <Provider store={store}>
-      <NotificationProvider>
-        <GlobalStyles />
-        <App />
-        <SWInstaller />
-      </NotificationProvider>
-    </Provider>
+    <Providers>
+      <GlobalStyles />
+      <App />
+      <SWInstaller />
+    </Providers>
   );
 
   ReactDOM.render(<Root />, document.querySelector('main'));

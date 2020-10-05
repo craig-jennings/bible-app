@@ -1,16 +1,13 @@
-import { setHeader } from '../actions/header';
-import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { useHeaderActionsContext } from '../contexts/HeaderContext';
 import { useParams } from 'react-router-dom';
 import ChapterSelector from '../components/selectors/ChapterSelector';
 
 function ChapterSelectorPage() {
   const { book } = useParams();
-  const dispatch = useDispatch();
+  const { setHeader } = useHeaderActionsContext();
 
-  useEffect(() => {
-    dispatch(setHeader(book));
-  }, [book, dispatch]);
+  useEffect(() => void setHeader(book), [book, setHeader]); // eslint-disable-line no-void
 
   return <ChapterSelector book={book} />;
 }

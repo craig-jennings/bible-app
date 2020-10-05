@@ -1,14 +1,11 @@
-import { resetHeader } from '../actions/header';
-import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { useHeaderActionsContext } from '../contexts/HeaderContext';
 import BookSelector from '../components/selectors/BookSelector';
 
 function BookSelectorPage() {
-  const dispatch = useDispatch();
+  const { resetHeader } = useHeaderActionsContext();
 
-  useEffect(() => {
-    dispatch(resetHeader());
-  }, [dispatch]);
+  useEffect(() => void resetHeader(), [resetHeader]); // eslint-disable-line no-void
 
   return <BookSelector />;
 }

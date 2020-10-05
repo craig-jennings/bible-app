@@ -1,7 +1,7 @@
 import { CenterBox, FlexBox } from '../base/Box';
 import { SearchIcon } from '../base/Icons';
 import { UnstyledLink } from '../base/Unstyled';
-import { useSelector } from 'react-redux';
+import { useHeaderStateContext } from '../../contexts/HeaderContext';
 import styled from 'styled-components';
 
 const HeaderContainer = styled(FlexBox)`
@@ -29,7 +29,7 @@ const SearchLink = styled(UnstyledLink)`
 
 function Header() {
   /* -- Hooks -- */
-  const header = useSelector((state) => state.header);
+  const header = useHeaderStateContext();
 
   /* -- Rendering -- */
   const bookEl = header.value && (
