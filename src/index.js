@@ -1,4 +1,5 @@
 import { LS_PATH_KEY } from './components/base/LocationTracker';
+import { NotificationProvider } from './contexts/NotificationContext';
 import { Provider } from 'react-redux';
 import App from './components/App';
 import GlobalStyles from './components/GlobalStyles';
@@ -17,9 +18,11 @@ import SWInstaller from './components/SWInstaller';
 
   const Root = () => (
     <Provider store={store}>
-      <GlobalStyles />
-      <App />
-      <SWInstaller />
+      <NotificationProvider>
+        <GlobalStyles />
+        <App />
+        <SWInstaller />
+      </NotificationProvider>
     </Provider>
   );
 

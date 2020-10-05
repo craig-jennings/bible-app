@@ -1,10 +1,10 @@
-import { addNotification, NotificationType } from '../actions/notifications';
-import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { useNotificationActionsContext } from '../contexts/NotificationContext';
 import { Workbox } from 'workbox-window';
+import SWUpdate from './notifications/SWUpdate';
 
 function SWInstaller() {
-  const dispatch = useDispatch();
+  const { addNotification } = useNotificationActionsContext();
 
   useEffect(() => {
     if ('serviceWorker' in navigator) {
@@ -18,13 +18,13 @@ function SWInstaller() {
 
           updatePending = true;
 
-          dispatch(addNotification(NotificationType.SERVICE_WORKER));
+          addNotification(<SWUpdate />);
         }
       });
 
       wb.register();
     }
-  }, [dispatch]);
+  }, []);
 
   return null;
 }

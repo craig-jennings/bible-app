@@ -84,6 +84,7 @@ module.exports = {
       PropTypes: 'prop-types',
     }),
 
+    isDevelopment && new webpack.HotModuleReplacementPlugin(),
     isDevelopment && new ReactRefreshWebpackPlugin(),
   ],
 
