@@ -3,6 +3,7 @@ module.exports = (api) => {
   api.cache.forever();
 
   const isProd = process.env.NODE_ENV === 'production';
+  const isRelease = process.env.RELEASE === 'true';
 
   const config = {
     plugins: [
@@ -13,7 +14,7 @@ module.exports = (api) => {
     presets: [['@babel/preset-react', { runtime: 'automatic' }]],
   };
 
-  if (isProd) {
+  if (isRelease) {
     config.plugins.push('transform-react-remove-prop-types');
     config.plugins.push(['react-remove-properties', { properties: ['data-testid'] }]);
   }

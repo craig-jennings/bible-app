@@ -25,6 +25,9 @@ jobs:
 
       - name: Install netlify-cli
         run: sudo yarn global add netlify-cli
-      
+
       - name: Deploy
         run: netlify deploy --dir dist --prod --message "Deployment of $GITHUB_REF"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

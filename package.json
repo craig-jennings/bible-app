@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "build:dev": "webpack --mode development",
-    "build:prod": "webpack --mode production",
+    "build:prod": "cross-env NODE_ENV=production webpack --mode production",
     "clean": "rimraf dist",
     "serve": "sirv dist --single",
     "start": "webpack-dev-server",
@@ -43,6 +43,7 @@
     "babel-plugin-styled-components": "^1.10.6",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "copy-webpack-plugin": "^6.0.0",
+    "cross-env": "^7.0.2",
     "eslint": "^7.1.0",
     "eslint-config-airbnb": "^18.0.0",
     "eslint-config-prettier": "^6.2.0",
