@@ -34,10 +34,7 @@ function Search() {
   const page = searchParams.get('page');
   const q = searchParams.get('q');
 
-  const { data, status } = useQuery(['search', q, page], () => search(q, page), {
-    refetchOnWindowFocus: false,
-    staleTime: 60 * 1000,
-  });
+  const { data, status } = useQuery(['search', q, page], () => search(q, page));
 
   /* -- Event Handlers -- */
   const handleNextPage = () => {

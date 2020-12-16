@@ -20,13 +20,8 @@ function PassagePage() {
   // eslint-disable-next-line no-void
   useEffect(() => void setHeader(book, chapter), [book, chapter, setHeader]);
 
-  const { data: passage, status } = useQuery(
-    ['passage', book, chapter],
-    () => fetchPassage(book, chapter),
-    {
-      refetchOnWindowFocus: false,
-      staleTime: 60 * 1000,
-    },
+  const { data: passage, status } = useQuery(['passage', book, chapter], () =>
+    fetchPassage(book, chapter),
   );
 
   /* -- Event Handlers -- */
