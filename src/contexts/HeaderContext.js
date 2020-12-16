@@ -35,8 +35,8 @@ const useHeaderStateContext = () => useContext(HeaderStateContext);
 function HeaderProvider({ children }) {
   const [header, dispatch] = useReducer(reducer, []);
 
-  const actions = useMemo(() => {
-    return {
+  const actions = useMemo(
+    () => ({
       setHeader: (book, chapter) => {
         const bookValue = findBookByValue(book);
 
@@ -51,8 +51,9 @@ function HeaderProvider({ children }) {
       },
 
       resetHeader: () => dispatch({ type: HeaderActionType.RESET }),
-    };
-  }, []);
+    }),
+    [],
+  );
 
   return (
     <HeaderActionsContext.Provider value={actions}>
