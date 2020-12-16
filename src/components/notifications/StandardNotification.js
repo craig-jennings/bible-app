@@ -27,16 +27,11 @@ const Container = styled(NotificationContainer)`
   }}
 `;
 
-const StandardNotification = ({ children, variant }) => {
-  /* -- Hooks -- */
-  /* -- Event Handlers -- */
-  /* -- Rendering -- */
-  return (
-    <Container alignItems="center" justifyContent="space-between" px={3} variant={variant}>
-      {children}
-    </Container>
-  );
-};
+const StandardNotification = ({ children, variant }) => (
+  <Container alignItems="center" justifyContent="space-between" px={3} variant={variant}>
+    {children}
+  </Container>
+);
 
 StandardNotification.propTypes = {
   children: PropTypes.node,

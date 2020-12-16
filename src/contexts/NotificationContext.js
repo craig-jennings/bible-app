@@ -42,8 +42,8 @@ const useNotificationStateContext = () => useContext(NotificationStateContext);
 function NotificationProvider({ children }) {
   const [notifications, dispatch] = useReducer(reducer, []);
 
-  const actions = useMemo(() => {
-    return {
+  const actions = useMemo(
+    () => ({
       addNotification: (content) => {
         dispatch({
           payload: {
@@ -63,8 +63,9 @@ function NotificationProvider({ children }) {
           type: NotificationActionType.REMOVE,
         });
       },
-    };
-  }, []);
+    }),
+    [],
+  );
 
   return (
     <NotificationActionsContext.Provider value={actions}>
