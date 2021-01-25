@@ -1,0 +1,1217 @@
+{
+  "inputs": {
+    "_snowpack/pkg/common/_commonjsHelpers-8c19dec8.js": {
+      "bytes": 838,
+      "imports": []
+    },
+    "_snowpack/pkg/common/index-57a74e37.js": {
+      "bytes": 8631,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/_commonjsHelpers-8c19dec8.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/react/jsx-runtime.js": {
+      "bytes": 1133,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/_commonjsHelpers-8c19dec8.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/index-57a74e37.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/common/extends-7477639a.js": {
+      "bytes": 410,
+      "imports": []
+    },
+    "_snowpack/pkg/react-router-dom.js": {
+      "bytes": 12893,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/extends-7477639a.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/_commonjsHelpers-8c19dec8.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/index-57a74e37.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/base/LocationTracker.js": {
+      "bytes": 384,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react-router-dom.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/react.js": {
+      "bytes": 477,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/index-57a74e37.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/_commonjsHelpers-8c19dec8.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/data/NewTestament.js": {
+      "bytes": 1764,
+      "imports": []
+    },
+    "dist/data/OldTestament.js": {
+      "bytes": 2507,
+      "imports": []
+    },
+    "dist/data/findBook.js": {
+      "bytes": 738,
+      "imports": [
+        {
+          "path": "dist/data/NewTestament.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/data/OldTestament.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/contexts/HeaderContext.js": {
+      "bytes": 1577,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/data/findBook.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/base/mixins/display.js": {
+      "bytes": 117,
+      "imports": []
+    },
+    "dist/components/base/mixins/flex.js": {
+      "bytes": 339,
+      "imports": []
+    },
+    "dist/components/base/mixins/position.js": {
+      "bytes": 114,
+      "imports": []
+    },
+    "dist/components/base/mixins/spacing.js": {
+      "bytes": 1022,
+      "imports": []
+    },
+    "_snowpack/pkg/styled-components.js": {
+      "bytes": 50270,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/_commonjsHelpers-8c19dec8.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/index-57a74e37.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/base/Box.js": {
+      "bytes": 994,
+      "imports": [
+        {
+          "path": "dist/components/base/mixins/display.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/mixins/flex.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/mixins/position.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/mixins/spacing.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/base/Form.js": {
+      "bytes": 1166,
+      "imports": [
+        {
+          "path": "dist/components/base/mixins/spacing.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/selectors/SelectorList.js": {
+      "bytes": 838,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react-router-dom.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/hooks/useFormInput.js": {
+      "bytes": 283,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/selectors/BookSelector.js": {
+      "bytes": 2097,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/Box.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/Form.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/selectors/SelectorList.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/data/NewTestament.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/data/OldTestament.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/hooks/useFormInput.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/pages/BookSelectorPage.js": {
+      "bytes": 495,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/contexts/HeaderContext.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/selectors/BookSelector.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/errors/Page404.js": {
+      "bytes": 268,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/Box.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/selectors/ChapterSelector.js": {
+      "bytes": 1792,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/Box.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/data/findBook.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/Form.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/selectors/SelectorList.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/errors/Page404.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/hooks/useFormInput.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/pages/ChapterSelectorPage.js": {
+      "bytes": 639,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/contexts/HeaderContext.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react-router-dom.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/selectors/ChapterSelector.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/footer/Footer.js": {
+      "bytes": 755,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/Box.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/base/Icons.js": {
+      "bytes": 1498,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/base/Unstyled.js": {
+      "bytes": 621,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react-router-dom.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/header/Header.js": {
+      "bytes": 2364,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/Box.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/Icons.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/Unstyled.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/contexts/HeaderContext.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/react-spring.js": {
+      "bytes": 56691,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/extends-7477639a.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/index-57a74e37.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/_commonjsHelpers-8c19dec8.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/nanoid/non-secure.js": {
+      "bytes": 506,
+      "imports": []
+    },
+    "dist/contexts/NotificationContext.js": {
+      "bytes": 1939,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/nanoid/non-secure.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/notifications/Notifications.js": {
+      "bytes": 2275,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react-spring.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/Box.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/contexts/NotificationContext.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/wc-spinners/dist/orbit-spinner.js": {
+      "bytes": 3372,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/_commonjsHelpers-8c19dec8.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/api/passage.js": {
+      "bytes": 1124,
+      "imports": [
+        {
+          "path": "dist/data/findBook.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/react-query.js": {
+      "bytes": 74271,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/extends-7477639a.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/index-57a74e37.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/_commonjsHelpers-8c19dec8.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/hammerjs.js": {
+      "bytes": 73956,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/_commonjsHelpers-8c19dec8.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/hooks/useHammerEffect.js": {
+      "bytes": 785,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/hammerjs.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/passage/Passage.js": {
+      "bytes": 1127,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/hooks/useHammerEffect.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/scrollers/ScrollUp.js": {
+      "bytes": 1409,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/Box.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/Icons.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/base/WakeLock.js": {
+      "bytes": 562,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/pages/PassagePage.js": {
+      "bytes": 2664,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/wc-spinners/dist/orbit-spinner.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/Box.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/api/passage.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/data/findBook.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/contexts/HeaderContext.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react-router-dom.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react-query.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/errors/Page404.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/passage/Passage.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/scrollers/ScrollUp.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/WakeLock.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/api/search.js": {
+      "bytes": 997,
+      "imports": []
+    },
+    "dist/components/pagination/Pagination.js": {
+      "bytes": 2003,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/Box.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/search/SearchItem.js": {
+      "bytes": 1622,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/Box.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/data/findBook.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react-router-dom.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/search/Search.js": {
+      "bytes": 3138,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/wc-spinners/dist/orbit-spinner.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/Box.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/Form.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/api/search.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react-query.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react-router-dom.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/pagination/Pagination.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/search/SearchItem.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/hooks/useFormInput.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/pages/SearchPage.js": {
+      "bytes": 494,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/contexts/HeaderContext.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/search/Search.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/pages/UnknownPage.js": {
+      "bytes": 214,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/errors/Page404.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/App.js": {
+      "bytes": 1874,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react-router-dom.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/pages/BookSelectorPage.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/pages/ChapterSelectorPage.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/footer/Footer.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/header/Header.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/LocationTracker.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/notifications/Notifications.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/pages/PassagePage.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/pages/SearchPage.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/pages/UnknownPage.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/GlobalStyles.js": {
+      "bytes": 1075,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/Providers.js": {
+      "bytes": 720,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/contexts/HeaderContext.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/contexts/NotificationContext.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react-query.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/react-dom.js": {
+      "bytes": 127525,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/_commonjsHelpers-8c19dec8.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/index-57a74e37.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/env.js": {
+      "bytes": 97,
+      "imports": []
+    },
+    "_snowpack/pkg/workbox-window.js": {
+      "bytes": 5300,
+      "imports": []
+    },
+    "dist/components/base/Buttons.js": {
+      "bytes": 1401,
+      "imports": [
+        {
+          "path": "dist/components/base/Unstyled.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/notifications/NotificationContainer.js": {
+      "bytes": 381,
+      "imports": [
+        {
+          "path": "dist/components/base/Box.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/notifications/SWUpdate.js": {
+      "bytes": 1175,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/Buttons.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/Box.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/notifications/NotificationContainer.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/components/SWInstaller.js": {
+      "bytes": 1169,
+      "imports": [
+        {
+          "path": "_snowpack/env.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/contexts/NotificationContext.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/workbox-window.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/notifications/SWUpdate.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/index.js": {
+      "bytes": 920,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react/jsx-runtime.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/base/LocationTracker.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/App.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/GlobalStyles.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/Providers.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react-dom.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/components/SWInstaller.js",
+          "kind": "import-statement"
+        }
+      ]
+    }
+  },
+  "outputs": {
+    "../~~bundle~~/dist/index.js": {
+      "imports": [],
+      "exports": [],
+      "inputs": {
+        "_snowpack/pkg/common/_commonjsHelpers-8c19dec8.js": {
+          "bytesInOutput": 381
+        },
+        "_snowpack/pkg/common/index-57a74e37.js": {
+          "bytesInOutput": 6957
+        },
+        "_snowpack/pkg/react/jsx-runtime.js": {
+          "bytesInOutput": 718
+        },
+        "_snowpack/pkg/common/extends-7477639a.js": {
+          "bytesInOutput": 208
+        },
+        "_snowpack/pkg/react-router-dom.js": {
+          "bytesInOutput": 10944
+        },
+        "dist/components/base/LocationTracker.js": {
+          "bytesInOutput": 119
+        },
+        "_snowpack/pkg/react.js": {
+          "bytesInOutput": 126
+        },
+        "dist/data/NewTestament.js": {
+          "bytesInOutput": 1379
+        },
+        "dist/data/OldTestament.js": {
+          "bytesInOutput": 1954
+        },
+        "dist/data/findBook.js": {
+          "bytesInOutput": 226
+        },
+        "dist/contexts/HeaderContext.js": {
+          "bytesInOutput": 498
+        },
+        "dist/components/base/mixins/display.js": {
+          "bytesInOutput": 60
+        },
+        "dist/components/base/mixins/flex.js": {
+          "bytesInOutput": 214
+        },
+        "dist/components/base/mixins/position.js": {
+          "bytesInOutput": 59
+        },
+        "dist/components/base/mixins/spacing.js": {
+          "bytesInOutput": 586
+        },
+        "_snowpack/pkg/styled-components.js": {
+          "bytesInOutput": 35247
+        },
+        "dist/components/base/Box.js": {
+          "bytesInOutput": 523
+        },
+        "dist/components/base/Form.js": {
+          "bytesInOutput": 929
+        },
+        "dist/components/selectors/SelectorList.js": {
+          "bytesInOutput": 595
+        },
+        "dist/hooks/useFormInput.js": {
+          "bytesInOutput": 83
+        },
+        "dist/components/selectors/BookSelector.js": {
+          "bytesInOutput": 743
+        },
+        "dist/pages/BookSelectorPage.js": {
+          "bytesInOutput": 85
+        },
+        "dist/components/errors/Page404.js": {
+          "bytesInOutput": 85
+        },
+        "dist/components/selectors/ChapterSelector.js": {
+          "bytesInOutput": 584
+        },
+        "dist/pages/ChapterSelectorPage.js": {
+          "bytesInOutput": 106
+        },
+        "dist/components/footer/Footer.js": {
+          "bytesInOutput": 422
+        },
+        "dist/components/base/Icons.js": {
+          "bytesInOutput": 692
+        },
+        "dist/components/base/Unstyled.js": {
+          "bytesInOutput": 382
+        },
+        "dist/components/header/Header.js": {
+          "bytesInOutput": 1025
+        },
+        "_snowpack/pkg/react-spring.js": {
+          "bytesInOutput": 23805
+        },
+        "_snowpack/pkg/nanoid/non-secure.js": {
+          "bytesInOutput": 145
+        },
+        "dist/contexts/NotificationContext.js": {
+          "bytesInOutput": 639
+        },
+        "dist/components/notifications/Notifications.js": {
+          "bytesInOutput": 954
+        },
+        "_snowpack/pkg/wc-spinners/dist/orbit-spinner.js": {
+          "bytesInOutput": 3045
+        },
+        "dist/api/passage.js": {
+          "bytesInOutput": 586
+        },
+        "_snowpack/pkg/react-query.js": {
+          "bytesInOutput": 34027
+        },
+        "_snowpack/pkg/hammerjs.js": {
+          "bytesInOutput": 20663
+        },
+        "dist/hooks/useHammerEffect.js": {
+          "bytesInOutput": 319
+        },
+        "dist/components/passage/Passage.js": {
+          "bytesInOutput": 576
+        },
+        "dist/components/scrollers/ScrollUp.js": {
+          "bytesInOutput": 648
+        },
+        "dist/components/base/WakeLock.js": {
+          "bytesInOutput": 206
+        },
+        "dist/pages/PassagePage.js": {
+          "bytesInOutput": 574
+        },
+        "dist/api/search.js": {
+          "bytesInOutput": 502
+        },
+        "dist/components/pagination/Pagination.js": {
+          "bytesInOutput": 997
+        },
+        "dist/components/search/SearchItem.js": {
+          "bytesInOutput": 746
+        },
+        "dist/components/search/Search.js": {
+          "bytesInOutput": 1038
+        },
+        "dist/pages/SearchPage.js": {
+          "bytesInOutput": 85
+        },
+        "dist/pages/UnknownPage.js": {
+          "bytesInOutput": 26
+        },
+        "dist/components/App.js": {
+          "bytesInOutput": 453
+        },
+        "dist/components/GlobalStyles.js": {
+          "bytesInOutput": 945
+        },
+        "dist/components/Providers.js": {
+          "bytesInOutput": 173
+        },
+        "_snowpack/pkg/react-dom.js": {
+          "bytesInOutput": 124095
+        },
+        "_snowpack/env.js": {
+          "bytesInOutput": 20
+        },
+        "_snowpack/pkg/workbox-window.js": {
+          "bytesInOutput": 5237
+        },
+        "dist/components/base/Buttons.js": {
+          "bytesInOutput": 1166
+        },
+        "dist/components/notifications/NotificationContainer.js": {
+          "bytesInOutput": 199
+        },
+        "dist/components/notifications/SWUpdate.js": {
+          "bytesInOutput": 500
+        },
+        "dist/components/SWInstaller.js": {
+          "bytesInOutput": 341
+        },
+        "dist/index.js": {
+          "bytesInOutput": 218
+        }
+      },
+      "bytes": 289301
+    }
+  }
+}
