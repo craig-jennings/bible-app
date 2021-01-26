@@ -22,9 +22,9 @@ const Underline = styled.div`
 
 interface SearchItemProps {
   item: {
-    content: string,
-    reference: string,
-  }
+    content: string;
+    reference: string;
+  };
 }
 
 function SearchItem({ item }: SearchItemProps) {
