@@ -19,7 +19,7 @@
     "start": "snowpack dev",
     "test": "npm-run-all test:eslint test:e2e",
     "test:e2e": "testcafe chrome ./test/**/*.spec.js --app \"yarn serve\"",
-    "test:eslint": "eslint src/ test/ --quiet"
+    "test:eslint": "eslint src/ test/ --ext js,ts,tsx --quiet"
   },
   "dependencies": {
     "hammerjs": "2.0.8",

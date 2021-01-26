@@ -32,15 +32,15 @@ const PaginationButton = styled.button`
 
 interface PaginationProps {
   pagination: {
-    endRange: number,
-    hasNextPage: boolean,
-    hasPrevPage: boolean,
-    startRange: number,
-    totalResults: number,
-  },
+    endRange: number;
+    hasNextPage: boolean;
+    hasPrevPage: boolean;
+    startRange: number;
+    totalResults: number;
+  };
 
-  onNextClick: () => void,
-  onPrevClick: () => void,
+  onNextClick: () => void;
+  onPrevClick: () => void;
 }
 
 function Pagination({ pagination, onNextClick, onPrevClick }: PaginationProps) {
