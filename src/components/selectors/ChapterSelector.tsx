@@ -1,9 +1,9 @@
-import { Box, CenterBox } from '../base/Box';
-import { findBookByValue } from '../../data/findBook';
-import { FormInput } from '../base/Form';
+import { Box, CenterBox } from '@common/Box';
+import { findBookByValue } from '@data/findBook';
+import { FormInput } from '@common/Form';
 import { SelectorList, SelectorListItem } from './SelectorList';
-import Page404 from '../errors/Page404';
-import useFormInput from '../../hooks/useFormInput';
+import Page404 from '@components/errors/Page404';
+import useFormInput from '@hooks/useFormInput';
 
 function buildChapterList(chapterCount: number, term: string) {
   let filteredChapters = [];

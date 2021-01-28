@@ -1,12 +1,8 @@
-import { getWindowLocation } from './utils/clientFunctions';
-import { root } from './utils/root';
-import Header from './components/Header';
-import Passage from './components/Passage';
-import Search from './components/Search';
-
-const header = new Header();
-const passage = new Passage();
-const search = new Search();
+import { getWindowLocation } from '../utils/clientFunctions';
+import { root } from '../utils/root';
+import header from '../components/Header';
+import passage from '../components/Passage';
+import search from '../components/Search';
 
 fixture('Search').page(`${root}/search`);
 

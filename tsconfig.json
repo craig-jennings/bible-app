@@ -2,13 +2,26 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
     "noImplicitAny": true,
+
+    "paths": {
+      "@api/*": ["./src/api/*"],
+      "@common/*": ["./src/components/common/*"],
+      "@components/*": ["./src/components/*"],
+      "@contexts/*": ["./src/contexts/*"],
+      "@data/*": ["./src/data/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@test/*": ["./src/test/*"],
+      "@utils/*": ["./src/utils/*"]
+    },
+
     "skipLibCheck": true,
     "strict": true,
-    "target": "esnext"
+    "target": "es2018"
   }
 }

@@ -1,4 +1,4 @@
-import { findBookByValue } from '../data/findBook';
+import { findBookByValue } from '@data/findBook';
 
 const _baseUrl = 'https://api.esv.org/v3/passage/html/?';
 const _token = 'b960fb5d8eee535706d94159a4cce424b2414538';

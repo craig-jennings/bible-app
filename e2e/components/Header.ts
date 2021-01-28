@@ -1,10 +1,6 @@
 import TestComponent, { byTestId } from '../utils/TestComponent';
 
 class Header extends TestComponent {
-  static get testId() {
-    return 'header';
-  }
-
   get book() {
     return this.container.find(byTestId('book'));
   }
@@ -14,4 +10,5 @@ class Header extends TestComponent {
   }
 }
 
-export default Header;
+export default new Header('header');
+export { Header };

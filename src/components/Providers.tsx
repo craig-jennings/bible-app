@@ -1,5 +1,5 @@
-import { HeaderProvider } from '../contexts/HeaderContext';
-import { NotificationProvider } from '../contexts/NotificationContext';
+import { HeaderProvider } from '@contexts/HeaderContext';
+import { NotificationProvider } from '@contexts/NotificationContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const queryClient = new QueryClient({

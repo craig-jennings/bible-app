@@ -1,9 +1,6 @@
-import { root } from './utils/root';
-import Pagination from './components/Pagination';
-import Search from './components/Search';
-
-const pagination = new Pagination();
-const search = new Search();
+import { root } from '../utils/root';
+import pagination from '../components/Pagination';
+import search from '../components/Search';
 
 fixture('Pagination').page(`${root}/search`);
 

@@ -1,7 +1,7 @@
-import { CenterBox, FlexBox } from '../base/Box';
-import { SearchIcon } from '../base/Icons';
-import { UnstyledLink } from '../base/Unstyled';
-import { useHeaderStateContext } from '../../contexts/HeaderContext';
+import { CenterBox, FlexBox } from '@common/Box';
+import { SearchIcon } from '@common/Icons';
+import { UnstyledLink } from '@common/Unstyled';
+import { useHeaderStateContext } from '@contexts/HeaderContext';
 import styled from 'styled-components';
 
 const HeaderContainer = styled(FlexBox)`

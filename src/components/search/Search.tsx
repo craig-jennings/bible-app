@@ -1,13 +1,13 @@
 import 'wc-spinners/dist/orbit-spinner';
-import { Box, CenterBox, InlineBox } from '../base/Box';
-import { Form, FormButton, FormInput } from '../base/Form';
+import { Box, CenterBox, InlineBox } from '@common/Box';
+import { Form, FormButton, FormInput } from '@common/Form';
 import { FormEvent } from 'react';
-import { search } from '../../api/search';
+import { search } from '@api/search';
 import { useQuery } from 'react-query';
 import { useSearchParams } from 'react-router-dom';
-import Pagination from '../pagination/Pagination';
+import Pagination from '@components/pagination/Pagination';
 import SearchItem from './SearchItem';
-import useFormInput from '../../hooks/useFormInput';
+import useFormInput from '@hooks/useFormInput';
 
 function getResultList(results: any[] | null) {
   if (!results) return null;

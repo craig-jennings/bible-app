@@ -1,8 +1,6 @@
-import { getWindowScroll, setWindowScroll } from './utils/clientFunctions';
-import { root } from './utils/root';
-import ScrollUp from './components/ScrollUp';
-
-const scrollUp = new ScrollUp();
+import { getWindowScroll, setWindowScroll } from '../utils/clientFunctions';
+import { root } from '../utils/root';
+import scrollUp from '../components/ScrollUp';
 
 fixture('Scroller Button').page(`${root}/genesis/1`);
 

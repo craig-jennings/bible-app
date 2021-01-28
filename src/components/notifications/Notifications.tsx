@@ -1,9 +1,9 @@
 import { animated, useTransition } from 'react-spring';
-import { Box, FlexBox } from '../base/Box';
+import { Box, FlexBox } from '@common/Box';
 import {
   useNotificationActionsContext,
   useNotificationStateContext,
-} from '../../contexts/NotificationContext';
+} from '@contexts/NotificationContext';
 import { useState } from 'react';
 import styled from 'styled-components';
 

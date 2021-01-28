@@ -1,7 +1,9 @@
 import TestComponent, { byTestId } from '../utils/TestComponent';
 
 class SearchItem {
-  constructor(container) {
+  public readonly container: Selector;
+
+  constructor(container: Selector) {
     this.container = container;
   }
 
@@ -11,10 +13,6 @@ class SearchItem {
 }
 
 class Search extends TestComponent {
-  static get testId() {
-    return 'search';
-  }
-
   get noResults() {
     return this.container.find(byTestId('no-results'));
   }
@@ -31,9 +29,10 @@ class Search extends TestComponent {
     return this.container.find(byTestId('search-item'));
   }
 
-  getNthResult(n) {
+  getNthResult(n: number) {
     return new SearchItem(this.results.nth(n));
   }
 }
 
-export default Search;
+export default new Search('search');
+export { Search };

@@ -1,11 +1,10 @@
 module.exports = (api) => {
-  // Cache the returned value forever and don't call this function again
-  api.cache.forever();
+  api.cache(true);
 
   const isRelease = process.env.RELEASE === 'true';
 
   const config = {
-    plugins: [['babel-plugin-styled-components', { fileName: false }]].filter(Boolean),
+    plugins: [['babel-plugin-styled-components', { fileName: false }]],
     presets: ['@babel/preset-typescript', ['@babel/preset-react', { runtime: 'automatic' }]],
   };
 

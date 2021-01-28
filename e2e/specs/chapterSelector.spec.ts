@@ -1,12 +1,8 @@
-import { getWindowLocation } from './utils/clientFunctions';
-import { root } from './utils/root';
-import ChapterSelector from './components/ChapterSelector';
-import Header from './components/Header';
-import Passage from './components/Passage';
-
-const chapterSelector = new ChapterSelector();
-const header = new Header();
-const passage = new Passage();
+import { getWindowLocation } from '../utils/clientFunctions';
+import { root } from '../utils/root';
+import chapterSelector from '../components/ChapterSelector';
+import header from '../components/Header';
+import passage from '../components/Passage';
 
 fixture('Chapter Selection').page(`${root}/genesis`);
 

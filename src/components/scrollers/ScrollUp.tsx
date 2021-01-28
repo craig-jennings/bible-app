@@ -1,5 +1,5 @@
-import { CenterBox } from '../base/Box';
-import { UpCaret } from '../base/Icons';
+import { CenterBox } from '@common/Box';
+import { UpCaret } from '@common/Icons';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 

@@ -1,4 +1,4 @@
-import { CenterBox } from '../base/Box';
+import { CenterBox } from '@common/Box';
 import styled from 'styled-components';
 
 const Text = styled.small`

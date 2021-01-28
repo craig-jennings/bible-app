@@ -1,14 +1,14 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import BookSelectorPage from '../pages/BookSelectorPage';
-import ChapterSelectorPage from '../pages/ChapterSelectorPage';
-import Footer from './footer/Footer';
-import Header from './header/Header';
-import LocationTracker from './base/LocationTracker';
-import Notifications from './notifications/Notifications';
-import PassagePage from '../pages/PassagePage';
-import SearchPage from '../pages/SearchPage';
+import BookSelectorPage from '@pages/BookSelectorPage';
+import ChapterSelectorPage from '@pages/ChapterSelectorPage';
+import Footer from '@components/footer/Footer';
+import Header from '@components/header/Header';
+import LocationTracker from '@common/LocationTracker';
+import Notifications from '@components/notifications/Notifications';
+import PassagePage from '@pages/PassagePage';
+import SearchPage from '@pages/SearchPage';
 import styled from 'styled-components';
-import UnknownPage from '../pages/UnknownPage';
+import UnknownPage from '@pages/UnknownPage';
 
 const AppContainer = styled.div`
   display: grid;

@@ -1,10 +1,6 @@
 import TestComponent, { byTestId, getSelectorByTestId } from '../utils/TestComponent';
 
-class ChapterSelector  extends TestComponent {
-  static get testId() {
-    return 'chapter-selector';
-  }
-
+class ChapterSelector extends TestComponent {
   get errorEl() {
     return getSelectorByTestId('page-404');
   }
@@ -18,4 +14,5 @@ class ChapterSelector  extends TestComponent {
   }
 }
 
-export default ChapterSelector;
+export default new ChapterSelector('chapter-selector');
+export { ChapterSelector };

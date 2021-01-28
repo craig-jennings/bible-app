@@ -1,10 +1,6 @@
 import TestComponent, { byTestId } from '../utils/TestComponent';
 
 class Pagination extends TestComponent {
-  static get testId() {
-    return 'pagination';
-  }
-
   get nextBtn() {
     return this.container.find(byTestId('next-btn'));
   }
@@ -18,4 +14,5 @@ class Pagination extends TestComponent {
   }
 }
 
-export default Pagination;
+export default new Pagination('pagination');
+export { Pagination }

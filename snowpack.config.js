@@ -1,5 +1,22 @@
+const tsConfig = require('./tsconfig.json');
+
+function generateAliases() {
+  const { paths } = tsConfig.compilerOptions;
+  const aliases = {};
+
+  Object.entries(paths).forEach(([key, value]) => {
+    const alias = key.replace('/*', '');
+    const path = value[0].replace('/*', '');
+
+    aliases[alias] = path;
+  });
+
+  return aliases;
+}
+
 module.exports = {
-  exclude: ['**/.eslintrc', '**/serviceWorker.js'],
+  alias: generateAliases(),
+  exclude: ['**/.eslintrc', '**/serviceWorker.js', '**/test/*'],
 
   mount: {
     public: '/',
@@ -12,15 +29,10 @@ module.exports = {
     target: 'es2018',
   },
 
-  plugins: [
-    '@snowpack/plugin-typescript',
-    '@snowpack/plugin-babel',
-    '@snowpack/plugin-react-refresh',
-  ],
-
   packageOptions: {
     knownEntrypoints: ['react/jsx-runtime'],
   },
 
+  plugins: ['@snowpack/plugin-babel', '@snowpack/plugin-react-refresh'],
   routes: [{ match: 'routes', src: '.*', dest: '/index.html' }],
 };

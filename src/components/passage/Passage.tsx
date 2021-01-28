@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import styled from 'styled-components';
-import useHammerEffect from '../../hooks/useHammerEffect';
+import useHammerEffect from '@hooks/useHammerEffect';
 
 const PassageContainer = styled.div`
   font-size: 1.25rem;

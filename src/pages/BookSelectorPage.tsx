@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { useHeaderActionsContext } from '../contexts/HeaderContext';
-import BookSelector from '../components/selectors/BookSelector';
+import { useHeaderActionsContext } from '@contexts/HeaderContext';
+import BookSelector from '@components/selectors/BookSelector';
 
 function BookSelectorPage() {
   const { resetHeader } = useHeaderActionsContext();

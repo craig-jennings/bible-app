@@ -7,7 +7,13 @@ const getWindowScroll = ClientFunction(() => ({
   scrollY: window.scrollY,
 }));
 
-const setWindowScroll = ({ behavior = 'auto', left = 0, top }) =>
+interface WindowScrollOptions {
+  behavior?: ScrollBehavior;
+  left?: number;
+  top: number;
+}
+
+const setWindowScroll = ({ behavior = 'auto', left = 0, top }: WindowScrollOptions) =>
   ClientFunction(
     () => {
       window.scrollTo({ behavior, left, top });

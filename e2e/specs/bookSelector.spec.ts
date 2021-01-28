@@ -1,12 +1,8 @@
-import { getWindowLocation } from './utils/clientFunctions';
-import { root } from './utils/root';
-import BookSelector from './components/BookSelector';
-import ChapterSelector from './components/ChapterSelector';
-import Header from './components/Header';
-
-const bookSelector = new BookSelector();
-const chapterSelector = new ChapterSelector();
-const header = new Header();
+import { getWindowLocation } from '../utils/clientFunctions';
+import { root } from '../utils/root';
+import bookSelector from '../components/BookSelector';
+import chapterSelector from '../components/ChapterSelector';
+import header from '../components/Header';
 
 fixture('Book Selection').page(root);
 

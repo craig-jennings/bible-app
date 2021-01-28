@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { useHeaderActionsContext } from '../contexts/HeaderContext';
-import Search from '../components/search/Search';
+import { useHeaderActionsContext } from '@contexts/HeaderContext';
+import Search from '@components/search/Search';
 
 function SearchPage() {
   const { resetHeader } = useHeaderActionsContext();

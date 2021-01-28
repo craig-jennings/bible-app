@@ -1,5 +1,5 @@
-import { Button } from '../base/Buttons';
-import { FlexBox } from '../base/Box';
+import { Button } from '@common/Buttons';
+import { FlexBox } from '@common/Box';
 import NotificationContainer from './NotificationContainer';
 import styled from 'styled-components';
 

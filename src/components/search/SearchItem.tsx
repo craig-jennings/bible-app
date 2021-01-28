@@ -1,5 +1,5 @@
-import { Box } from '../base/Box';
-import { findBookByLabel } from '../../data/findBook';
+import { Box } from '@common/Box';
+import { findBookByLabel } from '@data/findBook';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 

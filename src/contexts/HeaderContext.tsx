@@ -1,5 +1,5 @@
 import { createContext, ReducerState, useContext, useMemo, useReducer } from 'react';
-import { findBookByValue } from '../data/findBook';
+import { findBookByValue } from '@data/findBook';
 
 type HeaderAction =
   | { type: 'RESET' }

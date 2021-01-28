@@ -1,15 +1,15 @@
 import 'wc-spinners/dist/orbit-spinner';
-import { CenterBox } from '../components/base/Box';
-import { fetchPassage } from '../api/passage';
-import { findBookByValue } from '../data/findBook';
+import { CenterBox } from '@components/common/Box';
+import { fetchPassage } from '@api/passage';
+import { findBookByValue } from '@data/findBook';
 import { useEffect } from 'react';
-import { useHeaderActionsContext } from '../contexts/HeaderContext';
+import { useHeaderActionsContext } from '@contexts/HeaderContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import Page404 from '../components/errors/Page404';
-import Passage from '../components/passage/Passage';
-import ScrollUp from '../components/scrollers/ScrollUp';
-import WakeLock from '../components/base/WakeLock';
+import Page404 from '@components/errors/Page404';
+import Passage from '@components/passage/Passage';
+import ScrollUp from '@components/scrollers/ScrollUp';
+import WakeLock from '@components/common/WakeLock';
 
 declare global {
   namespace JSX {
