@@ -1,4 +1,4 @@
-import { createContext, ReducerState, useContext, useMemo, useReducer } from 'react';
+import { createContext, useContext, useMemo, useReducer } from 'react';
 import { findBookByValue } from '@data/findBook';
 
 type HeaderAction =
@@ -17,14 +17,14 @@ interface State {
   value?: string;
 }
 
-interface HeaderActionsContext {
+interface IHeaderActionsContext {
   resetHeader: () => void;
   setHeader: (book: string, chapter?: string) => void;
 }
 
 const HeaderStateContext = createContext<State>({});
 
-const HeaderActionsContext = createContext<HeaderActionsContext>({
+const HeaderActionsContext = createContext<IHeaderActionsContext>({
   resetHeader: () => {},
   setHeader: () => {},
 });

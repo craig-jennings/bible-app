@@ -20,7 +20,7 @@ function useHammerEffect(ref: RefObject<HTMLElement>, actions: HammerAction[] = 
         [
           Hammer.Swipe,
           {
-            direction: Hammer.DIRECTION_LEFT | Hammer.DIRECTION_RIGHT,
+            direction: Hammer.DIRECTION_LEFT | Hammer.DIRECTION_RIGHT, // eslint-disable-line no-bitwise
             threshold: 100,
             velocity: 0.5,
           },

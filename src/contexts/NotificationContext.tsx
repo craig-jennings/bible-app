@@ -13,7 +13,7 @@ type NotificationAction =
   | { payload: string; type: 'REMOVE' }
   | { type: 'CLEAR' };
 
-interface NotificationActionsContext {
+interface INotificationActionsContext {
   addNotification: (content: JSX.Element) => void;
   clearNotifications: () => void;
   removeNotification: (key: string) => void;
@@ -22,7 +22,7 @@ interface NotificationActionsContext {
 const MAX_NOTIFICATIONS = 3;
 const NotificationStateContext = createContext<State>([]);
 
-const NotificationActionsContext = createContext<NotificationActionsContext>({
+const NotificationActionsContext = createContext<INotificationActionsContext>({
   addNotification: () => null,
   clearNotifications: () => null,
   removeNotification: () => null,

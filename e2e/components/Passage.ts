@@ -1,4 +1,4 @@
-import TestComponent, { getSelectorByTestId } from '../utils/TestComponent';
+import TestComponent from '../utils/TestComponent';
 
 interface Verse extends Selector {
   verseNumber: Promise<any>;
@@ -6,12 +6,8 @@ interface Verse extends Selector {
 }
 
 class Passage extends TestComponent {
-  get errorEl() {
-    return getSelectorByTestId('page-404');
-  }
-
   getNthVerse(n: number) {
-    return <Verse>this.container
+    return <Verse> this.container
       .find('.verse-num')
       .nth(n)
       .addCustomDOMProperties({

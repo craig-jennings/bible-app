@@ -1,5 +1,6 @@
-const _searchUrl = 'https://api.esv.org/v3/passage/search/?q=';
-const _token = 'b960fb5d8eee535706d94159a4cce424b2414538';
+import { TOKEN } from './apiToken';
+
+const SEARCH_URL = 'https://api.esv.org/v3/passage/search/?q=';
 
 const PAGE_SIZE = 20;
 
@@ -24,10 +25,10 @@ async function search(
     };
   }
 
-  const url = `${_searchUrl}${term}&page=${currentPage}`;
+  const url = `${SEARCH_URL}${term}&page=${currentPage}`;
 
   const res = await fetch(url, {
-    headers: { Authorization: `Token ${_token}` },
+    headers: { Authorization: `Token ${TOKEN}` },
   });
 
   const { page, results, total_pages: totalPages, total_results: totalResults } = await res.json();

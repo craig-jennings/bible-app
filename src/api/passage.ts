@@ -1,14 +1,14 @@
 import { findBookByValue } from '@data/findBook';
+import { TOKEN } from './apiToken';
 
-const _baseUrl = 'https://api.esv.org/v3/passage/html/?';
-const _token = 'b960fb5d8eee535706d94159a4cce424b2414538';
+const BASE_URL = 'https://api.esv.org/v3/passage/html/?';
 
 async function fetchPassage(book: string, chapter: string): Promise<string> {
   let reference = `${book} ${chapter}`;
 
-  const _book = findBookByValue(book);
+  const currentBook = findBookByValue(book);
 
-  if (_book.chapterCount === 1) {
+  if (currentBook.chapterCount === 1) {
     // Fetch the full chapter instead of just the first verse
     reference = `${book}`;
   }
@@ -21,11 +21,11 @@ async function fetchPassage(book: string, chapter: string): Promise<string> {
   searchParams.append('include-short-copyright', 'false');
   searchParams.append('q', reference);
 
-  const url = `${_baseUrl}${searchParams.toString()}`;
+  const url = `${BASE_URL}${searchParams.toString()}`;
 
   try {
     const res = await fetch(url, {
-      headers: { Authorization: `Token ${_token}` },
+      headers: { Authorization: `Token ${TOKEN}` },
     });
 
     const json = await res.json();

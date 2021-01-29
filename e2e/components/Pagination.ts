@@ -15,4 +15,4 @@ class Pagination extends TestComponent {
 }
 
 export default new Pagination('pagination');
-export { Pagination }
+export { Pagination };

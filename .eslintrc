@@ -4,6 +4,7 @@
   },
 
   "extends": [
+    "airbnb-typescript",
     "prettier"
   ],
 
@@ -17,20 +18,29 @@
   "plugins": [
     "@typescript-eslint/eslint-plugin",
     "import",
+    "jsx-a11y",
     "prettier",
-    "react",
     "react-hooks",
+    "react",
     "sort-imports-es6-autofix"
   ],
 
   "rules": {
-    "class-methods-use-this": "off",
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/lines-between-class-members": "off",
     "func-names": ["error", "as-needed"],
     "import/first": "error",
+    "import/order": "off",
+    "import/prefer-default-export": "off",
     "max-len": ["warn", 100],
-    "no-void":"off",
+    "no-plusplus": "off",
+    "no-void": "off",
     "object-curly-newline": ["error", { "consistent": true }],
     "prettier/prettier": "error",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
     "react-hooks/exhaustive-deps": "warn",
     "react-hooks/rules-of-hooks": "error",
 

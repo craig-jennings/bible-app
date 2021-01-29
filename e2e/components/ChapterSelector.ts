@@ -1,10 +1,6 @@
-import TestComponent, { byTestId, getSelectorByTestId } from '../utils/TestComponent';
+import TestComponent, { byTestId } from '../utils/TestComponent';
 
 class ChapterSelector extends TestComponent {
-  get errorEl() {
-    return getSelectorByTestId('page-404');
-  }
-
   get filterInput() {
     return this.container.find(byTestId('chapter-selector-input'));
   }

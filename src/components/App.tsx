@@ -1,14 +1,16 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import BookSelectorPage from '@pages/BookSelectorPage';
-import ChapterSelectorPage from '@pages/ChapterSelectorPage';
+import { lazy, Suspense } from 'react';
 import Footer from '@components/footer/Footer';
 import Header from '@components/header/Header';
 import LocationTracker from '@common/LocationTracker';
 import Notifications from '@components/notifications/Notifications';
-import PassagePage from '@pages/PassagePage';
-import SearchPage from '@pages/SearchPage';
 import styled from 'styled-components';
-import UnknownPage from '@pages/UnknownPage';
+
+const BookSelectorPage = lazy(() => import('@pages/BookSelectorPage'));
+const ChapterSelectorPage = lazy(() => import('@pages/ChapterSelectorPage'));
+const PassagePage = lazy(() => import('@pages/PassagePage'));
+const SearchPage = lazy(() => import('@pages/SearchPage'));
+const UnknownPage = lazy(() => import('@pages/UnknownPage'));
 
 const AppContainer = styled.div`
   display: grid;
@@ -21,13 +23,15 @@ const App = () => (
     <BrowserRouter>
       <Header />
 
-      <Routes>
-        <Route path="/" element={<BookSelectorPage />} />
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="/:book" element={<ChapterSelectorPage />} />
-        <Route path="/:book/:chapter" element={<PassagePage />} />
-        <Route path="*" element={<UnknownPage />} />
-      </Routes>
+      <Suspense fallback={<div>Loading</div>}>
+        <Routes>
+          <Route path="/" element={<BookSelectorPage />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/:book" element={<ChapterSelectorPage />} />
+          <Route path="/:book/:chapter" element={<PassagePage />} />
+          <Route path="*" element={<UnknownPage />} />
+        </Routes>
+      </Suspense>
 
       <Footer />
       <LocationTracker />
