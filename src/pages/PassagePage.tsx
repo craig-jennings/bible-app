@@ -32,7 +32,7 @@ function PassagePage() {
   // eslint-disable-next-line no-void
   useEffect(() => void setHeader(book, chapter), [book, chapter, setHeader]);
 
-  const { data: passage, status } = useQuery<string>(['passage', book, chapter], () =>
+  const { data: passage, status } = useQuery(['passage', book, chapter], () =>
     fetchPassage(book, chapter),
   );
 

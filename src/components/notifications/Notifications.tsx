@@ -1,4 +1,4 @@
-import { animated, useTransition } from 'react-spring';
+import { animated, useTransition } from '@react-spring/web';
 import { Box, FlexBox } from '@common/Box';
 import {
   useNotificationActionsContext,
@@ -34,15 +34,16 @@ function Notifications() {
   const { removeNotification } = useNotificationActionsContext();
   const notifications = useNotificationStateContext();
 
-  // @ts-ignore
-  const animatedNotifications = useTransition(notifications, (n) => n.key, {
+  const notificationTransition = useTransition(notifications, {
+    keys: (n: { key: string }) => n.key,
+
     config: {
       clamp: true,
       friction: 30,
       tension: 300,
     },
 
-    enter: (item) => async (next: any) => {
+    enter: (item) => async (next) => {
       await next({
         height: refMap.get(item).offsetHeight,
         opacity: 1,
@@ -54,15 +55,15 @@ function Notifications() {
       opacity: 0,
     },
 
-    leave: () => async (next: any) => {
+    leave: () => async (next) => {
       await next({ opacity: 0 });
       await next({ height: 0 });
     },
   });
 
   /* -- Rendering -- */
-  const mappedNotifications = animatedNotifications.map(({ item, key, props }) => (
-    <animated.div data-testid="notification" key={key} style={props}>
+  const mappedNotifications = notificationTransition((style, item) => (
+    <animated.div data-testid="notification" style={style}>
       <NotificationContainer
         onClick={() => removeNotification(item.key)}
         ref={(ref) => ref && refMap.set(item, ref)}

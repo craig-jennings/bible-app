@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useReducer } from 'react';
+import { createContext, PropsWithChildren, useContext, useMemo, useReducer } from 'react';
 import { findBookByValue } from '@data/findBook';
 
 type HeaderAction =
@@ -52,11 +52,7 @@ function reducer(state: State, action: HeaderAction): State {
 const useHeaderActionsContext = () => useContext(HeaderActionsContext);
 const useHeaderStateContext = () => useContext(HeaderStateContext);
 
-interface HeaderProviderProps {
-  children?: React.ReactNode;
-}
-
-function HeaderProvider({ children }: HeaderProviderProps) {
+function HeaderProvider({ children }: PropsWithChildren<{}>) {
   const [header, dispatch] = useReducer(reducer, {});
 
   const actions = useMemo(

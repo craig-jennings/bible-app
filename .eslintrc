@@ -20,8 +20,8 @@
     "import",
     "jsx-a11y",
     "prettier",
-    "react-hooks",
     "react",
+    "react-hooks",
     "sort-imports-es6-autofix"
   ],
 
