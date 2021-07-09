@@ -3,7 +3,15 @@ import { TOKEN } from './apiToken';
 
 const BASE_URL = 'https://api.esv.org/v3/passage/html/?';
 
-async function fetchPassage(book: string, chapter: string): Promise<string> {
+interface Payload {
+  passages: string[];
+}
+
+function isValidReponse(json: any): json is Payload {
+  return json?.passages && Array.isArray(json.passages);
+}
+
+async function fetchPassage(book: string, chapter: string) {
   let reference = `${book} ${chapter}`;
 
   const currentBook = findBookByValue(book);
@@ -28,9 +36,9 @@ async function fetchPassage(book: string, chapter: string): Promise<string> {
       headers: { Authorization: `Token ${TOKEN}` },
     });
 
-    const json = await res.json();
+    const json: unknown = await res.json();
 
-    return json.passages[0] || '';
+    return isValidReponse(json) ? json.passages[0] : '';
   } catch (err) {
     return 'Something went wrong';
   }
