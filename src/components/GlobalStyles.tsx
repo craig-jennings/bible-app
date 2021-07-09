@@ -2,15 +2,15 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
   :root {
-    --bg-color: #263238;
+    --bg-color: #1e1e1e;
     --font-color: #fafafa;
 
-    --header__bg-color: #455a64;
+    --header__bg-color: #3e3e42;
 
-    --footer__bg-color: #37474f;
+    --footer__bg-color: #3e3e42;
 
-    --form__input__border-color: #455a64;
-    --form__input--focus__border-color: #78909c;
+    --form__input__border-color: #3e3e42;
+    --form__input--focus__border-color: #007acc;
 
     --danger: hsl(0, 91%, 66%);
     --danger-text: hsl(0, 0%, 13%);
@@ -20,12 +20,12 @@ const GlobalStyles = createGlobalStyle`
     --neutral--hover: hsl(211, 14%, 79%);
     --neutral-text: hsl(0, 0%, 13%);
 
-    --primary: hsl(200, 90%, 56%);
-    --primary-text: hsl(0, 0%, 100%);
+    --primary: #007acc;
+    --primary-text: #ffffff;
 
     --notification__button__bg-color--hover: #78909c;
 
-    --selector__border-color: #455a64;
+    --selector__border-color: #3e3e42;
   }
 
   *,

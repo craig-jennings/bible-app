@@ -4,15 +4,16 @@ import styled from 'styled-components';
 const SelectorList = styled.div`
   display: grid;
   gap: 1rem;
-  grid-auto-rows: 100px;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-auto-rows: 115px;
+  grid-template-columns: repeat(auto-fill, 115px);
+  justify-content: center;
   width: 100%;
 `;
 
 const SelectorListItem = styled(Link)`
   align-items: center;
   border: 1px solid var(--selector__border-color);
-  border-radius: 0.5rem;
+  border-radius: 50%;
   color: inherit;
   display: flex;
   justify-content: center;
