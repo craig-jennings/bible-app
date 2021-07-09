@@ -72,7 +72,7 @@ function PassagePage() {
       return <Page404 />;
 
     default:
-      if (passage!.length === 0) {
+      if (!passage?.length) {
         return <Page404 />;
       }
 
