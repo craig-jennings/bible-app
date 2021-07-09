@@ -14,6 +14,7 @@
     "ci:chrome": "testcafe chrome:headless ./e2e/**/*.spec.ts --app \"yarn serve\"",
     "ci:chrome-small": "testcafe \"chrome:headless:emulation:device=Nexus 5X\" ./e2e/**/*.spec.ts --app \"yarn serve\"",
     "ci:firefox": "testcafe firefox:headless ./e2e/**/*.spec.ts --app \"yarn serve\"",
+    "prepare": "husky install",
     "serve": "sirv build --single",
     "start": "snowpack dev",
     "test": "npm-run-all test:*",
