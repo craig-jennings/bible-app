@@ -25,5 +25,8 @@ jobs:
       - name: ESLint
         run: yarn test:eslint
 
+      - name: Typescript
+        run: yarn test:typescript
+
       - name: E2E Tests
         run: yarn ci
