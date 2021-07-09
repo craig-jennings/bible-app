@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled(CenterBox)<{ isHidden?: boolean }>`
-  background-color: var(--ba-scrollup__bg-color, #455a64);
+  background-color: var(--scrollup__bg-color);
   border-radius: 50%;
   bottom: 1.5rem;
   cursor: pointer;

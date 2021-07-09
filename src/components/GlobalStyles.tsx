@@ -26,6 +26,8 @@ const GlobalStyles = createGlobalStyle`
     --notification__button__bg-color--hover: #78909c;
 
     --selector__border-color: #3e3e42;
+
+    --scrollup__bg-color: #3e3e42;
   }
 
   *,
