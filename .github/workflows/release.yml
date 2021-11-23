@@ -13,23 +13,26 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/cache@v2
-        id: cache
+      - name: Cache pnpm modules
+        uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-          path: '**/node_modules'
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          path: ~/.pnpm-store
+          restore-keys: |
+            ${{ runner.os }}-
 
-      - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.0.2
+          run_install: true
 
       - name: Build
-        run: yarn build
+        run: pnpm build
         env:
           RELEASE: true
 
       - name: Install netlify-cli
-        run: sudo yarn global add netlify-cli
+        run: sudo pnpm add --global netlify-cli
 
       - name: Deploy
         run: netlify deploy --dir build --prod --message "Deployment of $GITHUB_REF"
