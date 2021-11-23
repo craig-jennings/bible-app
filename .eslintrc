@@ -4,7 +4,7 @@
   },
 
   "extends": [
-    "airbnb-typescript",
+    "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
 
@@ -32,7 +32,6 @@
     "import/first": "error",
     "import/order": "off",
     "import/prefer-default-export": "off",
-    "max-len": ["warn", 100],
     "no-plusplus": "off",
     "no-void": "off",
     "object-curly-newline": ["error", { "consistent": true }],
@@ -41,7 +40,7 @@
     "react/jsx-props-no-spreading": "off",
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
-    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/exhaustive-deps": "error",
     "react-hooks/rules-of-hooks": "error",
 
     "sort-imports-es6-autofix/sort-imports-es6": ["error", {

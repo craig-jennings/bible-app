@@ -12,12 +12,14 @@ const queryClient = new QueryClient({
   },
 });
 
-const Providers = ({ children }: PropsWithChildren<{}>) => (
-  <QueryClientProvider client={queryClient}>
-    <HeaderProvider>
-      <NotificationProvider>{children}</NotificationProvider>
-    </HeaderProvider>
-  </QueryClientProvider>
-);
+function Providers({ children }: PropsWithChildren<Record<string, never>>) {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <HeaderProvider>
+        <NotificationProvider>{children}</NotificationProvider>
+      </HeaderProvider>
+    </QueryClientProvider>
+  );
+}
 
 export default Providers;

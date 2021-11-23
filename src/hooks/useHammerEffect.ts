@@ -11,7 +11,6 @@ function useHammerEffect(ref: RefObject<HTMLElement>, actions: HammerAction[] = 
     if (!ref.current) return undefined;
 
     const hammerInstance = new Hammer(ref.current, {
-      // @ts-ignore
       cssProps: {
         userSelect: 'auto',
       },

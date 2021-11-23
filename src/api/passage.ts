@@ -38,7 +38,7 @@ async function fetchPassage(book: string, chapter: string) {
 
     const json: unknown = await res.json();
 
-    return isValidReponse(json) ? json.passages[0] : '';
+    return isValidReponse(json) ? json.passages[0] : 'Something went wrong';
   } catch (err) {
     return 'Something went wrong';
   }
