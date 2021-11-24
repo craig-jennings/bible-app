@@ -18,7 +18,7 @@
     "start": "vite",
     "test": "npm-run-all test:*",
     "test:e2e": "testcafe chrome ./e2e/**/*.spec.ts --app \"pnpm serve\"",
-    "test:eslint": "eslint src/ e2e/ --ext js,ts,tsx --quiet",
+    "test:eslint": "eslint --ext js,ts,tsx --quiet .",
     "test:typescript": "tsc"
   },
   "dependencies": {

@@ -12,6 +12,11 @@ function useHammerEffect(ref: RefObject<HTMLElement>, actions: HammerAction[] = 
 
     const hammerInstance = new Hammer(ref.current, {
       cssProps: {
+        contentZooming: 'none',
+        tapHighlightColor: 'rgba(0,0,0,0)',
+        touchCallout: 'none',
+        touchSelect: 'none',
+        userDrag: 'none',
         userSelect: 'auto',
       },
 

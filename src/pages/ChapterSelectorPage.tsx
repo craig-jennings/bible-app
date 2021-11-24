@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import ChapterSelector from '@components/selectors/ChapterSelector';
 
 function ChapterSelectorPage() {
-  const { book } = useParams();
+  const { book = '' } = useParams();
   const { setHeader } = useHeaderActionsContext();
 
   useEffect(() => void setHeader(book), [book, setHeader]);

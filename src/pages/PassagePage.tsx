@@ -13,7 +13,7 @@ import WakeLock from '@components/common/WakeLock';
 
 function PassagePage() {
   /* -- Hooks -- */
-  const { book, chapter } = useParams();
+  const { book = '', chapter = '' } = useParams();
   const { setHeader, setSticky } = useHeaderActionsContext();
   const navigate = useNavigate();
 

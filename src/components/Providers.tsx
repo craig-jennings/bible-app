@@ -1,6 +1,5 @@
 import { HeaderProvider } from '@contexts/HeaderContext';
 import { NotificationProvider } from '@contexts/NotificationContext';
-import { PropsWithChildren } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const queryClient = new QueryClient({
@@ -12,7 +11,7 @@ const queryClient = new QueryClient({
   },
 });
 
-function Providers({ children }: PropsWithChildren<Record<string, never>>) {
+function Providers({ children }: OnlyChildren) {
   return (
     <QueryClientProvider client={queryClient}>
       <HeaderProvider>
