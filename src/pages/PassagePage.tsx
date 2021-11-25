@@ -11,26 +11,20 @@ import Passage from '@components/passage/Passage';
 import ScrollUp from '@components/scrollers/ScrollUp';
 import WakeLock from '@components/common/WakeLock';
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'orbit-spinner': OrbitSpinnerAttributes;
-    }
-
-    interface OrbitSpinnerAttributes {
-      color: string;
-    }
-  }
-}
-
 function PassagePage() {
   /* -- Hooks -- */
-  const { book, chapter } = useParams();
-  const { setHeader } = useHeaderActionsContext();
+  const { book = '', chapter = '' } = useParams();
+  const { setHeader, setSticky } = useHeaderActionsContext();
   const navigate = useNavigate();
 
   // eslint-disable-next-line no-void
   useEffect(() => void setHeader(book, chapter), [book, chapter, setHeader]);
+
+  useEffect(() => {
+    setSticky(true);
+
+    return () => setSticky(false);
+  });
 
   const { data: passage, status } = useQuery(['passage', book, chapter], () =>
     fetchPassage(book, chapter),
@@ -78,7 +72,7 @@ function PassagePage() {
 
       return (
         <>
-          <Passage onDecrement={handleDecrement} onIncrement={handleIncrement} passage={passage!} />
+          <Passage onDecrement={handleDecrement} onIncrement={handleIncrement} passage={passage} />
           <ScrollUp />
           <WakeLock />
         </>

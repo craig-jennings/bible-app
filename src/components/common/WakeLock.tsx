@@ -22,7 +22,7 @@ function WakeLock() {
     async function requestWakeLock() {
       try {
         wakeLock = await navigator.wakeLock.request('screen');
-      } catch (err) {
+      } catch (err: any) {
         console.error(`${err.name}, ${err.message}`);
       }
     }

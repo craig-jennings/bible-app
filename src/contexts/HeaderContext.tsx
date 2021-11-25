@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useContext, useMemo, useReducer } from 'react';
+import { createContext, useContext, useMemo, useReducer } from 'react';
 import { findBookByValue } from '@data/findBook';
 
 type HeaderAction =
@@ -9,25 +9,18 @@ type HeaderAction =
         book: { label: string; value: string };
         chapter?: string;
       };
+    }
+  | {
+      type: 'STICKY';
+      payload: boolean;
     };
 
 interface State {
   chapter?: string;
   label?: string;
+  sticky?: boolean;
   value?: string;
 }
-
-interface IHeaderActionsContext {
-  resetHeader: () => void;
-  setHeader: (book: string, chapter?: string) => void;
-}
-
-const HeaderStateContext = createContext<State>({});
-
-const HeaderActionsContext = createContext<IHeaderActionsContext>({
-  resetHeader: () => {},
-  setHeader: () => {},
-});
 
 function reducer(state: State, action: HeaderAction): State {
   switch (action.type) {
@@ -44,15 +37,34 @@ function reducer(state: State, action: HeaderAction): State {
       };
     }
 
+    case 'STICKY': {
+      return {
+        ...state,
+        sticky: action.payload,
+      };
+    }
+
     default:
       return state;
   }
 }
 
-const useHeaderActionsContext = () => useContext(HeaderActionsContext);
+interface ActionsContext {
+  /** Resets the header to the basic state */
+  resetHeader: () => void;
+  /** Sets the header's book and (optionally) chapter */
+  setHeader: (book: string, chapter?: string) => void;
+  /** Sets whether the header should be sticky or not */
+  setSticky: (value: boolean) => void;
+}
+
+const HeaderActionsContext = createContext<ActionsContext | null>(null);
+const HeaderStateContext = createContext<State>({});
+
+const useHeaderActionsContext = () => useContext(HeaderActionsContext) as ActionsContext;
 const useHeaderStateContext = () => useContext(HeaderStateContext);
 
-function HeaderProvider({ children }: PropsWithChildren<{}>) {
+function HeaderProvider({ children }: OnlyChildren) {
   const [header, dispatch] = useReducer(reducer, {});
 
   const actions = useMemo(
@@ -70,6 +82,7 @@ function HeaderProvider({ children }: PropsWithChildren<{}>) {
         });
       },
 
+      setSticky: (payload: boolean) => dispatch({ payload, type: 'STICKY' }),
       resetHeader: () => dispatch({ type: 'RESET' }),
     }),
     [],

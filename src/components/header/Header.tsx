@@ -2,12 +2,19 @@ import { CenterBox, FlexBox } from '@common/Box';
 import { SearchIcon } from '@common/Icons';
 import { UnstyledLink } from '@common/Unstyled';
 import { useHeaderStateContext } from '@contexts/HeaderContext';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const HeaderContainer = styled(FlexBox)`
+const HeaderContainer = styled(FlexBox)<{ isSticky?: boolean }>`
   background-color: var(--header__bg-color);
   color: var(--font-color);
   width: 100%;
+
+  ${({ isSticky }) =>
+    isSticky &&
+    css`
+      position: sticky;
+      top: 0;
+    `};
 
   @media screen and (max-width: 767px) {
     ${UnstyledLink} {
@@ -48,7 +55,12 @@ function Header() {
   );
 
   return (
-    <HeaderContainer data-testid="header" justifyContent="space-between" px={3}>
+    <HeaderContainer
+      data-testid="header"
+      isSticky={header.sticky}
+      justifyContent="space-between"
+      px={3}
+    >
       <h1>
         <CenterBox>
           <UnstyledLink to="/">Bible</UnstyledLink> {bookEl} {chapterEl}
