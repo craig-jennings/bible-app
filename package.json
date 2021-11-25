@@ -1,7 +1,7 @@
 {
   "name": "bible-app",
   "description": "Simple Bible app backed by the ESV API",
-  "version": "2.2.0",
+  "version": "2021.0.2",
   "main": "index.js",
   "author": "Craig Jennings",
   "license": "MIT",
