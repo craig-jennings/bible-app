@@ -2,8 +2,8 @@ name: Release
 
 on:
   push:
-    tags:
-      - v*
+    branches:
+      - master
 
 jobs:
   release:
@@ -31,11 +31,10 @@ jobs:
         env:
           RELEASE: true
 
-      - name: Install netlify-cli
-        run: sudo pnpm add --global netlify-cli
-
-      - name: Deploy
-        run: netlify deploy --dir build --prod --message "Deployment of $GITHUB_REF"
+      - name: Publish
+        uses: netlify/actions/cli@master
+        with:
+          args: deploy --dir build --prod --message "Deployment of $GITHUB_REF"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
