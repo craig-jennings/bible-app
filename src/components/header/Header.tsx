@@ -1,7 +1,7 @@
 import { CenterBox, FlexBox } from '@common/Box';
 import { SearchIcon } from '@common/Icons';
 import { UnstyledLink } from '@common/Unstyled';
-import { useHeaderStateContext } from '@contexts/HeaderContext';
+import { useHeaderState } from '@stores/headerStore';
 import styled, { css } from 'styled-components';
 
 const HeaderContainer = styled(FlexBox)<{ isSticky?: boolean }>`
@@ -36,31 +36,26 @@ const SearchLink = styled(UnstyledLink)`
 
 function Header() {
   /* -- Hooks -- */
-  const header = useHeaderStateContext();
+  const header = useHeaderState();
 
   /* -- Rendering -- */
-  const bookEl = header.value && (
+  const bookEl = header.bookValue && (
     <>
       <Separator>&gt;</Separator>{' '}
-      <UnstyledLink data-testid="book" to={`/${header?.value}`}>
-        {header?.label}
+      <UnstyledLink data-testid="book" to={`/${header.bookValue}`}>
+        {header.bookLabel}
       </UnstyledLink>
     </>
   );
 
-  const chapterEl = header?.chapter && (
+  const chapterEl = header.chapter && (
     <>
       <Separator>&gt;</Separator> <span data-testid="chapter">{header.chapter}</span>
     </>
   );
 
   return (
-    <HeaderContainer
-      data-testid="header"
-      isSticky={header.sticky}
-      justifyContent="space-between"
-      px={3}
-    >
+    <HeaderContainer data-testid="header" isSticky={header.isSticky} justifyContent="space-between" px={3}>
       <h1>
         <CenterBox>
           <UnstyledLink to="/">Bible</UnstyledLink> {bookEl} {chapterEl}

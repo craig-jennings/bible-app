@@ -14,10 +14,7 @@ interface Return {
   totalResults: number;
 }
 
-async function search(
-  term = '',
-  currentPage = '1',
-): Promise<{ pagination: Return | null; results: any[] | null }> {
+async function search(term = '', currentPage = '1'): Promise<{ pagination: Return | null; results: any[] | null }> {
   if (!term || term.trim().length === 0) {
     return {
       pagination: null,

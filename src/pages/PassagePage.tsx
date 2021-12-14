@@ -3,7 +3,7 @@ import { CenterBox } from '@components/common/Box';
 import { fetchPassage } from '@api/passage';
 import { findBookByValue } from '@data/findBook';
 import { useEffect } from 'react';
-import { useHeaderActionsContext } from '@contexts/HeaderContext';
+import { useHeaderActions } from '@stores/headerStore';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Page404 from '@components/errors/Page404';
@@ -14,10 +14,9 @@ import WakeLock from '@components/common/WakeLock';
 function PassagePage() {
   /* -- Hooks -- */
   const { book = '', chapter = '' } = useParams();
-  const { setHeader, setSticky } = useHeaderActionsContext();
+  const { setHeader, setSticky } = useHeaderActions();
   const navigate = useNavigate();
 
-  // eslint-disable-next-line no-void
   useEffect(() => void setHeader(book, chapter), [book, chapter, setHeader]);
 
   useEffect(() => {
@@ -26,9 +25,7 @@ function PassagePage() {
     return () => setSticky(false);
   });
 
-  const { data: passage, status } = useQuery(['passage', book, chapter], () =>
-    fetchPassage(book, chapter),
-  );
+  const { data: passage, status } = useQuery(['passage', book, chapter], () => fetchPassage(book, chapter));
 
   /* -- Event Handlers -- */
   const handleDecrement = () => {

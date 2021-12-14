@@ -94,11 +94,7 @@ function Search() {
       <div>{resultList}</div>
 
       {data?.pagination && (
-        <Pagination
-          pagination={data.pagination}
-          onNextClick={handleNextPage}
-          onPrevClick={handlePrevPage}
-        />
+        <Pagination pagination={data.pagination} onNextClick={handleNextPage} onPrevClick={handlePrevPage} />
       )}
     </Box>
   );

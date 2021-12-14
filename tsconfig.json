@@ -12,10 +12,10 @@
       "@api/*": ["./src/api/*"],
       "@common/*": ["./src/components/common/*"],
       "@components/*": ["./src/components/*"],
-      "@contexts/*": ["./src/contexts/*"],
       "@data/*": ["./src/data/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@pages/*": ["./src/pages/*"],
+      "@stores/*": ["./src/stores/*"],
       "@test/*": ["./src/test/*"],
       "@utils/*": ["./src/utils/*"]
     },

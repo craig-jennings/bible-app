@@ -1,9 +1,6 @@
 import { animated, useTransition } from '@react-spring/web';
 import { Box, FlexBox } from '@common/Box';
-import {
-  useNotificationActionsContext,
-  useNotificationStateContext,
-} from '@contexts/NotificationContext';
+import { useNotificationActions, useNotificationState } from '@stores/notificationStore';
 import { useState } from 'react';
 import styled from 'styled-components';
 
@@ -31,8 +28,8 @@ const NotificationContainer = styled(Box)`
 function Notifications() {
   /* -- Hooks -- */
   const [refMap] = useState(() => new WeakMap());
-  const { removeNotification } = useNotificationActionsContext();
-  const notifications = useNotificationStateContext();
+  const { removeNotification } = useNotificationActions();
+  const notifications = useNotificationState();
 
   const notificationTransition = useTransition(notifications, {
     keys: (n: { key: string }) => n.key,
@@ -64,21 +61,14 @@ function Notifications() {
   /* -- Rendering -- */
   const mappedNotifications = notificationTransition((style, item) => (
     <animated.div data-testid="notification" style={style}>
-      <NotificationContainer
-        onClick={() => removeNotification(item.key)}
-        ref={(ref) => ref && refMap.set(item, ref)}
-      >
+      <NotificationContainer onClick={() => removeNotification(item.key)} ref={(ref) => ref && refMap.set(item, ref)}>
         {item.content}
       </NotificationContainer>
     </animated.div>
   ));
 
   return (
-    <NotificationsContainer
-      data-testid="notifications"
-      flexDirection="column"
-      justifyContent="flex-end"
-    >
+    <NotificationsContainer data-testid="notifications" flexDirection="column" justifyContent="flex-end">
       {mappedNotifications}
     </NotificationsContainer>
   );

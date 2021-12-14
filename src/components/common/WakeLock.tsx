@@ -10,18 +10,18 @@ interface INavigatorWakeLock {
 
 declare global {
   interface Navigator {
-    wakeLock: INavigatorWakeLock;
+    wakeLock?: INavigatorWakeLock;
   }
 }
 
 function WakeLock() {
   /* -- Hooks -- */
   useEffect(() => {
-    let wakeLock: IWakeLock;
+    let wakeLock: IWakeLock | undefined;
 
     async function requestWakeLock() {
       try {
-        wakeLock = await navigator.wakeLock.request('screen');
+        wakeLock = await navigator.wakeLock?.request('screen');
       } catch (err: any) {
         console.error(`${err.name}, ${err.message}`);
       }

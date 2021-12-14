@@ -50,13 +50,7 @@ function Passage({ onDecrement, onIncrement, passage }: PassageProps) {
   ]);
 
   /* -- Rendering -- */
-  return (
-    <PassageContainer
-      dangerouslySetInnerHTML={{ __html: passage }}
-      data-testid="passage"
-      ref={passageRef}
-    />
-  );
+  return <PassageContainer dangerouslySetInnerHTML={{ __html: passage }} data-testid="passage" ref={passageRef} />;
 }
 
 export default Passage;
