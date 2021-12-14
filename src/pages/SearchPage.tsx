@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { useHeaderActionsContext } from '@contexts/HeaderContext';
+import { useHeaderActions } from '@stores/headerStore';
 import Search from '@components/search/Search';
 
 function SearchPage() {
-  const { resetHeader } = useHeaderActionsContext();
+  const { resetHeader } = useHeaderActions();
 
-  useEffect(() => void resetHeader(), [resetHeader]); // eslint-disable-line no-void
+  useEffect(() => void resetHeader(), [resetHeader]);
 
   return <Search />;
 }

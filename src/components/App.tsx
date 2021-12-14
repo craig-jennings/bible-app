@@ -15,7 +15,7 @@ const UnknownPage = lazy(() => import('@pages/UnknownPage'));
 const AppContainer = styled.div`
   display: grid;
   grid-template-rows: 3rem 1fr 1.5rem;
-  min-height: 100vh;
+  height: 100vh;
 `;
 
 const App = () => (

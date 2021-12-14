@@ -1,23 +1,23 @@
 import { useEffect } from 'react';
-import { useNotificationActionsContext } from '@contexts/NotificationContext';
+import { useNotificationActions } from '@stores/notificationStore';
 import { Workbox } from 'workbox-window';
 import SWUpdate from './notifications/SWUpdate';
 
 function SWInstaller() {
-  const { addNotification } = useNotificationActionsContext();
+  const { addNotification } = useNotificationActions();
 
   useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') return;
+    // if (process.env.NODE_ENV !== 'production') return;
 
     if ('serviceWorker' in navigator) {
       const wb = new Workbox('/sw.js');
 
-      let updatePending = false;
+      // let updatePending = false;
 
       wb.addEventListener('waiting', () => {
-        if (updatePending) return;
+        // if (updatePending) return;
 
-        updatePending = true;
+        // updatePending = true;
 
         const onUpdateClick = () => {
           wb.addEventListener('controlling', () => window.location.reload());

@@ -1,5 +1,3 @@
-import { HeaderProvider } from '@contexts/HeaderContext';
-import { NotificationProvider } from '@contexts/NotificationContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const queryClient = new QueryClient({
@@ -12,13 +10,7 @@ const queryClient = new QueryClient({
 });
 
 function Providers({ children }: OnlyChildren) {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <HeaderProvider>
-        <NotificationProvider>{children}</NotificationProvider>
-      </HeaderProvider>
-    </QueryClientProvider>
-  );
+  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
 }
 
 export default Providers;
