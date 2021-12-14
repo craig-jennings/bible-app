@@ -23,7 +23,6 @@ const findBookByLabel = (label: string) => {
 };
 
 const findBookByValue = (key: string) =>
-  NewTestament.find((b) => b.value === key) ||
-  OldTestament.find((b) => b.value === key) || { ...UNKNOWN_BOOK };
+  NewTestament.find((b) => b.value === key) || OldTestament.find((b) => b.value === key) || { ...UNKNOWN_BOOK };
 
 export { findBookByLabel, findBookByValue };

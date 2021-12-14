@@ -66,23 +66,13 @@ function Pagination({ pagination, onNextClick, onPrevClick }: PaginationProps) {
 
   return (
     <FlexBox data-testid="pagination" justifyContent="space-between">
-      <PaginationButton
-        data-testid="prev-btn"
-        disabled={!hasPrevPage}
-        onClick={handlePrevClick}
-        type="button"
-      >
+      <PaginationButton data-testid="prev-btn" disabled={!hasPrevPage} onClick={handlePrevClick} type="button">
         Previous
       </PaginationButton>
 
       <div data-testid="range">{totalResults > 0 ? range : ''}</div>
 
-      <PaginationButton
-        data-testid="next-btn"
-        disabled={!hasNextPage}
-        onClick={handleNextClick}
-        type="button"
-      >
+      <PaginationButton data-testid="next-btn" disabled={!hasNextPage} onClick={handleNextClick} type="button">
         Next
       </PaginationButton>
     </FlexBox>

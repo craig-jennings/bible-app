@@ -47,11 +47,7 @@ function ChapterSelector({ book }: ChapterSelectorProps) {
         />
       </Box>
 
-      {chapters.length > 0 ? (
-        <SelectorList>{chapters}</SelectorList>
-      ) : (
-        <CenterBox>No results</CenterBox>
-      )}
+      {chapters.length > 0 ? <SelectorList>{chapters}</SelectorList> : <CenterBox>No results</CenterBox>}
     </Box>
   ) : (
     <Page404 />

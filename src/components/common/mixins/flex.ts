@@ -56,14 +56,7 @@ interface FlexProperties {
   justifyContent?: JustifyContent;
 }
 
-const flexKeys = [
-  'alignContent',
-  'alignItems',
-  'flex',
-  'flexDirection',
-  'flexWrap',
-  'justifyContent',
-];
+const flexKeys = ['alignContent', 'alignItems', 'flex', 'flexDirection', 'flexWrap', 'justifyContent'];
 
 function flex(props: any): { [x: string]: any } | null {
   return Object.entries(props)

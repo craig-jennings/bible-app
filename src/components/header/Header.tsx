@@ -55,12 +55,7 @@ function Header() {
   );
 
   return (
-    <HeaderContainer
-      data-testid="header"
-      isSticky={header.isSticky}
-      justifyContent="space-between"
-      px={3}
-    >
+    <HeaderContainer data-testid="header" isSticky={header.isSticky} justifyContent="space-between" px={3}>
       <h1>
         <CenterBox>
           <UnstyledLink to="/">Bible</UnstyledLink> {bookEl} {chapterEl}

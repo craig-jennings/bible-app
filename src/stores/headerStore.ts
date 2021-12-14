@@ -45,10 +45,7 @@ function useHeaderActions() {
 }
 
 function useHeaderState() {
-  return useHeaderStore(
-    (state) => pick(state, ['bookLabel', 'bookValue', 'chapter', 'isSticky']),
-    shallow,
-  );
+  return useHeaderStore((state) => pick(state, ['bookLabel', 'bookValue', 'chapter', 'isSticky']), shallow);
 }
 
 export default useHeaderStore;

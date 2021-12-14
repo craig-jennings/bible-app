@@ -25,9 +25,7 @@ function PassagePage() {
     return () => setSticky(false);
   });
 
-  const { data: passage, status } = useQuery(['passage', book, chapter], () =>
-    fetchPassage(book, chapter),
-  );
+  const { data: passage, status } = useQuery(['passage', book, chapter], () => fetchPassage(book, chapter));
 
   /* -- Event Handlers -- */
   const handleDecrement = () => {

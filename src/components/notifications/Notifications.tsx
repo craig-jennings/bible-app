@@ -61,21 +61,14 @@ function Notifications() {
   /* -- Rendering -- */
   const mappedNotifications = notificationTransition((style, item) => (
     <animated.div data-testid="notification" style={style}>
-      <NotificationContainer
-        onClick={() => removeNotification(item.key)}
-        ref={(ref) => ref && refMap.set(item, ref)}
-      >
+      <NotificationContainer onClick={() => removeNotification(item.key)} ref={(ref) => ref && refMap.set(item, ref)}>
         {item.content}
       </NotificationContainer>
     </animated.div>
   ));
 
   return (
-    <NotificationsContainer
-      data-testid="notifications"
-      flexDirection="column"
-      justifyContent="flex-end"
-    >
+    <NotificationsContainer data-testid="notifications" flexDirection="column" justifyContent="flex-end">
       {mappedNotifications}
     </NotificationsContainer>
   );

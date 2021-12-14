@@ -53,21 +53,7 @@ function spacing(props: any) {
 
 type SpacingValues = 0 | 1 | 2 | 3 | 4;
 
-type SpacingKeys =
-  | 'm'
-  | 'mb'
-  | 'ml'
-  | 'mr'
-  | 'mt'
-  | 'mx'
-  | 'my'
-  | 'p'
-  | 'pb'
-  | 'pl'
-  | 'pr'
-  | 'pt'
-  | 'px'
-  | 'py';
+type SpacingKeys = 'm' | 'mb' | 'ml' | 'mr' | 'mt' | 'mx' | 'my' | 'p' | 'pb' | 'pl' | 'pr' | 'pt' | 'px' | 'py';
 
 export default spacing;
 export { SpacingKeys, SpacingValues };
