@@ -4,7 +4,7 @@ import scrollUp from '../components/ScrollUp';
 
 fixture('Scroller Button').page(`${root}/genesis/1`);
 
-test('Should scroll up', async (t) => {
+test.skip('Should scroll up', async (t) => {
   await setWindowScroll({ top: 100 });
 
   let scrollPosition = await getWindowScroll();
