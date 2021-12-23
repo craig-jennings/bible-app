@@ -31,18 +31,48 @@ const GlobalStyles = createGlobalStyle`
   }
 
   *,
-  *::after,
-  *::before {
+  *::before,
+  *::after {
     box-sizing: border-box;
+  }
+
+  * {
     margin: 0;
     padding: 0;
   }
 
+  body,
+  html,
+  main {
+    height: 100%;
+  }
+
   body {
+    -webkit-font-smoothing: antialiased;
     background-color: var(--bg-color, #fafafa);
     color: var(--font-color, #222222);
     font-family: 'Quattrocento Sans', sans-serif;
     line-height: 1.5;
+  }
+
+  canvas,
+  img,
+  picture,
+  svg,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  main {
+    isolation: isolate;
   }
 
   svg {
