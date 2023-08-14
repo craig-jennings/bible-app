@@ -1,27 +1,18 @@
 {
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "jsx": "react-jsx",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noEmit": true,
-    "noImplicitAny": true,
+	"extends": "./.svelte-kit/tsconfig.json",
 
-    "paths": {
-      "@api/*": ["./src/api/*"],
-      "@common/*": ["./src/components/common/*"],
-      "@components/*": ["./src/components/*"],
-      "@data/*": ["./src/data/*"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@stores/*": ["./src/stores/*"],
-      "@test/*": ["./src/test/*"],
-      "@utils/*": ["./src/utils/*"]
-    },
-
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "es2018"
-  }
+	"compilerOptions": {
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"noImplicitAny": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"strict": true,
+		"verbatimModuleSyntax": true,
+	}
+	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
+	//
+	// If you want to overwrite includes/excludes, make sure to copy over the relevant includes/excludes
+	// from the referenced tsconfig.json - TypeScript does not merge them in
 }

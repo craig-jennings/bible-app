@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind utilities;
+
+:root {
+	--neutral100: #fafafa;
+	--neutral300: #2e2e32;
+	--neutral500: #3e3e42;
+	--neutral800: #1e1e1e;
+
+	--primary100: #007acc;
+
+	--scrollup__bg-color: #3e3e42;
+
+  --easing1: linear(
+		0, 0.006, 0.025, 0.056, 0.101 6.1%, 0.2 9.2%, 0.539 18.9%, 0.638 22.2%, 0.721,
+    0.791, 0.849, 0.898 34.7%, 0.937 38.1%, 0.968 41.8%, 0.991 45.7%, 1.006 50.1%,
+    1.015 55%, 1.017 63.9%, 1.005 85.5%, 1.001
+  );
+}
+
+body,
+html,
+main {
+	height: 100%;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	background-color: var(--neutral800);
+	color: var(--neutral100);
+	font-family: 'Quattrocento Sans', sans-serif;
+	line-height: 1.5;
+}
