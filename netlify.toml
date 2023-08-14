@@ -1,7 +1,5 @@
-[build.environment]
-  NPM_FLAGS = "--version"
 [build]
-  command = "npx pnpm install --store=node_modules/.pnpm-store && RELEASE=true npx pnpm build"
+	command = "pnpm run build"
 
 [[redirects]]
   from = "/*"
