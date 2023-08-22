@@ -57,18 +57,22 @@
 <div class="passage">
 	<HammerElement {actions}>{@html data.passage}</HammerElement>
 </div>
+
 <ScrollUp />
 
 <style>
 	.passage {
 		font-size: 1.25rem;
 		max-width: 540px;
-		padding: 0 1rem;
 		width: 100%;
 		margin: 0 auto;
 
 		& p {
 			margin-bottom: 1rem;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
 		}
 	}
 
