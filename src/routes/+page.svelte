@@ -23,7 +23,9 @@
 <!-- svelte-ignore a11y-autofocus -->
 <Input class="w-full mb-8" aria-label="Book Search Field" autofocus placeholder="Find Book..." bind:value={term} />
 
-<h1 class="text-center text-3xl font-bold mb-6">Old Testament</h1>
+{#if oldTestamentBooks.length > 0}
+	<h1 class="text-center text-3xl font-bold mb-6">Old Testament</h1>
+{/if}
 
 <SelectorList>
 	{#each oldTestamentBooks as otBook}
@@ -31,7 +33,9 @@
 	{/each}
 </SelectorList>
 
-<h1 class="text-center text-3xl font-bold mt-8 mb-6">New Testament</h1>
+{#if newTestamentBooks.length > 0}
+	<h1 class="text-center text-3xl font-bold mt-8 mb-6">New Testament</h1>
+{/if}
 
 <SelectorList>
 	{#each newTestamentBooks as ntBook}
