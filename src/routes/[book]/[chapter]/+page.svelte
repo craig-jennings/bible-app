@@ -1,12 +1,15 @@
 <script lang="ts">
+	import 'wc-spinners/dist/orbit-spinner.js';
 	import { afterUpdate } from 'svelte';
 	import { goto } from '$app/navigation';
+	import { navigating } from '$app/stores';
 	import findBook from '$lib/utils/findBook';
 	import HammerElement from '$lib/components/common/HammerElement.svelte';
 	import headerStore from '$lib/stores/headerStore';
 	import requestWakeLock from '$lib/utils/requestWakeLock';
 	import ScrollUp from '$lib/components/ScrollUp.svelte';
 	import type { HammerAction } from '$lib/types/HammerAction.js';
+	import Spinner from '$lib/components/Spinner.svelte';
 
 	/* -- Props & Vars -- */
 	export let data;
@@ -54,11 +57,15 @@
 	];
 </script>
 
-<div class="passage">
-	<HammerElement {actions}>{@html data.passage}</HammerElement>
-</div>
+{#if $navigating}
+	<Spinner fullScreen />
+{:else}
+	<div class="passage">
+		<HammerElement {actions}>{@html data.passage}</HammerElement>
+	</div>
 
-<ScrollUp />
+	<ScrollUp />
+{/if}
 
 <style>
 	.passage {

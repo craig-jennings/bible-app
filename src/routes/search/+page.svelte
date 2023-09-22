@@ -5,11 +5,16 @@
 	import Input from '$lib/components/common/Input.svelte';
 	import Pagination from '$lib/components/Pagination.svelte';
 	import SearchResultListItem from '$lib/components/results/SearchResultListItem.svelte';
+	import Spinner from '$lib/components/Spinner.svelte';
+	import headerStore from '$lib/stores/headerStore.js';
+	import { onMount } from 'svelte';
 
 	/* -- Props & Vars -- */
 	export let data;
 
 	/* -- Lifecycle -- */
+	onMount(() => headerStore.set({}));
+
 	/* -- Event Handlers -- */
 	function handleSubmit(e: SubmitEvent) {
 		if (!e.target) return;
@@ -35,30 +40,40 @@
 	const term = $page.url.searchParams.get('q') || '';
 </script>
 
-<form class="flex gap-2 mb-4" on:submit|preventDefault={handleSubmit}>
-	<Input name="term" autofocus placeholder="Search..." value={term} />
-	<Button type="submit">Search</Button>
-</form>
+{#if $navigating && !$navigating?.to?.url.pathname.includes('search')}
+	<Spinner fullScreen />
+{:else}
+	<form class="flex gap-2 mb-4" on:submit|preventDefault={handleSubmit}>
+		<Input name="term" autofocus placeholder="Search..." value={term} />
+		<Button type="submit">Search</Button>
+	</form>
 
-{#if data.results}
-	{#if data.results.length > 0}
-		<Pagination
-			class="mb-4"
-			pagination={data.pagination}
-			on:nextclick={handleNextClick}
-			on:prevclick={handlePrevClick}
-		/>
+	{#if data.results}
+		{#if data.results.length > 0}
+			<Pagination
+				class="mb-4"
+				pagination={data.pagination}
+				on:nextclick={handleNextClick}
+				on:prevclick={handlePrevClick}
+			/>
 
-		{#if $navigating}
-			<div class="text-center">Loading...</div>
+			{#if $navigating}
+				<div class="flex justify-center">
+					<Spinner />
+				</div>
+			{:else}
+				<div class="flex flex-col gap-4">
+					{#each data.results as result}
+						<SearchResultListItem {result} />
+					{/each}
+				</div>
+			{/if}
 		{:else}
-			<div class="flex flex-col gap-4">
-				{#each data.results as result}
-					<SearchResultListItem {result} />
-				{/each}
-			</div>
+			<div>No Results</div>
 		{/if}
-	{:else}
-		<div>No Results</div>
+	{:else if $navigating}
+		<div class="flex justify-center">
+			<Spinner />
+		</div>
 	{/if}
 {/if}

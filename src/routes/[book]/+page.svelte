@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { page } from '$app/stores';
+	import { navigating, page } from '$app/stores';
 	import findBook from '$lib/utils/findBook';
 	import headerStore from '$lib/stores/headerStore';
 	import SelectorItem from '$lib/components/SelectorListItem.svelte';
 	import SelectorList from '$lib/components/SelectorList.svelte';
+	import Spinner from '$lib/components/Spinner.svelte';
 
 	/* -- Props & Vars -- */
 	/* -- Lifecycle -- */
@@ -15,7 +16,9 @@
 	let book = findBook($page.params.book);
 </script>
 
-{#if book.chapterCount === 0}
+{#if $navigating}
+	<Spinner fullScreen />
+{:else if book.chapterCount === 0}
 	<div class="text-center">Unknown book</div>
 {:else}
 	<div class="p-4">
