@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { navigating, page } from '$app/stores';
+	import { onMount } from 'svelte';
 	import findBook from '$lib/utils/findBook';
 	import headerStore from '$lib/stores/headerStore';
 	import SelectorItem from '$lib/components/SelectorListItem.svelte';

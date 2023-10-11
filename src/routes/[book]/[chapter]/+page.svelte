@@ -1,6 +1,6 @@
 <script lang="ts">
 	import 'wc-spinners/dist/orbit-spinner.js';
-	import { afterUpdate } from 'svelte';
+	import { afterUpdate, onDestroy } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { navigating } from '$app/stores';
 	import findBook from '$lib/utils/findBook';
@@ -8,8 +8,8 @@
 	import headerStore from '$lib/stores/headerStore';
 	import requestWakeLock from '$lib/utils/requestWakeLock';
 	import ScrollUp from '$lib/components/ScrollUp.svelte';
-	import type { HammerAction } from '$lib/types/HammerAction.js';
 	import Spinner from '$lib/components/Spinner.svelte';
+	import type { HammerAction } from '$lib/types/HammerAction.js';
 
 	/* -- Props & Vars -- */
 	export let data;
@@ -17,14 +17,19 @@
 	const book = findBook(data.book);
 
 	/* -- Lifecycle -- */
+	requestWakeLock();
+
 	afterUpdate(() => {
 		headerStore.set({
 			book,
 			chapter: data.chapter,
+			sticky: true,
 		});
 	});
 
-	requestWakeLock();
+	onDestroy(() => {
+		headerStore.set({ sticky: false });
+	});
 
 	/* -- Event Handlers -- */
 	/* -- Rendering -- */

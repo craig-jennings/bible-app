@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { navigating, page } from '$app/stores';
+	import { onMount } from 'svelte';
 	import Button from '$lib/components/common/Button.svelte';
+	import headerStore from '$lib/stores/headerStore.js';
 	import Input from '$lib/components/common/Input.svelte';
 	import Pagination from '$lib/components/Pagination.svelte';
 	import SearchResultListItem from '$lib/components/results/SearchResultListItem.svelte';
 	import Spinner from '$lib/components/Spinner.svelte';
-	import headerStore from '$lib/stores/headerStore.js';
-	import { onMount } from 'svelte';
 
 	/* -- Props & Vars -- */
 	export let data;
