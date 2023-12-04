@@ -11,20 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repo
+        uses: actions/checkout@v2
 
-      - name: Cache pnpm modules
-        uses: actions/cache@v2
-        with:
-          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-          path: ~/.pnpm-store
-          restore-keys: |
-            ${{ runner.os }}-
-
-      - uses: pnpm/action-setup@v2.0.1
-        with:
-          version: 6.0.2
-          run_install: true
+      - name: Set up Environment
+        uses: ./.github/actions/setup
 
       - name: ESLint
         run: pnpm test:eslint
@@ -34,20 +25,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repo
+        uses: actions/checkout@v2
 
-      - name: Cache pnpm modules
-        uses: actions/cache@v2
-        with:
-          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-          path: ~/.pnpm-store
-          restore-keys: |
-            ${{ runner.os }}-
-
-      - uses: pnpm/action-setup@v2.0.1
-        with:
-          version: 6.0.2
-          run_install: true
+      - name: Set up Environment
+        uses: ./.github/actions/setup
 
       - name: Typecheck
         run: pnpm test:typecheck
