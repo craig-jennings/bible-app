@@ -1,5 +1,3 @@
-import { TOKEN } from 'constants/apiToken';
-
 const PAGE_SIZE = 20;
 const SEARCH_URL = 'https://api.esv.org/v3/passage/search/?q=';
 
@@ -36,7 +34,7 @@ async function search(term = '', currentPage = '1') {
 	const url = `${SEARCH_URL}${term}&page=${currentPage}`;
 
 	const res = await fetch(url, {
-		headers: { Authorization: `Token ${TOKEN}` },
+		headers: { Authorization: `Token ${import.meta.env.PUBLIC_API_TOKEN}` },
 	});
 
 	const { page, results, total_pages: totalPages, total_results: totalResults }: SearchResponse = await res.json();
