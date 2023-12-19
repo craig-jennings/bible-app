@@ -1,26 +1,26 @@
 {
-  "author": "Craig Jennings",
-  "background_color": "#3e3e42",
-  "description": "A simple Bible PWA (ESV)",
-  "display": "standalone",
+	"author": "Craig Jennings",
+	"background_color": "#3e3e42",
+	"description": "A simple Bible PWA (ESV)",
+	"display": "standalone",
 
-  "icons": [
-    {
-      "sizes": "192x192",
-      "src": "images/icon-192.png",
-      "type": "image/png"
-    },
-    {
-      "src": "images/icon-512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ],
+	"icons": [
+		{
+			"sizes": "192x192",
+			"src": "images/icon-192.png",
+			"type": "image/png"
+		},
+		{
+			"src": "images/icon-512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	],
 
-  "manifest_version": 2,
-  "name": "The Bible",
-  "short_name": "Bible",
-  "start_url": "/",
-  "theme_color": "#3e3e42",
-  "version": 1
+	"manifest_version": 2,
+	"name": "The Bible",
+	"short_name": "Bible",
+	"start_url": "/",
+	"theme_color": "#3e3e42",
+	"version": "1"
 }

@@ -1,0 +1,46 @@
+---
+import { search } from 'api/search';
+import Button from 'components/common/Button.svelte';
+import Input from 'components/common/Input.svelte';
+import Layout from 'layouts/Layout.astro';
+import Pagination from 'components/Pagination.svelte';
+import SearchResultListItem from 'components/SearchResultListItem.svelte';
+
+export const prerender = false;
+
+const searchParams = new URLSearchParams(Astro.url.search);
+let data: Awaited<ReturnType<typeof search>> | null = null;
+
+const page = searchParams.get('page') || '1';
+const term = searchParams.get('q');
+
+if (term) {
+	data = await search(term, page);
+}
+---
+
+<Layout>
+	<form class="flex gap-2 mb-4" transition:persist>
+		<input type="hidden" name="page" value={page} />
+		<Input name="q" autofocus placeholder="Search..." value={term} />
+		<Button client:load type="submit">Search</Button>
+	</form>
+
+	{
+		data?.results && data.results.length > 0 && (
+			<>
+				<div class="mb-4">
+					<Pagination location={Astro.url} pagination={data.pagination} />
+				</div>
+
+				<div class="flex flex-col gap-4">
+					{data?.results?.map((r) => (
+						<SearchResultListItem result={r} />
+					))}
+				</div>
+			</>
+		)
+	}
+
+	{data?.results && data.results.length === 0 && <div>No Results</div>}
+</Layout>

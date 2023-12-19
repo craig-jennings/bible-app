@@ -6,6 +6,18 @@ on:
       - master
 
 jobs:
+  astro:
+    name: Astro Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Set up Environment
+        uses: ./.github/actions/setup
+
+      - run: pnpm test:astro
   eslint:
     name: ESLint
     runs-on: ubuntu-latest
@@ -17,11 +29,10 @@ jobs:
       - name: Set up Environment
         uses: ./.github/actions/setup
 
-      - name: ESLint
-        run: pnpm test:eslint
+      - run: pnpm test:eslint
 
   typecheck:
-    name: Type Checking
+    name: Typecheck
     runs-on: ubuntu-latest
 
     steps:
@@ -31,5 +42,4 @@ jobs:
       - name: Set up Environment
         uses: ./.github/actions/setup
 
-      - name: Typecheck
-        run: pnpm test:typecheck
+      - run: pnpm test:typecheck
