@@ -1,4 +1,3 @@
-import { TOKEN } from 'constants/apiToken';
 import findBook from 'utils/findBook';
 
 const BASE_URL = 'https://api.esv.org/v3/passage/html/?';
@@ -33,7 +32,7 @@ async function fetchPassage(book: string, chapter: string) {
 
 	try {
 		const res = await fetch(url, {
-			headers: { Authorization: `Token ${TOKEN}` },
+			headers: { Authorization: `Token ${import.meta.env.PUBLIC_API_TOKEN}` },
 		});
 
 		const json: unknown = await res.json();
