@@ -1,0 +1,63 @@
+---
+import '../styles/index.css';
+import { ViewTransitions } from 'astro:transitions';
+import Footer from 'components/Footer.svelte';
+import Header from 'components/Header.svelte';
+
+interface Props {
+	book?: string;
+	chapter?: string;
+	sticky?: boolean;
+}
+
+const { book, chapter, sticky } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+		<meta name="description" content="Simple Bible PWA backed by the ESV API" />
+		<meta name="theme-color" content="#3e3e42" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<base href="/" />
+
+		<title>Bible App</title>
+
+		<link href="images/favicon.ico?v=1" rel="shortcut icon" type="image/x-icon" />
+		<link href="manifest.json" rel="manifest" />
+
+		<link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans&display=swap" rel="stylesheet" />
+		<link href="styles/index.css" rel="stylesheet" />
+
+		<ViewTransitions />
+
+		<script is:inline>
+			if ('serviceWorker' in navigator) {
+				navigator.serviceWorker.register('/sw.js');
+			}
+		</script>
+
+		<style>
+			.container {
+				display: grid;
+				grid-template-rows: 3rem 1fr 1.5rem;
+				min-height: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<Header book={book} chapter={chapter} sticky={sticky} />
+
+			<div class="p-4">
+				<slot />
+			</div>
+
+			<Footer />
+		</div>
+	</body>
+</html>

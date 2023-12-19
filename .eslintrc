@@ -4,8 +4,7 @@
 
 	"env": {
 		"browser": true,
-		"es2017": true,
-		"node": true
+		"es2017": true
 	},
 
 	"ignorePatterns": ["dist/"],
@@ -13,13 +12,19 @@
 	"parser": "@typescript-eslint/parser",
 
 	"parserOptions": {
-		"sourceType": "module",
 		"ecmaVersion": 2020,
-		"extraFileExtensions": [".svelte"]
+		"extraFileExtensions": [".svelte"],
+		"sourceType": "module"
 	},
 
 	"overrides": [
 		{
+			"globals": {
+				"$derived": false,
+				"$effect": false,
+				"$props": false,
+				"$state": false
+			},
 			"files": ["*.svelte"],
 			"parser": "svelte-eslint-parser",
 
