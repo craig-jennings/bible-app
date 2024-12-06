@@ -1,6 +1,7 @@
 # Directories
 .netlify/
-dist/
+.svelte-kit/
+build/
 node_modules/
 
 # Files

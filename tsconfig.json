@@ -1,13 +1,15 @@
 {
-	"extends": "astro/tsconfigs/strict",
+	"extends": "./.svelte-kit/tsconfig.json",
 
 	"compilerOptions": {
 		"allowJs": false,
-		"baseUrl": "./src",
-		"noImplicitAny": true,
-		"noUnusedLocals": true,
-		"sourceMap": true
-	},
-
-	"include": ["src/", "public/"]
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"moduleResolution": "bundler",
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"strict": true,
+		"verbatimModuleSyntax": true
+	}
 }

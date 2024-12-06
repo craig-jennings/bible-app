@@ -4,42 +4,16 @@ on:
   pull_request:
     branches:
       - master
+  push:
+    branches:
+      - master
 
 jobs:
-  astro:
-    name: Astro Check
+  test:
+    name: Test
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-
-      - name: Set up Environment
-        uses: ./.github/actions/setup
-
-      - run: pnpm test:astro
-  eslint:
-    name: ESLint
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-
-      - name: Set up Environment
-        uses: ./.github/actions/setup
-
-      - run: pnpm test:eslint
-
-  typecheck:
-    name: Typecheck
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-
-      - name: Set up Environment
-        uses: ./.github/actions/setup
-
-      - run: pnpm test:typecheck
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: pnpm test

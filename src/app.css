@@ -1,0 +1,47 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/utilities';
+
+:root {
+	--neutral-100: #fafafa;
+	--neutral-300: #2e2e32;
+	--neutral-500: #3e3e42;
+	--neutral-800: #1e1e1e;
+
+	--primary-100: #007acc;
+
+	--easing1: linear(
+		0,
+		0.006,
+		0.025,
+		0.056,
+		0.101 6.1%,
+		0.2 9.2%,
+		0.539 18.9%,
+		0.638 22.2%,
+		0.721,
+		0.791,
+		0.849,
+		0.898 34.7%,
+		0.937 38.1%,
+		0.968 41.8%,
+		0.991 45.7%,
+		1.006 50.1%,
+		1.015 55%,
+		1.017 63.9%,
+		1.005 85.5%,
+		1.001
+	);
+}
+
+body,
+html {
+	height: 100%;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	background-color: var(--neutral-800);
+	color: var(--neutral-100);
+	font-family: 'Quattrocento Sans', sans-serif;
+	line-height: 1.5;
+}

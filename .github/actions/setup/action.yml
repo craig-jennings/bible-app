@@ -4,17 +4,10 @@ description: Sets up Node.js/pnpm and installs the dependencies of the repo
 runs:
   using: composite
   steps:
-    - name: Install pnpm
-      uses: pnpm/action-setup@v2
-      with:
-        version: 8
-
-    - name: Set up Node.js w/ pnpm caching
-      uses: actions/setup-node@v3
+    - uses: pnpm/action-setup@v3
+    - uses: actions/setup-node@v4
       with:
         cache: pnpm
-        node-version: 20
-
-    - name: Install dependencies
-      run: pnpm install
+        node-version: 22
+    - run: pnpm install
       shell: bash
