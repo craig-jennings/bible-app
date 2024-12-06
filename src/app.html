@@ -17,6 +17,14 @@
 		<link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans&display=swap" rel="stylesheet" />
 
 		%sveltekit.head%
+
+		<script>
+			const prevLocation = localStorage.getItem('prev-location');
+
+			if (prevLocation && window.location.pathname !== prevLocation) {
+				window.location.pathname = prevLocation;
+			}
+		</script>
 	</head>
 
 	<body data-sveltekit-preload-data="hover">

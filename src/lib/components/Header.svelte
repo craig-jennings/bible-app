@@ -43,12 +43,14 @@
 		width: 100%;
 	}
 
-	@media screen and (max-width: 767px) {
-		.book-name {
-			max-width: 170px;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
+	.book-name {
+		max-width: 170px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+
+		@media (--md-screen) {
+			overflow: auto;
 		}
 	}
 </style>

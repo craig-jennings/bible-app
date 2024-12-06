@@ -1,0 +1,3 @@
+@custom-media --sm-screen (width > 540px);
+@custom-media --md-screen (width > 990px);
+@custom-media --lg-screen (width > 1440px);

@@ -4,9 +4,14 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import Header from '$lib/components/Header.svelte';
 
+	/* -- Runes -- */
 	let { children } = $props();
 
 	onNavigate((navigation) => {
+		if (navigation.to?.url.pathname) {
+			localStorage.setItem('prev-location', navigation.to.url.pathname);
+		}
+
 		if (!document.startViewTransition) return;
 
 		return new Promise((resolve) => {
@@ -17,12 +22,14 @@
 			});
 		});
 	});
+
+	$effect(() => {});
 </script>
 
 <div class="container">
 	<Header />
 
-	<div class="p-4">
+	<div class="mx-auto w-full max-w-[800px] p-4">
 		{@render children()}
 	</div>
 

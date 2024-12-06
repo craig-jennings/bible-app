@@ -13,7 +13,7 @@
 		justify-content: center;
 		padding: 0 1rem;
 
-		@media screen and (min-width: 768px) {
+		@media (--md-screen) {
 			justify-content: flex-end;
 		}
 	}
