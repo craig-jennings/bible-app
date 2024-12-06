@@ -21,7 +21,7 @@
 		width: 100%;
 
 		&:focus {
-			border-color: var(--primary100);
+			border-color: var(--primary-100);
 			outline: none;
 		}
 	}
