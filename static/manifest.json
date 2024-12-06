@@ -6,18 +6,6 @@
 
 	"icons": [
 		{
-			"purpose": "maskable",
-			"sizes": "192x192",
-			"src": "images/icon-192-maskable.png",
-			"type": "image/png"
-		},
-		{
-			"purpose": "maskable",
-			"sizes": "512x512",
-			"src": "images/icon-512-maskable.png",
-			"type": "image/png"
-		},
-		{
 			"purpose": "any",
 			"sizes": "192x192",
 			"src": "images/icon-192.png",
@@ -35,6 +23,6 @@
 	"name": "The Bible",
 	"short_name": "Bible",
 	"start_url": "/",
-	"theme_color": "#007acc",
+	"theme_color": "#1e1e1e",
 	"version": "1"
 }
