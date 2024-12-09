@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import HammerElement from '$lib/components/common/HammerElement.svelte';
 	import ScrollUp from '$lib/components/ScrollUp.svelte';
+	import { historyStore } from '$lib/stores/historyStore.svelte';
 	import type { HammerAction } from '$lib/types/HammerAction.js';
 	import { findBook } from '$lib/utils/findBook';
 	import requestWakeLock from '$lib/utils/requestWakeLock.svelte';
@@ -16,6 +17,10 @@
 	const { book: bookKey, chapter, passage }: Props = $props();
 
 	const book = findBook(bookKey);
+
+	$effect.root(() => {
+		historyStore.addEntry(bookKey, chapter);
+	});
 
 	requestWakeLock();
 
@@ -60,9 +65,10 @@
 <style>
 	.passage {
 		font-size: 1.25rem;
-		margin: 0 auto;
+		margin: 0 auto 36px auto;
 		max-width: 540px;
 		width: 100%;
+		view-transition-name: passage;
 
 		& :global(p) {
 			margin-bottom: 1rem;

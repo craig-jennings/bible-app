@@ -42,18 +42,17 @@
 	.container {
 		align-items: center;
 		background-color: var(--neutral-500);
+		block-size: 48px;
 		border-radius: 50%;
-		bottom: 1.5rem;
 		color: var(--neutral-100);
 		cursor: pointer;
 		display: flex;
-		height: 3rem;
+		inline-size: 48px;
+		inset: auto 24px 28px auto;
 		justify-content: center;
 		opacity: 0.9;
 		position: fixed;
-		right: 1.5rem;
-		transition: transform 0.4s var(--easing1);
-		width: 3rem;
+		transition: transform 0.4s var(--easing-1);
 
 		&.hide {
 			transform: translateY(6rem);

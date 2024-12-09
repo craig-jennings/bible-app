@@ -3,6 +3,7 @@
 	import { onNavigate } from '$app/navigation';
 	import Footer from '$lib/components/Footer.svelte';
 	import Header from '$lib/components/Header.svelte';
+	import History from '$lib/components/History.svelte';
 
 	/* -- Runes -- */
 	let { children } = $props();
@@ -22,8 +23,6 @@
 			});
 		});
 	});
-
-	$effect(() => {});
 </script>
 
 <div class="container">
@@ -33,6 +32,7 @@
 		{@render children()}
 	</div>
 
+	<History />
 	<Footer />
 </div>
 

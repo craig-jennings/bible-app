@@ -9,7 +9,7 @@
 	/* -- Event Handlers -- */
 </script>
 
-<div class="container">
+<div class="container" class:stuck={!!$page.params.chapterId}>
 	<h1 class="text text-[32px]">
 		<div class="flex items-center justify-center">
 			<a href="/">Bible</a>
@@ -41,6 +41,12 @@
 		justify-content: space-between;
 		padding: 3px 1rem 0 1rem;
 		width: 100%;
+
+		&.stuck {
+			position: sticky;
+			top: 0;
+			z-index: 1;
+		}
 	}
 
 	.book-name {
