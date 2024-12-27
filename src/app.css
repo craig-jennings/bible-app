@@ -31,10 +31,6 @@
 	);
 }
 
-::view-transition-group(history) {
-	animation: none;
-}
-
 body,
 html {
 	height: 100%;

@@ -56,6 +56,7 @@
 		white-space: nowrap;
 
 		@media (--md-screen) {
+			max-width: max-content;
 			overflow: auto;
 		}
 	}
