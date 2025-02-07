@@ -1,6 +1,6 @@
 {
-	"name": "bible-app-2",
-	"version": "0.0.1",
+	"name": "bible-app",
+	"version": "2.0.1",
 	"type": "module",
 	"packageManager": "pnpm@9.14.4+sha512.c8180b3fbe4e4bca02c94234717896b5529740a6cbadf19fa78254270403ea2f27d4e1d46a08a0f56c89b63dc8ebfd3ee53326da720273794e6200fcf0d184ab",
 	"scripts": {
@@ -13,33 +13,31 @@
 		"test:typecheck": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
 	},
 	"dependencies": {
-		"@tailwindcss/container-queries": "0.1.1",
-		"clsx": "2.1.1",
 		"hammerjs": "2.0.8",
 		"wc-spinners": "1.1.1"
 	},
 	"devDependencies": {
 		"@csstools/postcss-global-data": "^3.0.0",
-		"@sveltejs/adapter-static": "^3.0.6",
-		"@sveltejs/kit": "^2.9.0",
-		"@sveltejs/vite-plugin-svelte": "^5.0.0",
+		"@sveltejs/adapter-static": "^3.0.8",
+		"@sveltejs/kit": "^2.17.1",
+		"@sveltejs/vite-plugin-svelte": "^5.0.3",
+		"@tailwindcss/vite": "^4.0.4",
 		"@types/hammerjs": "^2.0.46",
-		"autoprefixer": "^10.4.20",
-		"eslint": "^9.7.0",
+		"eslint": "^9.19.0",
 		"eslint-plugin-import": "^2.31.0",
 		"eslint-plugin-simple-import-sort": "^12.1.1",
 		"eslint-plugin-svelte": "^2.36.0",
-		"globals": "^15.0.0",
+		"globals": "^15.14.0",
 		"postcss-custom-media": "^11.0.5",
 		"prettier": "^3.3.2",
 		"prettier-plugin-css-order": "^2.1.2",
-		"prettier-plugin-svelte": "^3.2.7",
-		"prettier-plugin-tailwindcss": "^0.6.8",
-		"svelte": "^5.0.0",
-		"svelte-check": "^4.0.0",
-		"tailwindcss": "^3.4.9",
-		"typescript": "^5.0.0",
-		"typescript-eslint": "^8.0.0",
-		"vite": "^6.0.0"
+		"prettier-plugin-svelte": "^3.3.3",
+		"prettier-plugin-tailwindcss": "^0.6.11",
+		"svelte": "^5.19.9",
+		"svelte-check": "^4.1.4",
+		"tailwindcss": "^4.0.0",
+		"typescript": "^5.7.3",
+		"typescript-eslint": "^8.23.0",
+		"vite": "^6.1.0"
 	}
 }

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import clsx from 'clsx';
 	import type { Snippet } from 'svelte';
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
@@ -7,26 +6,26 @@
 		children: Snippet;
 	}
 
-	const { children, class: klass, ...rest }: Props = $props();
+	const { children, ...rest }: Props = $props();
 </script>
 
-<button class={clsx('button', klass)} {...rest}>
+<button {...rest} class={['button', rest.class]}>
 	{@render children()}
 </button>
 
 <style>
 	.button {
-		background-color: var(--neutral-800);
-		border: 1px solid var(--neutral-500);
+		background-color: var(--color-zinc-900);
+		border: 2px solid var(--color-zinc-600);
 		border-radius: 0.75rem;
-		color: var(--neutral-100);
+		color: var(--color-zinc-50);
 		height: 48px;
 		padding: 0.5rem 1rem;
-		transition: all 0.25s;
+		transition: background-color 100ms var(--ease-out-cubic);
 
 		&:focus,
 		&:hover {
-			background-color: var(--neutral-500);
+			background-color: var(--color-zinc-600);
 			cursor: pointer;
 			outline: none;
 		}
@@ -34,8 +33,8 @@
 
 	.button[disabled] {
 		background-color: inherit;
-		border-color: var(--neutral-300);
-		color: var(--neutral-300);
+		border-color: var(--color-color-neutral-900);
+		color: var(--color-zinc-700);
 
 		&:focus,
 		&:hover {

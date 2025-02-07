@@ -16,7 +16,7 @@
 <style>
 	.selector-list-item {
 		align-items: center;
-		border: 1px solid var(--neutral-500);
+		border: 1px solid var(--color-zinc-700);
 		border-radius: 50%;
 		color: inherit;
 		display: flex;
@@ -24,11 +24,11 @@
 		overflow: hidden;
 		text-align: center;
 		text-decoration: none;
-		transition: background-color 0.1s ease-in-out;
+		transition: background-color 100ms var(--ease-out-cubic);
 
 		&:hover,
 		&:focus {
-			background-color: var(--neutral-500);
+			background-color: var(--color-zinc-700);
 			outline: none;
 			text-decoration: none;
 		}

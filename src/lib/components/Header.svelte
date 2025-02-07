@@ -35,7 +35,7 @@
 
 <style>
 	.container {
-		background-color: var(--neutral-500);
+		background-color: var(--color-zinc-700);
 		display: flex;
 		font-weight: bold;
 		justify-content: space-between;

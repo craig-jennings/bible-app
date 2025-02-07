@@ -23,9 +23,14 @@
 
 <style>
 	.container {
-		border: 1px solid var(--neutral-500);
+		border: 1px solid var(--color-zinc-700);
 		border-radius: 0.5rem;
 		padding: 0.25rem 0.5rem;
+		transition: background-color 100ms var(--ease-out-quart);
+
+		&:hover {
+			background-color: oklch(from white l c h / 0.1);
+		}
 	}
 
 	.link {

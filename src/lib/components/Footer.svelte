@@ -7,7 +7,7 @@
 <style>
 	.container {
 		align-items: center;
-		background-color: var(--neutral-500);
+		background-color: var(--color-zinc-700);
 		display: flex;
 		height: 100%;
 		justify-content: center;

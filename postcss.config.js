@@ -5,7 +5,5 @@ export default {
 		},
 
 		'postcss-custom-media': {},
-		tailwindcss: {},
-		autoprefixer: {},
 	},
 };
