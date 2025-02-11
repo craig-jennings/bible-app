@@ -34,7 +34,7 @@
 </SelectorList>
 
 {#if newTestamentBooks.length > 0}
-	<h1 class="mb-6 mt-8 text-center text-3xl font-bold">New Testament</h1>
+	<h1 class="mt-8 mb-6 text-center text-3xl font-bold">New Testament</h1>
 {/if}
 
 <SelectorList>
