@@ -1,6 +1,10 @@
 @import 'tailwindcss';
 
-@layer theme {
+@utility container {
+	max-width: 100%;
+}
+
+@layer base {
 	:root {
 		--ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
 		--ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
@@ -23,9 +27,7 @@
 		--ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
 		--ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
 	}
-}
 
-@layer base {
 	body,
 	html {
 		height: 100%;
@@ -37,11 +39,5 @@
 		color: var(--color-zinc-50);
 		font-family: 'Quattrocento Sans', sans-serif;
 		line-height: 1.5;
-	}
-}
-
-@layer utilities {
-	.container {
-		max-width: 100%;
 	}
 }
