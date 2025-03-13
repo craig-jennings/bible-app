@@ -1,6 +1,6 @@
 {
 	"author": "Craig Jennings",
-	"background_color": "#1e1e1e",
+	"background_color": "oklch(0.21 0.006 285.885)",
 	"description": "A simple Bible PWA (ESV)",
 	"display": "standalone",
 
@@ -23,6 +23,6 @@
 	"name": "The Bible",
 	"short_name": "Bible",
 	"start_url": "/",
-	"theme_color": "#1e1e1e",
+	"theme_color": "oklch(37% 0.013 285.805)",
 	"version": "1"
 }
