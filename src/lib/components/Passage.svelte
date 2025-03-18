@@ -34,7 +34,7 @@
 
 				if (book.chapterCount === chapterNumber) return;
 
-				goto(`/${book.key}/${chapterNumber + 1}`);
+				return goto(`/${book.key}/${chapterNumber + 1}`);
 			},
 
 			event: 'swipeleft',
@@ -47,7 +47,7 @@
 
 				if (chapterNumber === 1) return;
 
-				goto(`/${book.key}/${chapterNumber - 1}`);
+				return goto(`/${book.key}/${chapterNumber - 1}`);
 			},
 
 			event: 'swiperight',

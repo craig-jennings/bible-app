@@ -24,7 +24,7 @@
 		</div>
 
 		<div class="flex flex-col gap-4">
-			{#each results as result}
+			{#each results as result (result.reference)}
 				<SearchResultListItem {result} />
 			{/each}
 		</div>

@@ -2,6 +2,7 @@
 	"extends": "./.svelte-kit/tsconfig.json",
 
 	"compilerOptions": {
+		"erasableSyntaxOnly": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true,

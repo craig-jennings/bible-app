@@ -13,10 +13,8 @@
 			localStorage.setItem('prev-location', navigation.to.url.pathname);
 		}
 
-		if (!document.startViewTransition) return;
-
 		return new Promise((resolve) => {
-			document.startViewTransition?.(async () => {
+			document.startViewTransition(async () => {
 				resolve();
 
 				await navigation.complete;

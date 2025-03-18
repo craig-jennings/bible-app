@@ -4,19 +4,24 @@ import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import svelte from 'eslint-plugin-svelte';
 import globals from 'globals';
 import ts from 'typescript-eslint';
+import { globalIgnores } from 'eslint/config';
 
 export default ts.config(
+	globalIgnores(['.svelte-kit/', 'build/', '*.config.js', '*.config.ts', 'src/service-worker.ts']),
 	js.configs.recommended,
-	...ts.configs.recommended,
-	...svelte.configs['flat/recommended'],
-	{
-		ignores: ['.svelte-kit/', 'build/'],
-	},
+	...ts.configs.recommendedTypeChecked,
+	...svelte.configs.recommended,
 	{
 		languageOptions: {
 			globals: {
 				...globals.browser,
 				...globals.node,
+			},
+
+			parserOptions: {
+				projectService: true,
+				extraFileExtensions: ['.svelte'],
+				tsconfigRootDir: import.meta.dirname,
 			},
 		},
 
@@ -35,24 +40,24 @@ export default ts.config(
 			'prefer-template': 'error',
 
 			// Typescript rules
-			// '@typescript-eslint/ban-ts-comment': 'warn',
-			// '@typescript-eslint/no-deprecated': 'warn',
-			// '@typescript-eslint/no-empty-object-type': [
-			// 	'error',
-			// 	{
-			// 		allowInterfaces: 'with-single-extends',
-			// 	},
-			// ],
-			// '@typescript-eslint/no-misused-promises': 'off',
-			// '@typescript-eslint/no-non-null-assertion': 'error',
-			// '@typescript-eslint/no-shadow': 'error',
-			// '@typescript-eslint/no-unnecessary-condition': 'error',
-			// '@typescript-eslint/no-unsafe-argument': 'off',
-			// '@typescript-eslint/no-unsafe-assignment': 'off',
-			// '@typescript-eslint/no-unsafe-member-access': 'off',
-			// '@typescript-eslint/no-unsafe-return': 'off',
-			// '@typescript-eslint/prefer-promise-reject-errors': 'off',
-			// '@typescript-eslint/unbound-method': 'off',
+			'@typescript-eslint/ban-ts-comment': 'warn',
+			'@typescript-eslint/no-deprecated': 'warn',
+			'@typescript-eslint/no-empty-object-type': [
+				'error',
+				{
+					allowInterfaces: 'with-single-extends',
+				},
+			],
+			'@typescript-eslint/no-misused-promises': 'off',
+			'@typescript-eslint/no-non-null-assertion': 'error',
+			'@typescript-eslint/no-shadow': 'error',
+			'@typescript-eslint/no-unnecessary-condition': 'error',
+			'@typescript-eslint/no-unsafe-argument': 'off',
+			'@typescript-eslint/no-unsafe-assignment': 'off',
+			'@typescript-eslint/no-unsafe-member-access': 'off',
+			'@typescript-eslint/no-unsafe-return': 'off',
+			'@typescript-eslint/prefer-promise-reject-errors': 'off',
+			'@typescript-eslint/unbound-method': 'off',
 
 			// Import rules
 			'import/first': 'error',
@@ -63,7 +68,7 @@ export default ts.config(
 		},
 	},
 	{
-		files: ['**/*.svelte'],
+		files: ['**/*.svelte', '**/*.svelte.ts', '**/+{layout,page}{[.server],}.ts'],
 
 		languageOptions: {
 			parserOptions: {
@@ -72,6 +77,7 @@ export default ts.config(
 		},
 
 		rules: {
+			'@typescript-eslint/no-unsafe-call': 'off', // TODO: When typing information for SvelteKit is correct, remove this rule
 			'svelte/sort-attributes': [
 				'error',
 				{

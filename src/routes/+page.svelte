@@ -28,7 +28,7 @@
 {/if}
 
 <SelectorList>
-	{#each oldTestamentBooks as otBook}
+	{#each oldTestamentBooks as otBook (otBook.key)}
 		<SelectorListItem href="/{otBook.key}">{otBook.label}</SelectorListItem>
 	{/each}
 </SelectorList>
@@ -38,7 +38,7 @@
 {/if}
 
 <SelectorList>
-	{#each newTestamentBooks as ntBook}
+	{#each newTestamentBooks as ntBook (ntBook.key)}
 		<SelectorListItem href="/{ntBook.key}">{ntBook.label}</SelectorListItem>
 	{/each}
 </SelectorList>

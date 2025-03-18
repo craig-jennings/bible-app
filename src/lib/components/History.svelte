@@ -32,7 +32,7 @@
 		<button aria-label="Close History" onclick={() => (open = false)} type="button"><Close /></button>
 	</div>
 
-	{#each entries as entry}
+	{#each entries as entry (`${entry.book.key}/${entry.chapter}`)}
 		<a href="/{entry.book.key}/{entry.chapter}">{entry.book.label} {entry.chapter}</a>
 	{/each}
 </div>

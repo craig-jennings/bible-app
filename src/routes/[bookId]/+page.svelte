@@ -16,7 +16,7 @@
 	<div class="p-4">
 		<SelectorList>
 			<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
-			{#each Array(book.chapterCount) as _, index}
+			{#each Array(book.chapterCount) as _, index (index)}
 				<SelectorItem href="/{$page.params.bookId}/{index + 1}">
 					{index + 1}
 				</SelectorItem>
