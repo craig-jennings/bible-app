@@ -46,9 +46,12 @@
 {/if}
 
 <dialog bind:this={dialogEl} use:swipable={{ onSwipeLeft: () => (open = false) }}>
-	<div class="border-color-neutral-700 flex justify-between border-b-2 px-4 py-2">
+	<div class="border-color-neutral-700 flex justify-between border-b-2 px-4 py-2" data-swipable="false">
 		<h2>History</h2>
-		<button aria-label="Close History" onclick={() => (open = false)} type="button"><Close /></button>
+
+		<button aria-label="Close History" onclick={() => (open = false)} type="button">
+			<Close />
+		</button>
 	</div>
 
 	{#each entries as entry (`${entry.book.key}/${entry.chapter}`)}

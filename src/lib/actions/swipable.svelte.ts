@@ -7,6 +7,20 @@ interface Parameters {
 }
 
 export const swipable: Action<HTMLElement, Parameters> = (node, { onSwipeLeft, onSwipeRight }) => {
+	function isSwipable(target: EventTarget | null) {
+		let currentNode = target;
+
+		while (currentNode !== null) {
+			if (currentNode instanceof HTMLElement && currentNode.dataset.swipable === 'false') {
+				return false;
+			}
+
+			currentNode = (currentNode as HTMLElement).parentNode as Element | null;
+		}
+
+		return true;
+	}
+
 	onMount(() => {
 		let currentTranslate = 0;
 		let currentX = 0;
@@ -17,6 +31,8 @@ export const swipable: Action<HTMLElement, Parameters> = (node, { onSwipeLeft, o
 		node.style.touchAction = 'none';
 
 		const handlePointerDown = (e: PointerEvent) => {
+			if (!isSwipable(e.target)) return;
+
 			dimensions = node.getBoundingClientRect();
 
 			if (
@@ -41,6 +57,7 @@ export const swipable: Action<HTMLElement, Parameters> = (node, { onSwipeLeft, o
 
 		const handlePointerMove = (e: PointerEvent) => {
 			if (!isInsideDialog) return;
+			if (!isSwipable(e.target)) return;
 
 			prevX = currentX;
 
@@ -58,6 +75,9 @@ export const swipable: Action<HTMLElement, Parameters> = (node, { onSwipeLeft, o
 		};
 
 		const handlePointerUp = (e: PointerEvent) => {
+			if (!isInsideDialog) return;
+			if (!isSwipable(e.target)) return;
+
 			node.releasePointerCapture(e.pointerId);
 
 			requestAnimationFrame(() => {
