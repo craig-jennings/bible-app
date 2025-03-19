@@ -9,6 +9,10 @@ const config = {
 		adapter: adapter({
 			fallback: 'index.html',
 		}),
+
+		serviceWorker: {
+			register: false,
+		},
 	},
 };
 

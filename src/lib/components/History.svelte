@@ -2,73 +2,25 @@
 	import Close from './icons/Close.svelte';
 	import History from './icons/History.svelte';
 	import { onNavigate } from '$app/navigation';
+	import { swipable } from '$lib/actions/swipable.svelte';
 	import { historyStore } from '$lib/stores/historyStore.svelte';
 	import { onMount } from 'svelte';
 
 	/* -- Runes -- */
-	let currentTranslate = $state<number | undefined>(0);
-	let dialogRef = $state<HTMLDialogElement>();
+	let dialogEl = $state<HTMLDialogElement>();
 	let open = $state(false);
 
-	let entries = $derived.by(() => {
-		return historyStore.entries.slice(1);
-	});
+	let entries = $derived(historyStore.entries.slice(1));
 
 	onMount(() => {
-		let containerWidth = 0;
-		let currentX = 0;
-		let prevX = 0;
-
 		const closeEventListener = () => {
 			open = false;
-			currentTranslate = undefined;
 		};
 
-		const touchMoveEventListener = (e: TouchEvent) => {
-			const touch = e.touches[0];
-
-			const x = touch.clientX;
-
-			prevX = currentX;
-			currentX = x;
-
-			if (x > prevX) {
-				currentTranslate = Math.min(0, (currentTranslate || 0) + (x - prevX));
-			} else {
-				currentTranslate = Math.max(containerWidth * -1, (currentTranslate || 0) - (prevX - x));
-			}
-		};
-
-		const touchStartEventListener = (e: TouchEvent) => {
-			const touch = e.touches[0];
-
-			dialogRef?.style.setProperty('--translate-duration', '0');
-
-			containerWidth = dialogRef?.getBoundingClientRect().width || 0;
-			currentX = touch.clientX;
-			prevX = touch.clientX;
-		};
-
-		const touchEndEventListener = () => {
-			dialogRef?.style.removeProperty('--translate-duration');
-
-			if (currentX < prevX) {
-				open = false;
-			} else {
-				currentTranslate = undefined;
-			}
-		};
-
-		dialogRef?.addEventListener('close', closeEventListener);
-		dialogRef?.addEventListener('touchend', touchEndEventListener);
-		dialogRef?.addEventListener('touchmove', touchMoveEventListener);
-		dialogRef?.addEventListener('touchstart', touchStartEventListener);
+		dialogEl?.addEventListener('close', closeEventListener);
 
 		return () => {
-			dialogRef?.removeEventListener('close', closeEventListener);
-			dialogRef?.removeEventListener('touchend', touchEndEventListener);
-			dialogRef?.removeEventListener('touchmove', touchMoveEventListener);
-			dialogRef?.removeEventListener('touchstart', touchStartEventListener);
+			dialogEl?.removeEventListener('close', closeEventListener);
 		};
 	});
 
@@ -78,10 +30,9 @@
 
 	$effect(() => {
 		if (open) {
-			dialogRef?.showModal();
-			currentTranslate = 0;
+			dialogEl?.showModal();
 		} else {
-			dialogRef?.close();
+			dialogEl?.close();
 		}
 	});
 
@@ -94,10 +45,7 @@
 	</button>
 {/if}
 
-<dialog
-	bind:this={dialogRef}
-	style:--translate-x={Number.isInteger(currentTranslate) ? `${currentTranslate}px` : undefined}
->
+<dialog bind:this={dialogEl} use:swipable={{ onSwipeLeft: () => (open = false) }}>
 	<div class="border-color-neutral-700 flex justify-between border-b-2 px-4 py-2">
 		<h2>History</h2>
 		<button aria-label="Close History" onclick={() => (open = false)} type="button"><Close /></button>
@@ -109,16 +57,12 @@
 </dialog>
 
 <style>
-	:global(html:has(.open)) {
-		overflow: hidden;
-	}
-
 	::view-transition-group(history) {
 		animation: none;
 	}
 
 	dialog {
-		--transition-duration: 200ms;
+		--transition-duration: 250ms;
 		--transition-timing-function: var(--ease-out-cubic);
 
 		background-color: var(--color-zinc-800);
@@ -128,11 +72,9 @@
 		inline-size: 80vw;
 		inset-block: 0;
 		max-block-size: 100%;
-		opacity: 0;
 		outline: none;
 		transition:
 			display var(--transition-duration) allow-discrete,
-			opacity var(--transition-duration) var(--transition-timing-function),
 			overlay var(--transition-duration) allow-discrete,
 			translate var(--translate-duration, var(--transition-duration)) var(--transition-timing-function);
 		translate: -100% 0;
@@ -149,11 +91,9 @@
 
 		&[open] {
 			display: block;
-			opacity: 1;
 			translate: var(--translate-x, 0) 0;
 
 			@starting-style {
-				opacity: 0;
 				translate: -100% 0;
 			}
 
