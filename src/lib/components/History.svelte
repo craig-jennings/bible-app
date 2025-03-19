@@ -40,7 +40,7 @@
 </script>
 
 {#if entries.length > 0}
-	<button class="indicator" onclick={() => (open = !open)}>
+	<button class="indicator" onclick={() => (open = true)}>
 		<History />
 	</button>
 {/if}
