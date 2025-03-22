@@ -25,12 +25,12 @@ export const swipable: Action<HTMLElement, Parameters> = (node, { onSwipeLeft, o
 		let currentTranslate = 0;
 		let currentX = 0;
 		let dimensions: DOMRect = new DOMRect();
-		let isInsideDialog = false;
 		let prevX = 0;
 
 		node.style.touchAction = 'none';
 
 		const handlePointerDown = (e: PointerEvent) => {
+			if (e.pointerType !== 'touch') return;
 			if (!isSwipable(e.target)) return;
 
 			dimensions = node.getBoundingClientRect();
@@ -41,24 +41,22 @@ export const swipable: Action<HTMLElement, Parameters> = (node, { onSwipeLeft, o
 				e.clientY < dimensions.top ||
 				e.clientY > dimensions.bottom
 			) {
-				isInsideDialog = false;
-
 				return;
 			}
 
 			currentTranslate = 0;
 			currentX = e.clientX;
 			node.setPointerCapture(e.pointerId);
-			isInsideDialog = true;
 			prevX = e.clientX;
 
 			node.style.setProperty('--translate-duration', '0');
+
+			node.addEventListener('pointercancel', handlePointerUp, true);
+			node.addEventListener('pointermove', handlePointerMove, true);
+			node.addEventListener('pointerup', handlePointerUp, true);
 		};
 
 		const handlePointerMove = (e: PointerEvent) => {
-			if (!isInsideDialog) return;
-			if (!isSwipable(e.target)) return;
-
 			prevX = currentX;
 
 			currentX = e.clientX;
@@ -75,9 +73,6 @@ export const swipable: Action<HTMLElement, Parameters> = (node, { onSwipeLeft, o
 		};
 
 		const handlePointerUp = (e: PointerEvent) => {
-			if (!isInsideDialog) return;
-			if (!isSwipable(e.target)) return;
-
 			node.releasePointerCapture(e.pointerId);
 
 			requestAnimationFrame(() => {
@@ -90,12 +85,13 @@ export const swipable: Action<HTMLElement, Parameters> = (node, { onSwipeLeft, o
 					onSwipeRight?.();
 				}
 			});
+
+			node.removeEventListener('pointercancel', handlePointerUp, true);
+			node.removeEventListener('pointermove', handlePointerMove, true);
+			node.removeEventListener('pointerup', handlePointerUp, true);
 		};
 
-		node.addEventListener('pointercancel', handlePointerUp, true);
 		node.addEventListener('pointerdown', handlePointerDown, true);
-		node.addEventListener('pointermove', handlePointerMove, true);
-		node.addEventListener('pointerup', handlePointerUp, true);
 
 		return () => {
 			node.removeEventListener('pointercancel', handlePointerUp, true);

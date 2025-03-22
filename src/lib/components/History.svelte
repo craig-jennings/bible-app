@@ -4,25 +4,12 @@
 	import { onNavigate } from '$app/navigation';
 	import { swipable } from '$lib/actions/swipable.svelte';
 	import { historyStore } from '$lib/stores/historyStore.svelte';
-	import { onMount } from 'svelte';
 
 	/* -- Runes -- */
 	let dialogEl = $state<HTMLDialogElement>();
 	let open = $state(false);
 
 	let entries = $derived(historyStore.entries.slice(1));
-
-	onMount(() => {
-		const closeEventListener = () => {
-			open = false;
-		};
-
-		dialogEl?.addEventListener('close', closeEventListener);
-
-		return () => {
-			dialogEl?.removeEventListener('close', closeEventListener);
-		};
-	});
 
 	onNavigate(() => {
 		open = false;
@@ -37,19 +24,22 @@
 	});
 
 	/* -- Event Handlers -- */
+	const handleClose = () => {
+		open = false;
+	};
 </script>
 
 {#if entries.length > 0}
-	<button class="indicator" onclick={() => (open = true)}>
+	<button aria-label="View History" class="indicator" onclick={() => (open = true)} type="button">
 		<History />
 	</button>
 {/if}
 
-<dialog bind:this={dialogEl} use:swipable={{ onSwipeLeft: () => (open = false) }}>
+<dialog bind:this={dialogEl} onclose={handleClose} use:swipable={{ onSwipeLeft: handleClose }}>
 	<div class="border-color-neutral-700 flex justify-between border-b-2 px-4 py-2" data-swipable="false">
 		<h2>History</h2>
 
-		<button aria-label="Close History" onclick={() => (open = false)} type="button">
+		<button aria-label="Close History" onclick={handleClose} type="button">
 			<Close />
 		</button>
 	</div>
