@@ -2,7 +2,7 @@
 	import Close from './icons/Close.svelte';
 	import History from './icons/History.svelte';
 	import { onNavigate } from '$app/navigation';
-	import { swipable } from '$lib/actions/swipable.svelte';
+	import { swipable } from '$lib/attachments/swipable.svelte';
 	import { historyStore } from '$lib/stores/historyStore.svelte';
 
 	/* -- Runes -- */
@@ -35,7 +35,7 @@
 	</button>
 {/if}
 
-<dialog bind:this={dialogEl} onclose={handleClose} use:swipable={{ onSwipeLeft: handleClose }}>
+<dialog {@attach swipable({ onSwipeLeft: handleClose })} bind:this={dialogEl} onclose={handleClose}>
 	<div class="border-color-neutral-700 flex justify-between border-b-2 px-4 py-2" data-swipable="false">
 		<h2>History</h2>
 

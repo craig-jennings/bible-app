@@ -1,27 +1,12 @@
-import { onMount } from 'svelte';
-import type { Action } from 'svelte/action';
+import type { Attachment } from 'svelte/attachments';
 
-interface Parameters {
+interface Options {
 	onSwipeLeft?: () => void;
 	onSwipeRight?: () => void;
 }
 
-export const swipable: Action<HTMLElement, Parameters> = (node, { onSwipeLeft, onSwipeRight }) => {
-	function isSwipable(target: EventTarget | null) {
-		let currentNode = target;
-
-		while (currentNode !== null) {
-			if (currentNode instanceof HTMLElement && currentNode.dataset.swipable === 'false') {
-				return false;
-			}
-
-			currentNode = (currentNode as HTMLElement).parentNode as Element | null;
-		}
-
-		return true;
-	}
-
-	onMount(() => {
+export function swipable(options: Options = {}) {
+	const attachment: Attachment<HTMLElement> = (node) => {
 		let currentTranslate = 0;
 		let currentX = 0;
 		let dimensions: DOMRect = new DOMRect();
@@ -80,9 +65,9 @@ export const swipable: Action<HTMLElement, Parameters> = (node, { onSwipeLeft, o
 				node.style.removeProperty('--translate-x');
 
 				if (currentX < prevX) {
-					onSwipeLeft?.();
+					options.onSwipeLeft?.();
 				} else {
-					onSwipeRight?.();
+					options.onSwipeRight?.();
 				}
 			});
 
@@ -99,5 +84,21 @@ export const swipable: Action<HTMLElement, Parameters> = (node, { onSwipeLeft, o
 			node.removeEventListener('pointermove', handlePointerMove, true);
 			node.removeEventListener('pointerup', handlePointerUp, true);
 		};
-	});
-};
+	};
+
+	return attachment;
+}
+
+function isSwipable(target: EventTarget | null) {
+	let currentNode = target;
+
+	while (currentNode !== null) {
+		if (currentNode instanceof HTMLElement && currentNode.dataset.swipable === 'false') {
+			return false;
+		}
+
+		currentNode = (currentNode as HTMLElement).parentNode as Element | null;
+	}
+
+	return true;
+}
