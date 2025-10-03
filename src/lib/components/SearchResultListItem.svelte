@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import type { SearchResult } from '$lib/api/search';
 	import { findBook } from '$lib/utils/findBook';
 
@@ -15,7 +16,13 @@
 </script>
 
 <div class="container">
-	<a class="link" href="/{bookKey}/{chapter}">
+	<a
+		class="link"
+		href={resolve('/[bookId]/[chapterId]', {
+			bookId: bookKey,
+			chapterId: chapter,
+		})}
+	>
 		<div>{result.content}</div>
 		<div class="underline">{result.reference}</div>
 	</a>

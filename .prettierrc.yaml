@@ -1,0 +1,19 @@
+cssDeclarationSorterOrder: alphabetical
+printWidth: 120
+singleQuote: true
+useTabs: true
+
+plugins:
+  - prettier-plugin-css-order
+  - prettier-plugin-svelte
+  - prettier-plugin-tailwindcss
+
+overrides:
+  - files: "*.svelte"
+    options:
+      parser: svelte
+  - files:
+      - "*.yaml"
+      - "*.yml"
+    options:
+      singleQuote: false

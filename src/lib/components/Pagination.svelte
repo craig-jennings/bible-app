@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button from './common/Button.svelte';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import type { Pagination } from '$lib/api/search';
 
 	interface Props {
@@ -10,13 +10,14 @@
 	/* -- Runes -- */
 	let { pagination }: Props = $props();
 
-	const nextHref = `${$page.url.pathname}?q=${$page.url.searchParams.get('q')}&page=${pagination.page + 1}`;
-	const prevHref = `${$page.url.pathname}?q=${$page.url.searchParams.get('q')}&page=${pagination.page - 1}`;
+	const nextHref = `${page.url.pathname}?q=${page.url.searchParams.get('q')}&page=${pagination.page + 1}`;
+	const prevHref = `${page.url.pathname}?q=${page.url.searchParams.get('q')}&page=${pagination.page - 1}`;
 
 	/* -- Event Handlers -- */
 </script>
 
 <div class="flex items-center justify-between">
+	<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
 	<a href={prevHref}>
 		<Button disabled={!pagination.hasPrevPage}>Previous</Button>
 	</a>
@@ -27,6 +28,7 @@
 		{/if}
 	</div>
 
+	<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
 	<a href={nextHref}>
 		<Button disabled={!pagination.hasNextPage}>Next</Button>
 	</a>

@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
+	import { fetchPassage } from '$lib/api/passage';
 	import HammerElement from '$lib/components/common/HammerElement.svelte';
 	import ScrollUp from '$lib/components/ScrollUp.svelte';
 	import { historyStore } from '$lib/stores/historyStore.svelte';
@@ -8,21 +10,22 @@
 	import requestWakeLock from '$lib/utils/requestWakeLock.svelte';
 
 	interface Props {
-		book: string;
+		bookId: string;
 		chapter: string;
-		passage: string;
 	}
 
 	/* -- Runes -- */
-	const { book: bookKey, chapter, passage }: Props = $props();
+	const { bookId, chapter }: Props = $props();
 
-	const book = findBook(bookKey);
+	let passage = $derived(await fetchPassage(bookId, chapter));
 
 	$effect.root(() => {
-		historyStore.addEntry(bookKey, chapter);
+		historyStore.addEntry(bookId, chapter);
 	});
 
 	requestWakeLock();
+
+	const book = findBook(bookId);
 
 	/* -- Event Handlers -- */
 	const actions: Array<HammerAction> = [
@@ -34,7 +37,12 @@
 
 				if (book.chapterCount === chapterNumber) return;
 
-				return goto(`/${book.key}/${chapterNumber + 1}`);
+				return goto(
+					resolve('/[bookId]/[chapterId]', {
+						bookId: book.key,
+						chapterId: (chapterNumber + 1).toString(),
+					}),
+				);
 			},
 
 			event: 'swipeleft',
@@ -47,7 +55,12 @@
 
 				if (chapterNumber === 1) return;
 
-				return goto(`/${book.key}/${chapterNumber - 1}`);
+				return goto(
+					resolve('/[bookId]/[chapterId]', {
+						bookId: book.key,
+						chapterId: (chapterNumber - 1).toString(),
+					}),
+				);
 			},
 
 			event: 'swiperight',

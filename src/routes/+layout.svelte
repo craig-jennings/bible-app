@@ -13,6 +13,7 @@
 			localStorage.setItem('prev-location', navigation.to.url.pathname);
 		}
 
+		// TODO: Async svelte breaks this
 		return new Promise((resolve) => {
 			document.startViewTransition(async () => {
 				resolve();

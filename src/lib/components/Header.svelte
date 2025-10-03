@@ -1,33 +1,34 @@
 <script lang="ts">
-	import Search from './icons/Search.svelte';
-	import { page } from '$app/stores';
+	import { resolve } from '$app/paths';
+	import { page } from '$app/state';
+	import Search from '$common/icons/search.svg?component';
 	import { findBook } from '$lib/utils/findBook';
 
 	/* -- Runes -- */
-	let book = $derived($page.params.bookId ? findBook($page.params.bookId) : null);
+	let book = $derived(page.params.bookId ? findBook(page.params.bookId) : null);
 
 	/* -- Event Handlers -- */
 </script>
 
-<div class="container" class:stuck={!!$page.params.chapterId}>
+<div class="container" class:stuck={!!page.params.chapterId}>
 	<h1 class="text text-[32px]">
 		<div class="flex items-center justify-center">
-			<a href="/">Bible</a>
+			<a href={resolve('/')}>Bible</a>
 
 			{#if book}
 				<span class="mx-2">&gt;</span>
-				<a class="book-name" href={`/${book.key}`}>{book.label}</a>
+				<a class="book-name" href={resolve('/[bookId]', { bookId: book.key })}>{book.label}</a>
 			{/if}
 
-			{#if $page.params.chapterId}
+			{#if page.params.chapterId}
 				<span class="mx-2">&gt;</span>
-				<span>{$page.params.chapterId}</span>
+				<span>{page.params.chapterId}</span>
 			{/if}
 		</div>
 	</h1>
 
 	<div class="flex items-center justify-center">
-		<a aria-label="Search" href="/search">
+		<a aria-label="Search" href={resolve('/search')}>
 			<Search />
 		</a>
 	</div>

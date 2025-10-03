@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import SelectorList from '$lib/components/SelectorList.svelte';
 	import SelectorItem from '$lib/components/SelectorListItem.svelte';
 	import { findBook } from '$lib/utils/findBook';
 
 	/* -- Runes -- */
-	let book = $derived(findBook($page.params.bookId));
+	let { params } = $props();
+
+	let book = $derived(findBook(params.bookId));
 
 	/* -- Event Handlers -- */
 </script>
@@ -17,7 +18,7 @@
 		<SelectorList>
 			<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
 			{#each Array(book.chapterCount) as _, index (index)}
-				<SelectorItem href="/{$page.params.bookId}/{index + 1}">
+				<SelectorItem href="/{params.bookId}/{index + 1}">
 					{index + 1}
 				</SelectorItem>
 			{/each}

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ArrowUp from './icons/ArrowUp.svelte';
+	import ArrowUp from '$common/icons/arrow-up.svg?component';
 
 	/* -- Runes -- */
 	let isHidden = $state(true);

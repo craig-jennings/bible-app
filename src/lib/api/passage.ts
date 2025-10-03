@@ -5,7 +5,7 @@ interface Payload {
 	passages: string[];
 }
 
-export async function fetchPassage(book: string, chapter: string, fetch = globalThis.fetch) {
+export async function fetchPassage(book: string, chapter: string) {
 	let reference = `${book} ${chapter}`;
 
 	const currentBook = findBook(book);

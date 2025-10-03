@@ -1,7 +1,8 @@
 <script lang="ts">
-	import Close from './icons/Close.svelte';
-	import History from './icons/History.svelte';
 	import { onNavigate } from '$app/navigation';
+	import { resolve } from '$app/paths';
+	import Close from '$common/icons/close.svg?component';
+	import History from '$common/icons/history.svg?component';
 	import { swipable } from '$lib/attachments/swipable.svelte';
 	import { historyStore } from '$lib/stores/historyStore.svelte';
 
@@ -45,7 +46,16 @@
 	</div>
 
 	{#each entries as entry (`${entry.book.key}/${entry.chapter}`)}
-		<a class="block" href="/{entry.book.key}/{entry.chapter}">{entry.book.label} {entry.chapter}</a>
+		<a
+			class="block"
+			href={resolve('/[bookId]/[chapterId]', {
+				bookId: entry.book.key,
+				chapterId: entry.chapter,
+			})}
+		>
+			{entry.book.label}
+			{entry.chapter}
+		</a>
 	{/each}
 </dialog>
 
